@@ -40,7 +40,8 @@ void Malla3D::draw()
 
    //AQUÍ UNA VEZ CREADOS LOS ID y los VBOs activamos
    //cuales son los buffer a usar y cargamos desde la gráfica las tablas
-    if(id_vbo_ver!=0){
+    if(id_vbo_ver!=0)
+    {
 
       // especifícar cual es el VBO que vamos a usar
       glEnableClientState ( GL_VERTEX_ARRAY );
@@ -49,7 +50,8 @@ void Malla3D::draw()
       // Usar el buffer activo para vertices
       glVertexPointer(3,GL_FLOAT,0,);
     }
-    if(id_vbo_tri!=0){
+    if(id_vbo_tri!=0)
+    {
     //no se hacerlo aún
     // especifícar cual es el VBO que vamos a usar
     glEnableClientState ( GL_NORMAL_ARRAY );
@@ -58,7 +60,8 @@ void Malla3D::draw()
     // Usar el buffer activo para vertices
     glNormalPointer(3,GL_FLOAT,0,);//AQUI TIENE QUE REVENTAR NO SE QUE FUNCION DEBE SER
     }
-    if ( id_vbo_c != 0 ) {
+    if ( id_vbo_c != 0 )
+    {
       // habilitar uso de array de colores
       glEnableClientState ( GL_COLOR_ARRAY );
       // especifícar cual es el VBO que vamos a usar
