@@ -67,7 +67,7 @@ void Malla3D::draw()
       // especifícar cual es el VBO que vamos a usar
       glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_c );
       // Usar el buffer activo para el color
-      glColorPointer ( 3 , GL_FLOAT , 0 , 0 );
+      glColorPointer (4,GL_FLOAT,0,0);
     }
 
 

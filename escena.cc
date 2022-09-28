@@ -60,10 +60,11 @@ void Escena::dibujar()
     // COMPLETAR
     //   Dibujar los diferentes elementos de la escena
     // Habrá que tener en esta primera práctica una variable que indique qué objeto se ha de visualizar
-    // y hacer 
+    // y hacer
     // cubo->draw()
     // o    piramide->draw()
-    
+
+
 }
 
 //**************************************************************************
@@ -83,14 +84,35 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
    {
       case 'Q' :
          if (modoMenu!=NADA)
-            modoMenu=NADA;            
+            modoMenu=NADA;
          else {
             salir=true ;
          }
          break ;
       case 'O' :
          // ESTAMOS EN MODO SELECCION DE OBJETO
-         modoMenu=SELOBJETO; 
+         modoMenu=SELOBJETO;
+         switch( toupper(tecla) )
+         {
+          case 'C' :
+           //Estamos si no esta creado creamos el objeto en memoria
+           //una vez creado será necesario un mecanismo para ocultar la escena
+              if (Cubo!=nullptr){
+                //se crea la
+              }
+              else{
+
+              }
+              break;
+          case 'P':
+          if (PiramidePentagonal!=nullptr){
+            //se crea la piramide
+          }
+          else{
+
+          }
+            break;
+         }
          break ;
         case 'V' :
          // ESTAMOS EN MODO SELECCION DE MODO DE VISUALIZACION
@@ -98,7 +120,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break ;
 
          // COMPLETAR con los diferentes opciones de teclado
-            
+
    }
    return salir;
 }
