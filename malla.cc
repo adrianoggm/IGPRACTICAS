@@ -27,15 +27,15 @@ void Malla3D::draw()
    //COMPRUEBO SI NO ESTAN CREADOS LOS ID DE OBJETO DE LOS VBOs
    if(id_vbo_ver==0)
    {
-     id_vbo_ver=CrearVBO();
+     id_vbo_ver=CrearVBO(GL_VERTEX_ARRAY,v.size(),&v);
    }
    if(id_vbo_tri==0)
    {
-     id_vbo_tri=CrearVBO();
+     id_vbo_tri=CrearVBO(GL_NORMAL_ARRAY,f.size(),&f);
    }
    if(id_vbo_c==0)
    {
-     id_vbo_c=CrearVBO();
+     id_vbo_c=CrearVBO(GL_VERTEX_ARRAY,c.size(),&c);
    }
 
    //AQUÍ UNA VEZ CREADOS LOS ID y los VBOs activamos
@@ -48,17 +48,17 @@ void Malla3D::draw()
       // especifícar cual es el VBO que vamos a usar
       glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
       // Usar el buffer activo para vertices
-      glVertexPointer(3,GL_FLOAT,0,);
+      glVertexPointer(3,GL_FLOAT,0,0);
     }
     if(id_vbo_tri!=0)
     {
     //no se hacerlo aún
     // especifícar cual es el VBO que vamos a usar
-    glEnableClientState ( GL_NORMAL_ARRAY );
+    glEnableClientState ( GL_VERTEX_ARRAY );
     // especifícar cual es el VBO que vamos a usar
-    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_tri );
+    glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , id_vbo_tri );
     // Usar el buffer activo para vertices
-    glNormalPointer(3,GL_FLOAT,0,);//AQUI TIENE QUE REVENTAR NO SE QUE FUNCION DEBE SER
+    glVertexPointer(3,GL_FLOAT,0,0);
     }
     if ( id_vbo_c != 0 )
     {
