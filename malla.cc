@@ -70,5 +70,22 @@ void Malla3D::draw()
       glColorPointer (4,GL_FLOAT,0,0);
     }
 
+    //a continuación
+  glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
+// usar como buffer de vertices el actualmente activo
+  glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );
+// deactivar buffer: VBO de vértices.
+  glBindBuffer ( GL_ARRAY_BUFFER , 0 );
+// habilitar el uso de tabla de vértices
+  glEnableClientState ( GL_VERTEX_ARRAY );
+//
+// activar buffer: VBO de triángulos
+  glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , id_vbo_tri );
+// dibujar con el buffer de índices activo
+  glDrawElements ( GL_TRIANGLES , 3*f. size () , GL_UNSIGNED_INT , 0 ) ;
+    // desactivar buffer: VBO de triángulos
+  glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , 0 );
+  // desactivar uso de array de vértices
+  glDisableClientState ( GL_VERTEX_ARRAY );
 
 }
