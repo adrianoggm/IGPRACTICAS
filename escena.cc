@@ -64,7 +64,7 @@ void Escena::dibujar()
     // cubo->draw()
     // o    piramide->draw()
 
-      Cubo cubo= Cubo(50);
+      Cubo cubo= Cubo(100);
       cubo.draw();
 
 /*
