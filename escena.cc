@@ -66,6 +66,7 @@ void Escena::dibujar()
 
       Cubo cubo= Cubo(100);
       cubo.draw();
+      glutSwapBuffers() ;
 
 /*
     glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );

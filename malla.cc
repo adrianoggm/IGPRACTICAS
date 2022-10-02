@@ -27,31 +27,43 @@ void Malla3D::draw()
    //COMPRUEBO SI NO ESTAN CREADOS LOS ID DE OBJETO DE LOS VBOs
    if(id_vbo_ver==0)
    {
-     id_vbo_ver=CrearVBO(GL_ARRAY_BUFFER,v.size()*3,&v);
+     id_vbo_ver=CrearVBO(GL_ARRAY_BUFFER,v.size(),&v);
    }
    if(id_vbo_tri==0)
    {
-     id_vbo_tri=CrearVBO(GL_ELEMENT_ARRAY_BUFFER,f.size()*3,&f);
+     id_vbo_tri=CrearVBO(GL_ELEMENT_ARRAY_BUFFER,f.size(),&f);
    }
    /*if(id_vbo_c==0)
    {
      id_vbo_c=CrearVBO(GL_VERTEX_ARRAY,c.size(),&c);
    }*/
    // activar buffer
-   glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
-   // usar como buffer de vertices el actualmente activo
-   glVertexPointer ( 3, GL_FLOAT , 0, 0 );
-   // desactivar buffer
-   glBindBuffer ( GL_ARRAY_BUFFER , 0 );
+   if ( id_vbo_c!=0) {
+    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_c );
+    glEnableClientState( GL_COLOR_ARRAY ); // habilitar uso de array de col.
+    glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
+    glBindBuffer ( GL_ARRAY_BUFFER , 0);
+    }
+    if ( id_vbo_ver!=0) {
+      glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
    // habilitar el uso de tabla de vértices
-   glEnableClientState ( GL_VERTEX_ARRAY );
+    glEnableClientState ( GL_VERTEX_ARRAY );
+   // usar como buffer de vertices el actualmente activo
+      glVertexPointer ( 3, GL_FLOAT , 0, 0 );
+   // desactivar buffer
+      glBindBuffer ( GL_ARRAY_BUFFER , 0 );
+    }
+    if ( id_vbo_tri!=0) {
    // activar buffer: VBO de triángulos
-   glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , id_vbo_tri );
+    glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , id_vbo_tri );
    // dibujar con el buffer de índices activo
-   glDrawElements ( GL_TRIANGLES , 3*f.size (), GL_UNSIGNED_INT , 0 );
+   glDrawElements ( GL_TRIANGLES , 3*f.size (), GL_UNSIGNED_INT,0 );
    // desactivar buffer: VBO de triángulos
    glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , 0 );
    // desactivar uso de array de vértices
    glDisableClientState ( GL_VERTEX_ARRAY );
+   glDisableClientState ( GL_COLOR_ARRAY );
+   }
 
-}
+
+  }
