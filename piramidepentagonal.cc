@@ -12,13 +12,13 @@ PiramidePentagonal::PiramidePentagonal(float h, float r)
    const float PI=3.14159265358979323846l;
    const float angulo=360/5;
 
-   
+
    //vertices del 0 al 4
    for(int i=0;i<=360;){
      float degtorad=(i*PI)/180;
      float cosen=cos(degtorad)*180/PI;
      float sen=sin(degtorad)*180/PI;
-     v.push_back(Tupla3f(r*lado,r*lado,0));
+     v.push_back(Tupla3f(r*cosen,r*sen,0));
     i+=angulo;
    }
    //vertice 5 ápice superior de la pirámide
