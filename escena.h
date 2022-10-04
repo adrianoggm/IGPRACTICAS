@@ -37,7 +37,7 @@ class Escena
    Ejes ejes;
    Cubo * cubo = nullptr ; // es importante inicializarlo a 'nullptr'
    PiramidePentagonal * piramide= nullptr ; // es importante inicializarlo a 'nullptr'
-   bool adibucubo = true;
+   int FiguraCubooPiramide=0;
 
    public:
 

@@ -63,30 +63,16 @@ void Escena::dibujar()
     // y hacer
     // cubo->draw()
     // o    piramide->draw()
+    if(FiguraCubooPiramide==1){
+      Cubo c= Cubo(100);
+      c.draw();
 
-      Cubo cubo= Cubo(100);
-      cubo.draw();
-      glutSwapBuffers() ;
-
-/*
-    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
-    // usar como buffer de vertices el actualmente activo
-    glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );
-    // deactivar buffer: VBO de vértices.
-    glBindBuffer ( GL_ARRAY_BUFFER , 0 );
-    // habilitar el uso de tabla de vértices
-    glEnableClientState ( GL_VERTEX_ARRAY );
-
-    // activar buffer: VBO de triángulos
-    glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , id_vbo_tri );
-    // dibujar con el buffer de índices activo
-    glDrawElements ( GL_TRIANGLES , 3*f. size () , GL_UNSIGNED_INT , 0 ) ;
-    // desactivar buffer: VBO de triángulos
-    glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , 0 );
-    // desactivar uso de array de vértices
-    glDisableClientState ( GL_VERTEX_ARRAY );
-*/
-
+    }
+    if(FiguraCubooPiramide==2){
+      PiramidePentagonal p= PiramidePentagonal(100);
+      p.draw();
+    }
+    glutSwapBuffers();
 }
 
 //**************************************************************************
@@ -120,9 +106,13 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
            //Estamos si no esta creado creamos el objeto en memoria
            //una vez creado será necesario un mecanismo para ocultar la escena
            //adibujar="cubo";
+              FiguraCubooPiramide=1;
+              dibujar();
               break;
           case 'P':
             //adibujar="piramide";
+            FiguraCubooPiramide=2;
+            dibujar();
             break;
          }
          break ;

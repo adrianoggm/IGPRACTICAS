@@ -19,7 +19,7 @@
 // *****************************************************************************
 
 // *****************************************************************************
-// Pirámide de base pentagonal con base centrada en el origen 
+// Pirámide de base pentagonal con base centrada en el origen
 
 class PiramidePentagonal: public Malla3D
 {
