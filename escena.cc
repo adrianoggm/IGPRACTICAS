@@ -63,6 +63,10 @@ void Escena::dibujar()
     // y hacer
     // cubo->draw()
     // o    piramide->draw()
+    Cubo c= Cubo(100);
+    c.draw();
+    /*
+
     if(FiguraCubooPiramide==1){
       Cubo c= Cubo(100);
       c.draw();
@@ -72,6 +76,7 @@ void Escena::dibujar()
       PiramidePentagonal p= PiramidePentagonal(100);
       p.draw();
     }
+    */
     glutSwapBuffers();
 }
 
