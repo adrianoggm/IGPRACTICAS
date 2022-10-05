@@ -63,20 +63,17 @@ void Escena::dibujar()
     // y hacer
     // cubo->draw()
     // o    piramide->draw()
-   cubo->draw(); 
-   // piramide->draw();
-    /*
 
     if(FiguraCubooPiramide==1){
-      Cubo c= Cubo(100);
-      c.draw();
+      printf("pintacubo");
+      cubo->draw();
 
     }
     if(FiguraCubooPiramide==2){
-      PiramidePentagonal p= PiramidePentagonal(150,100);
-      p.draw();
+      printf("pintapiramid");
+      piramide ->draw();
     }
-    */
+
     glutSwapBuffers();
 }
 
@@ -105,22 +102,28 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
       case 'O' :
          // ESTAMOS EN MODO SELECCION DE OBJETO
          modoMenu=SELOBJETO;
-         switch( toupper(tecla) )
-         {
-          case 'C' :
-           //Estamos si no esta creado creamos el objeto en memoria
-           //una vez creado será necesario un mecanismo para ocultar la escena
-           //adibujar="cubo";
-              FiguraCubooPiramide=1;
-              dibujar();
-              break;
-          case 'P':
-            //adibujar="piramide";
-            FiguraCubooPiramide=2;
-            dibujar();
-            break;
-         }
          break ;
+      case 'C' :
+          //Estamos si no esta creado creamos el objeto en memoria
+          //una vez creado será necesario un mecanismo para ocultar la escena
+          //adibujar="cubo";
+        if(modoMenu=SELOBJETO){
+             printf("casocubo");
+             FiguraCubooPiramide=1;
+             cubo = new Cubo(100.0) ;
+             this->dibujar();
+        }
+        break;
+      case 'P':
+          //adibujar="piramide";
+        if(modoMenu=SELOBJETO){
+             printf("casopiri");
+            FiguraCubooPiramide=2;
+            piramide= new PiramidePentagonal(150.0,100.0);
+            this->dibujar();
+        }
+        break;
+
         case 'V' :
          // ESTAMOS EN MODO SELECCION DE MODO DE VISUALIZACION
          modoMenu=SELVISUALIZACION;

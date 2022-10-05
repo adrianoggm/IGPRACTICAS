@@ -35,8 +35,8 @@ class Escena
    menu modoMenu=NADA;
    // Objetos de la escena
    Ejes ejes;
-   Cubo * cubo = new Cubo(100.0) ; // es importante inicializarlo a 'nullptr'
-   PiramidePentagonal * piramide= new PiramidePentagonal(150,100) ; // es importante inicializarlo a 'nullptr'
+   Cubo * cubo = nullptr ; // es importante inicializarlo a 'nullptr'
+   PiramidePentagonal * piramide= nullptr ; // es importante inicializarlo a 'nullptr'
    int FiguraCubooPiramide=0;
 
    public:

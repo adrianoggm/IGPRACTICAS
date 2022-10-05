@@ -30,17 +30,16 @@ void Malla3D::draw()
    //COMPRUEBO SI NO ESTAN CREADOS LOS ID DE OBJETO DE LOS VBOs
    if(id_vbo_ver==0)
    {
-     printf("llega aqui");
      id_vbo_ver=CrearVBO(GL_ARRAY_BUFFER,v.size()*sizeof(Tupla3f),v.data());
    }
    if(id_vbo_tri==0)
    {
      id_vbo_tri=CrearVBO(GL_ELEMENT_ARRAY_BUFFER,f.size()*sizeof(Tupla3i),f.data());
    }
-   /*if(id_vbo_c==0)
+   if(id_vbo_c==0)
    {
      id_vbo_c=CrearVBO(GL_VERTEX_ARRAY,c.size(),&c);
-   }*/
+   }
    // activar buffer
    /*if ( id_vbo_c!=0) {
     glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_c );

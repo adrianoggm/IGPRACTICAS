@@ -14,15 +14,15 @@ PiramidePentagonal::PiramidePentagonal(float h, float r)
 
 
    //vertices del 0 al 4
-   for(int i=0;i<=360;){
+   for(int i=0;i<360;){
      float degtorad=(i*PI)/180;
-     float cosen=cos(degtorad)*180/PI;
-     float sen=sin(degtorad)*180/PI;
-     v.push_back(Tupla3f(r*cosen,r*sen,0));
+     float cosen=cos(degtorad);
+     float sen=sin(degtorad);
+     v.push_back(Tupla3f(r*cosen,0,r*sen));
     i+=angulo;
    }
    //vertice 5 ápice superior de la pirámide
-   v.push_back(Tupla3f(0,0,h));
+   v.push_back(Tupla3f(0,h,0));
 
    // inicializar la tabla de caras o triángulos:
    f.resize(8);
