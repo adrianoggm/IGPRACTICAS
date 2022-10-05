@@ -63,8 +63,8 @@ void Escena::dibujar()
     // y hacer
     // cubo->draw()
     // o    piramide->draw()
-    Cubo c= Cubo(100);
-    c.draw();
+   cubo->draw(); 
+   // piramide->draw();
     /*
 
     if(FiguraCubooPiramide==1){
@@ -73,7 +73,7 @@ void Escena::dibujar()
 
     }
     if(FiguraCubooPiramide==2){
-      PiramidePentagonal p= PiramidePentagonal(100);
+      PiramidePentagonal p= PiramidePentagonal(150,100);
       p.draw();
     }
     */
