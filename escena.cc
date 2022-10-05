@@ -21,6 +21,8 @@ Escena::Escena()
     // crear los objetos de la escena....
     // .......completar: ...
     // .....
+    piramide= new PiramidePentagonal(150.0,100.0);
+    cubo = new Cubo(100.0);
 
 }
 
@@ -38,8 +40,8 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
 
 	Width  = UI_window_width/10;
 	Height = UI_window_height/10;
-
-   change_projection( float(UI_window_width)/float(UI_window_height) );
+  glEnable (GL_CULL_FACE);
+  change_projection( float(UI_window_width)/float(UI_window_height) );
 	glViewport( 0, 0, UI_window_width, UI_window_height );
 }
 
@@ -73,8 +75,6 @@ void Escena::dibujar()
       printf("pintapiramid");
       piramide ->draw();
     }
-
-    glutSwapBuffers();
 }
 
 //**************************************************************************
@@ -109,7 +109,6 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
           //adibujar="cubo";
         if(modoMenu=SELOBJETO){
              FiguraCubooPiramide=1;
-             cubo = new Cubo(100.0) ;
              this->dibujar();
         }
         break;
@@ -117,7 +116,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
           //adibujar="piramide";
         if(modoMenu=SELOBJETO){
             FiguraCubooPiramide=2;
-            piramide= new PiramidePentagonal(150.0,100.0);
+
             this->dibujar();
         }
         break;
