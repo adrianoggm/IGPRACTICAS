@@ -38,16 +38,17 @@ void Malla3D::draw()
    }
    if(id_vbo_c==0)
    {
-     id_vbo_c=CrearVBO(GL_VERTEX_ARRAY,c.size(),&c);
+     id_vbo_c=CrearVBO(GL_ARRAY_BUFFER,c.size()*sizeof(Tupla3i),c.data());
    }
    // activar buffer
-   /*if ( id_vbo_c!=0) {
+   if ( id_vbo_c!=0 && id_vbo_tri!=0 && id_vbo_ver) {
     glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_c );
     glEnableClientState( GL_COLOR_ARRAY ); // habilitar uso de array de col.
     glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
     glBindBuffer ( GL_ARRAY_BUFFER , 0);
-    }
-    */
+
+
+
    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
 	// usar como buffer de vertices el actualmente activo
    glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );
@@ -64,6 +65,7 @@ void Malla3D::draw()
    glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , 0 );
    // desactivar uso de array de vértices
    glDisableClientState ( GL_VERTEX_ARRAY );
-
+   glDisableClientState ( GL_COLOR_ARRAY );
+  }
 
   }

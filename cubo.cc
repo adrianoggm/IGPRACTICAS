@@ -51,4 +51,24 @@ Cubo::Cubo(float lado)
    //CARA6
    f[10]=Tupla3i(3,1,5);
    f[11]=Tupla3i(3,5,7);
+
+   c.resize(12);
+   //colores
+   c[0]=Tupla3f(1.0f,0.0f,1.0f);
+   c[1]=Tupla3f(0.0f,1.0f,0.0f);
+   //CARA2
+   c[2]=Tupla3f(1.0f,0.0f,0.0f);
+   c[3]=Tupla3f(0.0f,1.0f,1.0f);
+   //CARA3
+   c[4]=Tupla3f(1.0f,0.0f,1.0f);
+   c[5]=Tupla3f(0.0f,1.0f,0.0f);
+   //CARA4
+   c[6]=Tupla3f(1.0f,0.0f,0.0f);
+   c[7]=Tupla3f(0.0f,1.0f,1.0f);
+   //CARA5
+   c[8]=Tupla3f(0.0f,1.0f,0.0f);
+   c[9]=Tupla3f(0.0f,0.0f,1.0f);
+   //CARA6
+   c[10]=Tupla3f(0.0f,1.0f,0.0f);
+   c[11]=Tupla3f(0.0f,0.0f,1.0f);
 }

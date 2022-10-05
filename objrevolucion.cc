@@ -1,4 +1,4 @@
-#include "aux.h"
+#include "auxiliar.h"
 #include "objrevolucion.h"
 
 
@@ -23,9 +23,9 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, int num_instancias) {
 // *****************************************************************************
 // objeto de revolución obtenido a partir de un perfil (en un vector de puntos)
 
- 
+
 ObjRevolucion::ObjRevolucion(std::vector<Tupla3f> archivo, int num_instancias) {
-    
+
 }
 
 void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_instancias) {
