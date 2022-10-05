@@ -108,7 +108,6 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
           //una vez creado será necesario un mecanismo para ocultar la escena
           //adibujar="cubo";
         if(modoMenu=SELOBJETO){
-             printf("casocubo");
              FiguraCubooPiramide=1;
              cubo = new Cubo(100.0) ;
              this->dibujar();
@@ -117,7 +116,6 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
       case 'P':
           //adibujar="piramide";
         if(modoMenu=SELOBJETO){
-             printf("casopiri");
             FiguraCubooPiramide=2;
             piramide= new PiramidePentagonal(150.0,100.0);
             this->dibujar();

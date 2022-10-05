@@ -6,7 +6,7 @@ PiramidePentagonal::PiramidePentagonal(float h, float r)
 {
 
    // inicializar la tabla de vértices
-   v.resize(6);
+   
 
 
    const float PI=3.14159265358979323846l;
