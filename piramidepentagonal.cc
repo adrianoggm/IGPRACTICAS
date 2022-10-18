@@ -6,7 +6,7 @@ PiramidePentagonal::PiramidePentagonal(float h, float r)
 {
 
    // inicializar la tabla de vértices
-   
+
 
 
    const float PI=3.14159265358979323846l;
@@ -41,5 +41,19 @@ PiramidePentagonal::PiramidePentagonal(float h, float r)
 
 
    // inicializar la/s tabla/s de colores
+
+   c.resize(8);
+
+   //colores
+   c[0]=Tupla3f(0.0f,1.0f,1.0f);
+   c[1]=Tupla3f(0.0f,1.0f,1.0f);
+   c[2]=Tupla3f(0.0f,1.0f,1.0f);
+   c[3]=Tupla3f(0.0f,1.0f,1.0f);
+   c[4]=Tupla3f(0.0f,1.0f,1.0f);
+   c[5]=Tupla3f(0.0f,1.0f,1.0f);
+   c[6]=Tupla3f(0.0f,1.0f,1.0f);
+   c[7]=Tupla3f(0.0f,1.0f,1.0f);
+
+
 
 }
