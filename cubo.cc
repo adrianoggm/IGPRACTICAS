@@ -16,15 +16,15 @@ Cubo::Cubo(float lado)
    //Luego la composición de los vertices será en la forma (+-0.5l,+-0.5l,+-0.5,l)
    //podemos observar que el numero de vertices será
    //2^3 =8 del número de posibles vértices a formar.
-   const float PROPORCION=0.5;
-   v[0]=Tupla3f(+PROPORCION*lado,+PROPORCION*lado,+PROPORCION*lado);
-   v[1]=Tupla3f(+PROPORCION*lado,+PROPORCION*lado,-PROPORCION*lado);
-   v[2]=Tupla3f(+PROPORCION*lado,-PROPORCION*lado,+PROPORCION*lado);
-   v[3]=Tupla3f(+PROPORCION*lado,-PROPORCION*lado,-PROPORCION*lado);
-   v[4]=Tupla3f(-PROPORCION*lado,+PROPORCION*lado,+PROPORCION*lado);
-   v[5]=Tupla3f(-PROPORCION*lado,+PROPORCION*lado,-PROPORCION*lado);
-   v[6]=Tupla3f(-PROPORCION*lado,-PROPORCION*lado,+PROPORCION*lado);
-   v[7]=Tupla3f(-PROPORCION*lado,-PROPORCION*lado,-PROPORCION*lado);
+
+   v[0]=Tupla3f(+lado,+lado,+lado);
+   v[1]=Tupla3f(+lado,+lado,0);
+   v[2]=Tupla3f(+lado,0,+lado);
+   v[3]=Tupla3f(+lado,0,0);
+   v[4]=Tupla3f(0,+lado,+lado);
+   v[5]=Tupla3f(0,+lado,0);
+   v[6]=Tupla3f(0,0,+lado);
+   v[7]=Tupla3f(0,0,0);
 
 
    // inicializar la tabla de caras o triángulos:
@@ -75,23 +75,24 @@ Cubo::Cubo(float lado)
    c[11]=Tupla3f(0.0f,1.0f,0.0f);
 
 
-
+   /*
    //colores
    c[0]=Tupla3f(1.0f,0.0f,1.0f);
-   c[1]=Tupla3f(0.0f,1.0f,0.0f);
+   c[1]=Tupla3f(1.0f,0.0f,1.0f);
    //CARA2
-   c[2]=Tupla3f(1.0f,0.0f,0.0f);
-   c[3]=Tupla3f(0.0f,1.0f,1.0f);
+   c[2]=Tupla3f(1.0f,0.0f,1.0f);
+   c[3]=Tupla3f(1.0f,0.0f,1.0f);
    //CARA3
    c[4]=Tupla3f(1.0f,0.0f,1.0f);
-   c[5]=Tupla3f(0.0f,1.0f,0.0f);
+   c[5]=Tupla3f(1.0f,0.0f,1.0f);
    //CARA4
-   c[6]=Tupla3f(1.0f,0.0f,0.0f);
-   c[7]=Tupla3f(0.0f,1.0f,1.0f);
+   c[6]=Tupla3f(1.0f,0.0f,1.0f);
+   c[7]=Tupla3f(1.0f,0.0f,1.0f);
    //CARA5
-   c[8]=Tupla3f(0.0f,1.0f,0.0f);
-   c[9]=Tupla3f(0.0f,0.0f,1.0f);
+   c[8]=Tupla3f(1.0f,0.0f,1.0f);
+   c[9]=Tupla3f(1.0f,0.0f,1.0f);
    //CARA6
-   c[10]=Tupla3f(0.0f,1.0f,0.0f);
-   c[11]=Tupla3f(0.0f,0.0f,1.0f);
+   c[10]=Tupla3f(1.0f,0.0f,1.0f);
+   c[11]=Tupla3f(1.0f,0.0f,1.0f);
+   */
 }
