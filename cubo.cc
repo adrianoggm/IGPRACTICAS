@@ -75,6 +75,41 @@ Cubo::Cubo(float lado)
    c[11]=Tupla3f(0.0f,1.0f,0.0f);
 
 
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+   
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
    /*
    //colores
    c[0]=Tupla3f(1.0f,0.0f,1.0f);

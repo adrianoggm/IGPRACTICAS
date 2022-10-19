@@ -36,9 +36,16 @@ class Malla3D
    // completar P1: tabla de colores
    std::vector<Tupla3f> c; //tabla de colores con el num de la cara y los colores en RGB
    // Completar P1: vbo y método asociado
+   std::vector<Tupla3f> l;
+   std::vector<Tupla3f> p;
+
+   
    GLuint id_vbo_ver=0;
    GLuint id_vbo_tri=0;
    GLuint id_vbo_c=0;
+   GLuint id_vbo_l=0;
+   GLuint id_vbo_p=0;
+
 
 
 

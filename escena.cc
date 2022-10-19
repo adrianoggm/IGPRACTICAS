@@ -68,23 +68,23 @@ void Escena::dibujar()
 
     if(FiguraCubooPiramide==1){
 
-      if(cubo->modo_solido){
-        printf("pintacubo con solido");
-        glPolygonMode(GL_FRONT, GL_FILL);
-        cubo->draw();
+
+
+
+      if(cubo->modo_puntos){
+          printf("pintacubo con vertices");
+        glPolygonMode(GL_FRONT, GL_POINT);
       }
       if(cubo->modo_alambre){
         printf("pintacubo con alambre");
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        cubo->draw();
-      }
-      if(cubo->modo_puntos){
-          printf("pintacubo con vertices");
-        glPolygonMode(GL_FRONT, GL_POINT);
-        cubo->draw();
-      }
 
-
+      }
+      if(cubo->modo_solido){
+        printf("pintacubo con solido");
+        glPolygonMode(GL_FRONT, GL_FILL);
+      }
+      cubo->draw();
     }
     if(FiguraCubooPiramide==2){
       printf("pintapiramid");
@@ -152,6 +152,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               }
                this->dibujar();
            }
+           break ;
          // COMPLETAR con los diferentes opciones de teclado
          case 'L':
              //adibujar="piramide";
@@ -164,6 +165,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               }
                this->dibujar();
            }
+           break ;
 
            case 'D':
                //adibujar="piramide";
@@ -176,6 +178,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                 }
                  this->dibujar();
              }
+             break ;
    }
    return salir;
 }
