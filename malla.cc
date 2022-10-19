@@ -48,12 +48,13 @@ void Malla3D::draw()
 
     if(modo_puntos){
 
-      glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_l );
-      glEnableClientState( GL_COLOR_ARRAY ); // habilitar uso de array de col.
+      glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_p );
+     // habilitar uso de array de col.
       glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
       glBindBuffer ( GL_ARRAY_BUFFER , 0);
+     glEnableClientState( GL_COLOR_ARRAY );
 
-      glColor3f(0.0f,0.0f,1.0f);
+
       glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
      // usar como buffer de vertices el actualmente activo
       glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );
@@ -77,13 +78,12 @@ void Malla3D::draw()
     }
     if(modo_alambre){
 
-      glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_p );
-      glEnableClientState( GL_COLOR_ARRAY ); // habilitar uso de array de col.
+      glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_l );
+       // habilitar uso de array de col.
       glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
       glBindBuffer ( GL_ARRAY_BUFFER , 0);
-      glColor3f(0.0f,0.0f,1.0f);
+      glEnableClientState( GL_COLOR_ARRAY );
       glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
-
      // usar como buffer de vertices el actualmente activo
       glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );
       // deactivar buffer: VBO de vértices.
@@ -105,9 +105,10 @@ void Malla3D::draw()
   }
   if(modo_solido){
     glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_c );
-    glEnableClientState( GL_COLOR_ARRAY ); // habilitar uso de array de col.
+    // habilitar uso de array de col.
     glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
     glBindBuffer ( GL_ARRAY_BUFFER , 0);
+    glEnableClientState( GL_COLOR_ARRAY );
     glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
    // usar como buffer de vertices el actualmente activo
     glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );

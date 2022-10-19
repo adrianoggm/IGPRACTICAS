@@ -35,23 +35,23 @@ Cubo::Cubo(float lado)
    f.resize(12);
 
    //CARA1
-   f[0]=Tupla3i(0,1,2);
-   f[1]=Tupla3i(1,3,2);
+   f[0]=Tupla3i(0,3,1);
+   f[1]=Tupla3i(0,2,3);
    //CARA2
-   f[2]=Tupla3i(1,0,5);
-   f[3]=Tupla3i(0,4,5);
+   f[2]=Tupla3i(0,1,5);
+   f[3]=Tupla3i(0,5,4);
    //CARA3
-   f[4]=Tupla3i(6,7,4);
-   f[5]=Tupla3i(7,5,4);
+   f[4]=Tupla3i(6,4,7);
+   f[5]=Tupla3i(7,4,5);
    //CARA4
-   f[6]=Tupla3i(2,3,6);
-   f[7]=Tupla3i(3,7,6);
+   f[6]=Tupla3i(2,6,3);
+   f[7]=Tupla3i(3,6,7);
    //CARA5
-   f[8]=Tupla3i(0,2,6);
-   f[9]=Tupla3i(0,6,4);
+   f[8]=Tupla3i(0,6,2);
+   f[9]=Tupla3i(0,4,6);
    //CARA6
-   f[10]=Tupla3i(3,1,5);
-   f[11]=Tupla3i(3,5,7);
+   f[10]=Tupla3i(3,5,1);
+   f[11]=Tupla3i(3,7,5);
 
    c.resize(12);
 
@@ -107,7 +107,7 @@ Cubo::Cubo(float lado)
 
    p.push_back(Tupla3f(1.0f,0.0f,0.0f));
    p.push_back(Tupla3f(1.0f,0.0f,0.0f));
-   
+
    p.push_back(Tupla3f(1.0f,0.0f,0.0f));
    p.push_back(Tupla3f(1.0f,0.0f,0.0f));
    /*

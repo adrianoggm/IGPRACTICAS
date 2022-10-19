@@ -67,10 +67,6 @@ void Escena::dibujar()
     // o    piramide->draw()
 
     if(FiguraCubooPiramide==1){
-
-
-
-
       if(cubo->modo_puntos){
           printf("pintacubo con vertices");
         glPolygonMode(GL_FRONT, GL_POINT);
@@ -86,9 +82,22 @@ void Escena::dibujar()
       }
       cubo->draw();
     }
+
     if(FiguraCubooPiramide==2){
-      printf("pintapiramid");
-      piramide ->draw();
+      if(piramide->modo_puntos){
+          printf("pintapira con vertices");
+          glPolygonMode(GL_FRONT, GL_POINT);
+      }
+      if(piramide->modo_alambre){
+        printf("pintapiramide con alambre");
+        glPolygonMode(GL_FRONT, GL_LINE);
+
+      }
+      if(piramide->modo_solido){
+        printf("pintapiramide con solido");
+        glPolygonMode(GL_FRONT, GL_FILL);
+      }
+      piramide->draw();
     }
 }
 
@@ -144,37 +153,49 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          case 'S':
              //adibujar="piramide";
            if(modoMenu=SELVISUALIZACION){
-              if(cubo->modo_solido){
+              if(modoso){
                 cubo->modo_solido=false;
+                piramide->modo_solido=false;
+                modoso=false;
               }
               else{
                 cubo->modo_solido=true;
+                piramide->modo_solido=true;
+                modoso=true;
               }
                this->dibujar();
            }
            break ;
          // COMPLETAR con los diferentes opciones de teclado
          case 'L':
-             //adibujar="piramide";
+
            if(modoMenu=SELVISUALIZACION){
-              if(cubo->modo_alambre){
+              if(modolin){
                 cubo->modo_alambre=false;
+                piramide->modo_alambre=false;
+                modolin=false;
               }
               else{
                 cubo->modo_alambre=true;
+                piramide->modo_alambre=true;
+                modolin=true;
               }
                this->dibujar();
            }
            break ;
 
            case 'D':
-               //adibujar="piramide";
+
              if(modoMenu=SELVISUALIZACION){
-                if(cubo->modo_puntos){
+                if(modovert){
                   cubo->modo_puntos=false;
+                  piramide->modo_puntos=false;
+                  modovert=false;
                 }
                 else{
                   cubo->modo_puntos=true;
+                  piramide->modo_puntos=true;
+                  modovert=true;
                 }
                  this->dibujar();
              }

@@ -56,4 +56,29 @@ PiramidePentagonal::PiramidePentagonal(float h, float r)
 
 
 
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+
+
 }
