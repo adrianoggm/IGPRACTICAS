@@ -67,8 +67,23 @@ void Escena::dibujar()
     // o    piramide->draw()
 
     if(FiguraCubooPiramide==1){
-      printf("pintacubo");
-      cubo->draw();
+
+      if(cubo->modo_solido){
+        printf("pintacubo con solido");
+        glPolygonMode(GL_FRONT, GL_FILL);
+        cubo->draw();
+      }
+      if(cubo->modo_alambre){
+        printf("pintacubo con alambre");
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        cubo->draw();
+      }
+      if(cubo->modo_puntos){
+          printf("pintacubo con vertices");
+        glPolygonMode(GL_FRONT, GL_POINT);
+        cubo->draw();
+      }
+
 
     }
     if(FiguraCubooPiramide==2){
@@ -126,8 +141,41 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          modoMenu=SELVISUALIZACION;
          break ;
 
+         case 'S':
+             //adibujar="piramide";
+           if(modoMenu=SELVISUALIZACION){
+              if(cubo->modo_solido){
+                cubo->modo_solido=false;
+              }
+              else{
+                cubo->modo_solido=true;
+              }
+               this->dibujar();
+           }
          // COMPLETAR con los diferentes opciones de teclado
+         case 'L':
+             //adibujar="piramide";
+           if(modoMenu=SELVISUALIZACION){
+              if(cubo->modo_alambre){
+                cubo->modo_alambre=false;
+              }
+              else{
+                cubo->modo_alambre=true;
+              }
+               this->dibujar();
+           }
 
+           case 'D':
+               //adibujar="piramide";
+             if(modoMenu=SELVISUALIZACION){
+                if(cubo->modo_puntos){
+                  cubo->modo_puntos=false;
+                }
+                else{
+                  cubo->modo_puntos=true;
+                }
+                 this->dibujar();
+             }
    }
    return salir;
 }

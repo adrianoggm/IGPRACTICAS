@@ -38,7 +38,7 @@ class Escena
    Cubo * cubo = nullptr ; // es importante inicializarlo a 'nullptr'
    PiramidePentagonal * piramide= nullptr ; // es importante inicializarlo a 'nullptr'
    int FiguraCubooPiramide=0;
-   
+
    public:
 
     Escena();

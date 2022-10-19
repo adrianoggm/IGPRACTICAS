@@ -24,7 +24,9 @@ class Malla3D
 
    // función que dibuja el objeto en modo diferido (usando VBOs)
    void draw() ;
-
+   bool modo_puntos=false;
+   bool modo_alambre=false;
+   bool modo_solido=true;
    protected:
 
 
@@ -37,6 +39,8 @@ class Malla3D
    GLuint id_vbo_ver=0;
    GLuint id_vbo_tri=0;
    GLuint id_vbo_c=0;
+
+
 
 } ;
 

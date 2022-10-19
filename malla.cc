@@ -42,6 +42,7 @@ void Malla3D::draw()
    }
    // activar buffer
    if ( id_vbo_c!=0 && id_vbo_tri!=0 && id_vbo_ver) {
+
     glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_c );
     glEnableClientState( GL_COLOR_ARRAY ); // habilitar uso de array de col.
     glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
@@ -60,6 +61,7 @@ void Malla3D::draw()
    // activar buffer: VBO de triángulos
    glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , id_vbo_tri );
    // dibujar con el buffer de índices activo
+   //glPolygonMode(GL_FRONT, GL_POINT);
    glDrawElements ( GL_TRIANGLES , 3*f.size() , GL_UNSIGNED_INT , 0 ) ;
    // desactivar buffer: VBO de triángulos
    glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , 0 );
