@@ -47,7 +47,7 @@ void Malla3D::draw()
 
 
     if(modo_puntos && estadodibujo==3){
-
+      glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
       glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_p );
      // habilitar uso de array de col.
       glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
@@ -55,7 +55,7 @@ void Malla3D::draw()
      glEnableClientState( GL_COLOR_ARRAY );
     }
     if(modo_alambre && estadodibujo==2){
-
+      glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
       glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_l );
        // habilitar uso de array de col.
       glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
@@ -63,6 +63,7 @@ void Malla3D::draw()
       glEnableClientState( GL_COLOR_ARRAY );
   }
   if(modo_solido&& estadodibujo==1){
+    glPolygonMode(GL_FRONT, GL_FILL);
     glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_c );
     // habilitar uso de array de col.
     glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
