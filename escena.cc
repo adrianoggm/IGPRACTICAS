@@ -66,6 +66,10 @@ void Escena::dibujar()
     // cubo->draw()
     // o    piramide->draw()
 
+    ObjPLY beethoven =ObjPLY("beethoven.ply");
+    beethoven.draw();
+
+
     if(FiguraCubooPiramide==1){
 
 
@@ -74,6 +78,7 @@ void Escena::dibujar()
         cubo->estadodibujo=1;
         glPolygonMode(GL_FRONT, GL_FILL);
         cubo->draw();
+
       }
       if(cubo->modo_alambre){
         printf("pintacubo con alambre");
@@ -110,7 +115,6 @@ void Escena::dibujar()
           glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
           piramide->draw();
       }
-
 
     }
 }

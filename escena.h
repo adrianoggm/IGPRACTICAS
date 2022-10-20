@@ -5,7 +5,7 @@
 #include "malla.h"
 #include "cubo.h"
 #include "piramidepentagonal.h"
-
+#include "objply.h"
 typedef enum {NADA, SELOBJETO,SELVISUALIZACION} menu;
 class Escena
 {
