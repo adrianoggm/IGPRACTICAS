@@ -47,6 +47,7 @@ void Malla3D::draw()
 
 
     if(modo_puntos && estadodibujo==3){
+      glPointSize(	3.0f);
       glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
       glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_p );
      // habilitar uso de array de col.
