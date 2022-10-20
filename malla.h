@@ -27,6 +27,7 @@ class Malla3D
    bool modo_puntos=false;
    bool modo_alambre=false;
    bool modo_solido=true;
+   int  estadodibujo=1;
    protected:
 
 
@@ -39,7 +40,7 @@ class Malla3D
    std::vector<Tupla3f> l;
    std::vector<Tupla3f> p;
 
-   
+
    GLuint id_vbo_ver=0;
    GLuint id_vbo_tri=0;
    GLuint id_vbo_c=0;

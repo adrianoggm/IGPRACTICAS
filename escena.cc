@@ -22,7 +22,7 @@ Escena::Escena()
     // .......completar: ...
     // .....
     piramide= new PiramidePentagonal(150.0,100.0);
-    cubo = new Cubo(100.0);
+    cubo = new Cubo(70.0);
 
 }
 
@@ -67,37 +67,51 @@ void Escena::dibujar()
     // o    piramide->draw()
 
     if(FiguraCubooPiramide==1){
-      if(cubo->modo_puntos){
-          printf("pintacubo con vertices");
-        glPolygonMode(GL_FRONT, GL_POINT);
+
+
+      if(cubo->modo_solido){
+        printf("pintacubo con solido");
+        cubo->estadodibujo=1;
+        glPolygonMode(GL_FRONT, GL_FILL);
+        cubo->draw();
       }
       if(cubo->modo_alambre){
         printf("pintacubo con alambre");
+        cubo->estadodibujo=2;
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        cubo->draw();
 
       }
-      if(cubo->modo_solido){
-        printf("pintacubo con solido");
-        glPolygonMode(GL_FRONT, GL_FILL);
+      if(cubo->modo_puntos){
+        printf("pintacubo con vertices");
+        cubo->estadodibujo=3;
+        glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+        cubo->draw();
       }
-      cubo->draw();
+
     }
 
     if(FiguraCubooPiramide==2){
-      if(piramide->modo_puntos){
-          printf("pintapira con vertices");
-          glPolygonMode(GL_FRONT, GL_POINT);
+      if(piramide->modo_solido){
+        printf("pintapiramide con solido");
+        piramide->estadodibujo=1;
+        glPolygonMode(GL_FRONT, GL_FILL);
+        piramide->draw();
       }
       if(piramide->modo_alambre){
         printf("pintapiramide con alambre");
-        glPolygonMode(GL_FRONT, GL_LINE);
+        piramide->estadodibujo=2;
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        piramide->draw();
+      }
+      if(piramide->modo_puntos){
+          printf("pintapira con vertices");
+          piramide->estadodibujo=3;
+          glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+          piramide->draw();
+      }
 
-      }
-      if(piramide->modo_solido){
-        printf("pintapiramide con solido");
-        glPolygonMode(GL_FRONT, GL_FILL);
-      }
-      piramide->draw();
+
     }
 }
 
