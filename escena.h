@@ -6,6 +6,7 @@
 #include "cubo.h"
 #include "piramidepentagonal.h"
 #include "objply.h"
+#include "objrevolucion.h"
 typedef enum {NADA, SELOBJETO,SELVISUALIZACION} menu;
 class Escena
 {
@@ -31,7 +32,7 @@ class Escena
 
 
    void clear_window();
-
+   ObjRevolucion peon =ObjRevolucion("peon.ply",8);
    menu modoMenu=NADA;
    // Objetos de la escena
    Ejes ejes;

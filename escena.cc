@@ -65,10 +65,12 @@ void Escena::dibujar()
     // y hacer
     // cubo->draw()
     // o    piramide->draw()
-
+    /*
     ObjPLY beethoven =ObjPLY("beethoven.ply");
     beethoven.draw();
+    */
 
+    peon.draw();
 
     if(FiguraCubooPiramide==1){
 
@@ -76,21 +78,21 @@ void Escena::dibujar()
       if(cubo->modo_solido){
         printf("pintacubo con solido");
         cubo->estadodibujo=1;
-        glPolygonMode(GL_FRONT, GL_FILL);
+        //glPolygonMode(GL_FRONT, GL_FILL);
         cubo->draw();
 
       }
       if(cubo->modo_alambre){
         printf("pintacubo con alambre");
         cubo->estadodibujo=2;
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         cubo->draw();
 
       }
       if(cubo->modo_puntos){
         printf("pintacubo con vertices");
         cubo->estadodibujo=3;
-        glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
         cubo->draw();
       }
 
@@ -208,12 +210,14 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                 if(modovert){
                   cubo->modo_puntos=false;
                   piramide->modo_puntos=false;
+                  peon.modo_puntos=false;
                   modovert=false;
                 }
                 else{
                   cubo->modo_puntos=true;
                   piramide->modo_puntos=true;
                   modovert=true;
+                  peon.modo_puntos=true;
                 }
                  this->dibujar();
              }
