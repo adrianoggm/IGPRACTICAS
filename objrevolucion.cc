@@ -36,7 +36,13 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, int num_instancias) {
       vori.pop_back();
 
     }
-
+    if(polonorte[2]>polosur[2]){
+      Tupla3f aux=polonorte;
+      polonorte=polosur;
+      polosur=aux;
+      std::vector<Tupla3f> r(vori.rbegin(),v.rend());
+      vori.swap(r);
+    }
 
     /*
 	matriz[num_instancias,vori.size()]
@@ -79,25 +85,26 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, int num_instancias) {
  			f.push_back(Tupla3i(a,b+1,a+1));
     }
   }
+
+  v.resize(v.size()+2);
+ 	if(polosur[0]!=-1){
+ 		v.push_back(polosur);
+    for(int i=0;i<num_instancias;i++){
+      f.push_back(Tupla3i(v.size()-1,i*vori.size()+vori.size(),(i*vori.size()+vori.size()+1)%vori.size()));
+ 		}
+ 	}
+ 	if(polonorte[0]!=-1){
+ 		v.push_back(polonorte);
+ 		for(int i=0;i<num_instancias;i++){
+      f.push_back(Tupla3i(v.size()-1,i*vori.size(),(i*vori.size()+1)%vori.size()));
+ 		}
+ 	}
   for(int i=0;i<f.size();i++){
     printf("%d  ,",f[i][0]);
     printf("%d ,",f[i][1]);
     printf("%d \n",f[i][2]);
   }
- 	/*
- 	if(polosur!=NULL){
- 		v.push_back(polosur);
-
- 	}
- 	if(polonorte!=NULL){
- 		v.push_back(polosnorte);
- 		for(int i=vori.size()-1;i<v.size();i+=vori.size()){
-
- 		}
-  */
-
- 	}
-
+}
 // *****************************************************************************
 // objeto de revolución obtenido a partir de un perfil (en un vector de puntos)
 
