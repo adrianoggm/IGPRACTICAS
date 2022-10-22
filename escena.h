@@ -32,7 +32,7 @@ class Escena
 
 
    void clear_window();
-   ObjRevolucion peon =ObjRevolucion("peon.ply",8);
+
    menu modoMenu=NADA;
    // Objetos de la escena
    Ejes ejes;

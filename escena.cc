@@ -69,7 +69,9 @@ void Escena::dibujar()
     ObjPLY beethoven =ObjPLY("beethoven.ply");
     beethoven.draw();
     */
-
+    ObjRevolucion peon =ObjRevolucion("peon.ply",8);
+    peon.estadodibujo=2;
+    peon.modo_alambre;
     peon.draw();
 
     if(FiguraCubooPiramide==1){
@@ -210,14 +212,12 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                 if(modovert){
                   cubo->modo_puntos=false;
                   piramide->modo_puntos=false;
-                  peon.modo_puntos=false;
                   modovert=false;
                 }
                 else{
                   cubo->modo_puntos=true;
                   piramide->modo_puntos=true;
                   modovert=true;
-                  peon.modo_puntos=true;
                 }
                  this->dibujar();
              }
