@@ -4,6 +4,7 @@
 #include "ejes.h"
 #include "malla.h"
 #include "cubo.h"
+#include "cilindro.h"
 #include "piramidepentagonal.h"
 #include "objply.h"
 #include "objrevolucion.h"

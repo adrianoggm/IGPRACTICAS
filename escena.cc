@@ -69,10 +69,17 @@ void Escena::dibujar()
     ObjPLY beethoven =ObjPLY("beethoven.ply");
     beethoven.draw();
     */
+    /*
     ObjRevolucion peon =ObjRevolucion("peon.ply",4);
     peon.estadodibujo=1;
     peon.modo_alambre=true;
     peon.draw();
+    */
+    Cilindro cilindro=Cilindro(11,4,100,50);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
+    cilindro.estadodibujo=2;
+    cilindro.modo_alambre=true;
+    cilindro.modo_puntos=true;
+    cilindro.draw();
 
     if(FiguraCubooPiramide==1){
 
