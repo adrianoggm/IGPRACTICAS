@@ -62,7 +62,7 @@ void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_ins
     Tupla3f aux=polonorte;
     polonorte=polosur;
     polosur=aux;
-    std::vector<Tupla3f> r(vori.rbegin(),v.rend());
+    std::vector<Tupla3f> r(vori.rbegin(),vori.rend());
     vori.swap(r);
   }
 

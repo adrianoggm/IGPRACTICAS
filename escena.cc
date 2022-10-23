@@ -75,11 +75,19 @@ void Escena::dibujar()
     peon.modo_alambre=true;
     peon.draw();
     */
+    /*
     Cilindro cilindro=Cilindro(11,35,100,50);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
     cilindro.estadodibujo=2;
     cilindro.modo_alambre=true;
     cilindro.modo_puntos=true;
     cilindro.draw();
+*/
+
+    Cono cono=Cono(11,35,100,50);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
+    cono.estadodibujo=2;
+    cono.modo_alambre=true;
+    cono.modo_puntos=true;
+    cono.draw();
 
     if(FiguraCubooPiramide==1){
 
