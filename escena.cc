@@ -70,7 +70,7 @@ void Escena::dibujar()
     beethoven.draw();
     */
     ObjRevolucion peon =ObjRevolucion("peon.ply",4);
-    peon.estadodibujo=2;
+    peon.estadodibujo=1;
     peon.modo_alambre=true;
     peon.draw();
 

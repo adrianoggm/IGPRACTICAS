@@ -47,12 +47,16 @@ void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_ins
   if(vori[0](1)==0){
     polosur=vori[0];
     vori.erase(vori.begin());//v.begin()
-
+  }
+  else{
+    polosur=Tupla3f(0,vori[0](1)* aumento,0);
   }
   if(vori[vori.size()-1](1)==0){
     polonorte=vori[vori.size()-1];
     vori.pop_back();
-
+  }
+  else{
+    polonorte=Tupla3f(0,vori[vori.size()-1](1)* aumento,0);
   }
   if(polonorte[2]>polosur[2]){
     Tupla3f aux=polonorte;
@@ -78,11 +82,7 @@ for(int i=0;i<num_instancias;i++){ //perfil
 
   }
 }
-for(int i=0;i<v.size();i++){
-  printf("%f  ,",v[i][0]);
-  printf("%f  ,",v[i][1]);
-  printf(" %f \n",v[i][2]);
-}
+
 
 /*
 for(int i=0;i<vori.size()-1;i++){
@@ -107,18 +107,22 @@ for(int i=0;i<num_instancias;i++){ //perfil
 }
 
 
-if(polosur[0]!=-1){
-  v.push_back(polosur);
+
+v.push_back(polosur);
   for(int i=0;i<num_instancias;i++){
-    f.push_back(Tupla3i(v.size()-1,i*vori.size()+vori.size(),(i*vori.size()+vori.size()+1)%vori.size()));
+    f.push_back(Tupla3i(v.size()-1,(i+1)%num_instancias,i));
   }
-}
-if(polonorte[0]!=-1){
-  v.push_back(polonorte);
+
+v.push_back(polonorte);
   for(int i=0;i<num_instancias;i++){
-    f.push_back(Tupla3i(v.size()-1,i*vori.size(),(i*vori.size()+1)%vori.size()));
+    f.push_back(Tupla3i(v.size()-1,(num_instancias)*(vori.size()-1)+i,(num_instancias)*(vori.size()-1)+(i+1)%num_instancias));
   }
-}
+  for(int i=0;i<v.size();i++){
+    printf("%f  ,",v[i][0]);
+    printf("%f  ,",v[i][1]);
+    printf(" %f \n",v[i][2]);
+  }
+
 for(int i=0;i<f.size();i++){
   printf("%d  ,",f[i][0]);
   printf("%d ,",f[i][1]);
@@ -126,6 +130,6 @@ for(int i=0;i<f.size();i++){
 }
 printf("EL TAMANO ES %ld \n",vori.size());
 for(int i=0;i<f.size();i++){
-  c.push_back(Tupla3f(1.0f,0.0f,0.0f));
+  c.push_back(Tupla3f(0.3f,0.3f,0.3f));
 }
 }
