@@ -30,8 +30,8 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, int num_instancias) {
 
 
 ObjRevolucion::ObjRevolucion(std::vector<Tupla3f> archivo, int num_instancias) {
-
-
+    std::vector<Tupla3f> vori=archivo;
+    crearMalla(vori,num_instancias);
 }
 
 void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_instancias) {
