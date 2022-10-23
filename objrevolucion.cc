@@ -98,9 +98,11 @@ for(int i=0;i<vori.size()-1;i++){
 for(int i=0;i<num_instancias;i++){ //perfil
   for(int j=0;j<vori.size()-1;j++){ // punto del perfil
     int a=i+j*num_instancias;
-    int b=num_instancias*((j+1)%vori.size())+i;
-    f.push_back(Tupla3i(a,b+1,b));
-    f.push_back(Tupla3i(a,a+1,b+1));
+    int a1=j*num_instancias+(i+1)%num_instancias;
+    int b=(num_instancias*((j+1)%vori.size()))+i;
+    int b1=(num_instancias*((j+1)%vori.size()))+(i+1)%num_instancias;
+    f.push_back(Tupla3i(a,b1,b));
+    f.push_back(Tupla3i(a,a1,b1));
   }
 }
 
