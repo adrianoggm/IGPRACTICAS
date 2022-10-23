@@ -44,12 +44,12 @@ void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_ins
   Tupla3f polosur=Tupla3f(-1,-1,-1);
   Tupla3f polonorte=Tupla3f(-1,-1,-1);
 
-  if(vori[0](0)==0&&vori[0](3)==0){
+  if(vori[0](1)==0){
     polosur=vori[0];
     vori.erase(vori.begin());//v.begin()
 
   }
-  if(vori[vori.size()-1](0)==0&&vori[vori.size()-1](3)==0){
+  if(vori[vori.size()-1](1)==0){
     polonorte=vori[vori.size()-1];
     vori.pop_back();
 
@@ -81,7 +81,7 @@ for(int i=0;i<num_instancias;i++){ //perfil
 for(int i=0;i<v.size();i++){
   printf("%f  ,",v[i][0]);
   printf("%f  ,",v[i][1]);
-  printf("%f \n",v[i][2]);
+  printf(" %f \n",v[i][2]);
 }
 
 /*
@@ -95,16 +95,16 @@ for(int i=0;i<vori.size()-1;i++){
 
 }
 */
-for(int i=0;i<num_instancias-1;i++){ //perfil
-  for(int j=0;j<vori.size()-2;j++){ // punto del perfil
-    int a=j+i*vori.size();
-    int b=vori.size()*(i+1)%num_instancias+j;
-    f.push_back(Tupla3i(a,b,b+1));
-    f.push_back(Tupla3i(a,b+1,a+1));
+for(int i=0;i<num_instancias;i++){ //perfil
+  for(int j=0;j<vori.size()-1;j++){ // punto del perfil
+    int a=i+j*num_instancias;
+    int b=num_instancias*((j+1)%vori.size())+i;
+    f.push_back(Tupla3i(a,b+1,b));
+    f.push_back(Tupla3i(a,a+1,b+1));
   }
 }
 
-v.resize(v.size()+2);
+
 if(polosur[0]!=-1){
   v.push_back(polosur);
   for(int i=0;i<num_instancias;i++){
@@ -122,8 +122,8 @@ for(int i=0;i<f.size();i++){
   printf("%d ,",f[i][1]);
   printf("%d \n",f[i][2]);
 }
-
+printf("EL TAMANO ES %ld \n",vori.size());
 for(int i=0;i<f.size();i++){
-  c.push_back(Tupla3f(0.3f,0.3f,0.3f));
+  c.push_back(Tupla3f(1.0f,0.0f,0.0f));
 }
 }

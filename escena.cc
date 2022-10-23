@@ -69,9 +69,9 @@ void Escena::dibujar()
     ObjPLY beethoven =ObjPLY("beethoven.ply");
     beethoven.draw();
     */
-    ObjRevolucion peon =ObjRevolucion("peon.ply",8);
+    ObjRevolucion peon =ObjRevolucion("peon.ply",4);
     peon.estadodibujo=2;
-    peon.modo_alambre;
+    peon.modo_alambre=true;
     peon.draw();
 
     if(FiguraCubooPiramide==1){
