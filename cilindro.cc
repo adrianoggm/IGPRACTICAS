@@ -28,6 +28,6 @@ const float radio ){
         printf(" %f \n",perfil[i][2]);
       }
       printf("PUNTOS PERFIL  \n");
-    ObjRevolucion cilindro=ObjRevolucion(perfil,num_instancias_perf);
-    
+    crearMalla(perfil,num_instancias_perf);
+
 };

@@ -29,7 +29,7 @@ class ObjRevolucion : public Malla3D
        ObjRevolucion();
    ObjRevolucion(const std::string & archivo, int num_instancias);
    ObjRevolucion(std::vector<Tupla3f> archivo, int num_instancias) ;
-private:
+protected:
     void crearMalla(std::vector<Tupla3f> perfil_original, int num_instancias);
 
 } ;

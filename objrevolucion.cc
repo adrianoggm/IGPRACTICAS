@@ -78,7 +78,7 @@ for(i=0;i<num_instancias;i++)
 v.resize(num_instancias*vori.size());
 for(int i=0;i<num_instancias;i++){ //perfil
   for(int j=0;j<vori.size();j++){ // punto del perfil
-    v[i+j*num_instancias]=Tupla3f((vori[j][0]*cos(2*PI*i/num_instancias + vori[j][2]*sin(2*PI*i/num_instancias)))*aumento,vori[j][1]*aumento,(-vori[j][0]*sin(2*PI*i/num_instancias)+vori[i][2]*cos(2*PI*i/num_instancias))*aumento);
+    v[i+j*num_instancias]=Tupla3f(vori[j][0]*cos(2*PI*i/num_instancias + vori[j][2]*sin(2*PI*i/num_instancias)),vori[j][1],-vori[j][0]*sin(2*PI*i/num_instancias)+vori[j][2]*cos(2*PI*i/num_instancias));
 
   }
 }
