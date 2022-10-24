@@ -82,12 +82,18 @@ void Escena::dibujar()
     cilindro.modo_puntos=true;
     cilindro.draw();
 */
-
+/*
     Cono cono=Cono(11,35,100,50);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
     cono.estadodibujo=2;
     cono.modo_alambre=true;
     cono.modo_puntos=true;
     cono.draw();
+*/
+    Esfera esfera=Esfera(11,35,100);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
+    esfera.estadodibujo=2;
+    esfera.modo_alambre=true;
+    esfera.modo_puntos=true;
+    esfera.draw();
 
     if(FiguraCubooPiramide==1){
 

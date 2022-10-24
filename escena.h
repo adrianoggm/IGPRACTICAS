@@ -6,6 +6,7 @@
 #include "cubo.h"
 #include "cilindro.h"
 #include "cono.h"
+#include "esfera.h"
 #include "piramidepentagonal.h"
 #include "objply.h"
 #include "objrevolucion.h"
