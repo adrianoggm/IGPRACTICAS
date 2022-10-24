@@ -75,25 +75,40 @@ void Escena::dibujar()
     peon.modo_alambre=true;
     peon.draw();
     */
-    /*
+
     Cilindro cilindro=Cilindro(11,35,100,50);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
-    cilindro.estadodibujo=2;
+    cilindro.estadodibujo=1;
     cilindro.modo_alambre=true;
     cilindro.modo_puntos=true;
-    cilindro.draw();
-*/
-/*
+    //cilindro.draw();
+
+
     Cono cono=Cono(11,35,100,50);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
-    cono.estadodibujo=2;
+    cono.estadodibujo=3;
     cono.modo_alambre=true;
     cono.modo_puntos=true;
-    cono.draw();
-*/
+    //cono.draw();
+
     Esfera esfera=Esfera(11,35,100);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
     esfera.estadodibujo=2;
     esfera.modo_alambre=true;
     esfera.modo_puntos=true;
+
+    glPushMatrix ();
+    glTranslatef (-100,0,100);
+// dibujar el primer objeto
     esfera.draw();
+    glPopMatrix ();
+
+    glPushMatrix ();
+    glTranslatef (100,0,-100);
+    cono.draw();
+    glPopMatrix ();
+    //...
+    glPushMatrix ();
+    glTranslatef (-100,0,-100);
+    cilindro.draw();
+    glPopMatrix ();
 
     if(FiguraCubooPiramide==1){
 
