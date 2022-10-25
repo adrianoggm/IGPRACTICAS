@@ -69,12 +69,12 @@ void Escena::dibujar()
     ObjPLY beethoven =ObjPLY("beethoven.ply");
     beethoven.draw();
     */
-    /*
-    ObjRevolucion peon =ObjRevolucion("peon.ply",4);
+
+    ObjRevolucion peon =ObjRevolucion("./plys/peon.ply",26);
     peon.estadodibujo=1;
     peon.modo_alambre=true;
-    peon.draw();
-    */
+
+
 
     Cilindro cilindro=Cilindro(11,35,100,50);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
     cilindro.estadodibujo=1;
@@ -108,6 +108,12 @@ void Escena::dibujar()
     glPushMatrix ();
     glTranslatef (-100,0,-100);
     cilindro.draw();
+    glPopMatrix ();
+
+    glPushMatrix ();
+    glTranslatef (0,100,0);
+    glScalef(7,7,7);
+    peon.draw();
     glPopMatrix ();
 
     if(FiguraCubooPiramide==1){
