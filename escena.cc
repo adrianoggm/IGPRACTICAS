@@ -84,7 +84,7 @@ void Escena::dibujar()
 
 
     Cono cono=Cono(11,35,100,50);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
-    cono.estadodibujo=3;
+    cono.estadodibujo=2;
     cono.modo_alambre=true;
     cono.modo_puntos=true;
     //cono.draw();
@@ -116,6 +116,12 @@ void Escena::dibujar()
     peon.draw();
     glPopMatrix ();
 
+    dodge.estadodibujo=2;
+    dodge.modo_alambre=true;
+        glPushMatrix ();
+        glScalef(4,4,4);
+        dodge.draw();
+        glPopMatrix ();
     if(FiguraCubooPiramide==1){
 
 
