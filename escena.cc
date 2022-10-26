@@ -201,14 +201,14 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
           //Estamos si no esta creado creamos el objeto en memoria
           //una vez creado será necesario un mecanismo para ocultar la escena
           //adibujar="cubo";
-        if(modoMenu=SELOBJETO){
+        if(modoMenu==SELOBJETO){
              FiguraCubooPiramide=1;
              this->dibujar();
         }
         break;
       case 'P':
           //adibujar="piramide";
-        if(modoMenu=SELOBJETO){
+        if(modoMenu==SELOBJETO){
             FiguraCubooPiramide=2;
 
             this->dibujar();
@@ -222,7 +222,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
          case 'S':
              //adibujar="piramide";
-           if(modoMenu=SELVISUALIZACION){
+           if(modoMenu==SELVISUALIZACION){
               if(modoso){
                 cubo->modo_solido=false;
                 piramide->modo_solido=false;
@@ -239,7 +239,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          // COMPLETAR con los diferentes opciones de teclado
          case 'L':
 
-           if(modoMenu=SELVISUALIZACION){
+           if(modoMenu==SELVISUALIZACION){
               if(modolin){
                 cubo->modo_alambre=false;
                 piramide->modo_alambre=false;
@@ -256,7 +256,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
            case 'D':
 
-             if(modoMenu=SELVISUALIZACION){
+             if(modoMenu==SELVISUALIZACION){
                 if(modovert){
                   cubo->modo_puntos=false;
                   piramide->modo_puntos=false;

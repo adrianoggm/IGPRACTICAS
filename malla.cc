@@ -97,6 +97,8 @@ void Malla3D::draw()
   }
 }
 void Malla3D::calcularNormales(){
+
+    std::vector<Tupla3f> normcaras;
     for(int i=0;i<=c.size();i++){
       Tupla3f p=v[c[i](0)];
       Tupla3f q=v[c[i](1)];
@@ -105,19 +107,25 @@ void Malla3D::calcularNormales(){
       Tupla3f b=q-r;
       Tupla3f normales=Tupla3f(a(1)*b(2)-b(1)*a(2),b(0)*a(2)-a(0)*b(2),a(0)*b(1)-b(0)*a(1)) ;
       float modulo=sqrt(pow(normales(0),2)+pow(normales(1),2)+pow(normales(2),2));
-      //ncaras.push_back(normales/modulo);
-
+      normcaras.push_back(normales/modulo);
     }
     // inizializo a 0
     //nv.pushback tupla3f (0 0 ,0)
     //
-    /*for (int i=0;i<c.size();i++){
+    for(int i=0;i<v.size();i++){
+      nv.push_back(Tupla3f(0,0,0));
+    }
+    for (int i=0;i<c.size();i++){
           int a=c[i](0);
           int b=c[i](1);
           int d=c[i](2);
-          nv[a]+=ncaras[a];
-          nv[b]+=ncaras[b]
-          nv[d]+=ncaras[d];
-    }*/
+          nv[a]=nv[a]+normcaras[a];
+          nv[b]=nv[b]+normcaras[b];
+          nv[d]=nv[d]+normcaras[d];
+        }
     //for normalizo nv
+    for(int i=0;i<nv.size();i++){
+      float modulo=sqrt(pow(nv[i](0),2)+pow(nv[i](1),2)+pow(nv[i](2),2));
+      nv[i]=nv[i]/modulo;
+    }
 }
