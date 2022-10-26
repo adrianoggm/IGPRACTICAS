@@ -58,7 +58,7 @@ void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_ins
   else{
     polonorte=Tupla3f(0,vori[vori.size()-1](1)* aumento,0);
   }
-  if(polonorte[2]>polosur[2]){
+  if(polonorte[1]<polosur[1]){
     Tupla3f aux=polonorte;
     polonorte=polosur;
     polosur=aux;

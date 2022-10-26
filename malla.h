@@ -28,6 +28,8 @@ class Malla3D
    bool modo_alambre=false;
    bool modo_solido=true;
    int  estadodibujo=1;
+   void calcularNormales();
+   //void setMaterial(Material m);
    protected:
 
 
@@ -39,7 +41,7 @@ class Malla3D
    // Completar P1: vbo y método asociado
    std::vector<Tupla3f> l;
    std::vector<Tupla3f> p;
-
+   std::vector<Tupla3f> nv;
 
    GLuint id_vbo_ver=0;
    GLuint id_vbo_tri=0;

@@ -96,3 +96,17 @@ void Malla3D::draw()
 
   }
 }
+void Malla3D::calcularNormales(){
+    for(int i=0;i<=c.size();i++){
+      Tupla3f p=v[c[i](0)];
+      Tupla3f q=v[c[i](1)];
+      Tupla3f r=v[c[i](2)];
+      Tupla3f a= p-r;
+      Tupla3f b=q-r;
+      Tupla3f normales=Tupla3f(a(1)*b(2)-b(1)*a(2),b(0)*a(2)-a(0)*b(2),a(0)*b(1)-b(0)*a(1)) ;
+      float modulo=sqrt(pow(normales(0),2)+pow(normales(1),2)+pow(normales(2),2));
+      nv.push_back(normales/modulo);
+    }
+
+
+}
