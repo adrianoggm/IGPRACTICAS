@@ -36,27 +36,26 @@ ObjRevolucion::ObjRevolucion(std::vector<Tupla3f> archivo, int num_instancias) {
 
 void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_instancias) {
 
-  float aumento=1.0;
 
-
+  float epsilon=0.0001;//Precision del intervalo en el que decimos que es 0
   std::vector<Tupla3f> vori=perfil_original;
   const float PI=3.14159265358979323846l;
   Tupla3f polosur=Tupla3f(-1,-1,-1);
   Tupla3f polonorte=Tupla3f(-1,-1,-1);
 
-  if(vori[0](0)==0){
+  if(abs(vori[0](0))<=epsilon){
     polosur=vori[0];
     vori.erase(vori.begin());//v.begin()
   }
   else{
-    polosur=Tupla3f(0,vori[0](1)* aumento,0);
+    polosur=Tupla3f(0,vori[0](1) ,0);
   }
-  if(vori[vori.size()-1](0)==0){
+  if(abs(vori[vori.size()-1](0))<=epsilon){
     polonorte=vori[vori.size()-1];
     vori.pop_back();
   }
   else{
-    polonorte=Tupla3f(0,vori[vori.size()-1](1)* aumento,0);
+    polonorte=Tupla3f(0,vori[vori.size()-1](1) ,0);
   }
   if(polonorte[1]<polosur[1]){
     Tupla3f aux=polonorte;
