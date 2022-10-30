@@ -44,35 +44,35 @@ void Malla3D::draw()
    }
    // activar buffer
    if ( id_vbo_c!=0 && id_vbo_tri!=0 && id_vbo_ver!=0) {
+     GLint polygonMode[2];
 
+     glGetIntegerv(GL_POLYGON_MODE,polygonMode);
 
-    if(modo_puntos && estadodibujo==3){
+    if(polygonMode[0]==GL_POINT){
       glPointSize(	3.0f);
-      glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
       glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_p );
-     // habilitar uso de array de col.
+     // h
       glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
       glBindBuffer ( GL_ARRAY_BUFFER , 0);
      glEnableClientState( GL_COLOR_ARRAY );
-    }
-    if(modo_alambre && estadodibujo==2){
-      glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+     }
+    if(polygonMode[0]==GL_LINE){
       glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_l );
        // habilitar uso de array de col.
       glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
       glBindBuffer ( GL_ARRAY_BUFFER , 0);
       glEnableClientState( GL_COLOR_ARRAY );
   }
-  if(modo_solido&& estadodibujo==1){
-    glPolygonMode(GL_FRONT, GL_FILL);
+  if(polygonMode[0]==GL_FILL){
+
     glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_c );
     // habilitar uso de array de col.
     glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
     glBindBuffer ( GL_ARRAY_BUFFER , 0);
     glEnableClientState( GL_COLOR_ARRAY );
 
-
-  }
+    }
 
 
   glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
@@ -115,7 +115,7 @@ void Malla3D::calcularNormales(){
     for(int i=0;i<v.size();i++){
       nv.push_back(Tupla3f(0,0,0));
     }
-    for (int i=0;i<c.size();i++){
+    for (int i=0;i<f.size();i++){
           int a=c[i](0);
           int b=c[i](1);
           int d=c[i](2);

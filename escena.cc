@@ -23,6 +23,19 @@ Escena::Escena()
     // .....
     piramide= new PiramidePentagonal(150.0,100.0);
     cubo = new Cubo(70.0);
+    peon =new ObjRevolucion("./plys/peon.ply",10);
+
+
+    cilindro=new Cilindro(11,35,100,50);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
+
+    //cilindro.draw();
+
+
+    cono=new Cono(11,35,100,50);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
+
+
+    esfera=new Esfera(11,35,100);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
+
 
 }
 
@@ -70,33 +83,11 @@ void Escena::dibujar()
     beethoven.draw();
     */
 
-    ObjRevolucion peon =ObjRevolucion("./plys/peon.ply",10);
-    peon.estadodibujo=2;
-    peon.modo_alambre=true;
-
-
-
-    Cilindro cilindro=Cilindro(11,35,100,50);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
-    cilindro.estadodibujo=2;
-    cilindro.modo_alambre=true;
-    cilindro.modo_puntos=true;
-    //cilindro.draw();
-
-
-    Cono cono=Cono(11,35,100,50);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
-    cono.estadodibujo=2;
-    cono.modo_alambre=true;
-    cono.modo_puntos=true;
-    //cono.draw();
-
-    Esfera esfera=Esfera(11,35,100);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
-    esfera.estadodibujo=2;
-    esfera.modo_alambre=true;
-    esfera.modo_puntos=true;
+/*
 
     glPushMatrix ();
     glTranslatef (-100,0,100);
-// dibujar el primer objeto
+    // dibujar el primer objeto
     esfera.draw();
     glPopMatrix ();
 
@@ -121,54 +112,105 @@ void Escena::dibujar()
         glPushMatrix ();
         glScalef(4,4,4);
         dodge.draw();
-        glPopMatrix ();
-    if(FiguraCubooPiramide==1){
+       glPopMatrix ();
+       */
 
 
-      if(cubo->modo_solido){
-        printf("pintacubo con solido");
-        cubo->estadodibujo=1;
-        //glPolygonMode(GL_FRONT, GL_FILL);
-        cubo->draw();
 
-      }
-      if(cubo->modo_alambre){
-        printf("pintacubo con alambre");
-        cubo->estadodibujo=2;
-        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        cubo->draw();
-
-      }
-      if(cubo->modo_puntos){
-        printf("pintacubo con vertices");
-        cubo->estadodibujo=3;
-        //glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-        cubo->draw();
-      }
-
-    }
-
-    if(FiguraCubooPiramide==2){
-      if(piramide->modo_solido){
+      if(modoso){
         printf("pintapiramide con solido");
-        piramide->estadodibujo=1;
-        glPolygonMode(GL_FRONT, GL_FILL);
+
+
+        glPolygonMode(GL_FRONT,GL_FILL);
         piramide->draw();
+        cubo->draw();
+
+        glPushMatrix ();
+        glTranslatef (-100,0,100);
+        // dibujar el primer objeto
+        esfera->draw();
+        glPopMatrix ();
+
+        glPushMatrix ();
+        glTranslatef (100,0,-100);
+        cono->draw();
+        glPopMatrix ();
+        //...
+        glPushMatrix ();
+        glTranslatef (-100,0,-100);
+        cilindro->draw();
+        glPopMatrix ();
+
+        glPushMatrix ();
+        glTranslatef (0,100,0);
+        glScalef(17,17,17);
+        peon->draw();
+        glPopMatrix ();
+        /*
+        dodge.estadodibujo=2;
+        dodge.modo_alambre=true;
+            glPushMatrix ();
+            glScalef(4,4,4);
+            dodge.draw();
+           glPopMatrix ();
+           */
       }
-      if(piramide->modo_alambre){
+      if(modolin){
         printf("pintapiramide con alambre");
-        piramide->estadodibujo=2;
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         piramide->draw();
+        cubo->draw();
+        glPushMatrix ();
+        glTranslatef (-100,0,100);
+        // dibujar el primer objeto
+        esfera->draw();
+        glPopMatrix ();
+
+        glPushMatrix ();
+        glTranslatef (100,0,-100);
+        cono->draw();
+        glPopMatrix ();
+        //...
+        glPushMatrix ();
+        glTranslatef (-100,0,-100);
+        cilindro->draw();
+        glPopMatrix ();
+
+        glPushMatrix ();
+        glTranslatef (0,100,0);
+        glScalef(17,17,17);
+        peon->draw();
+        glPopMatrix ();
       }
-      if(piramide->modo_puntos){
+      if(modovert){
           printf("pintapira con vertices");
-          piramide->estadodibujo=3;
           glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
           piramide->draw();
+          cubo->draw();
+          glPushMatrix ();
+          glTranslatef (-100,0,100);
+          // dibujar el primer objeto
+          esfera->draw();
+          glPopMatrix ();
+
+          glPushMatrix ();
+          glTranslatef (100,0,-100);
+          cono->draw();
+          glPopMatrix ();
+          //...
+          glPushMatrix ();
+          glTranslatef (-100,0,-100);
+          cilindro->draw();
+          glPopMatrix ();
+
+          glPushMatrix ();
+          glTranslatef (0,100,0);
+          glScalef(17,17,17);
+          peon->draw();
+          glPopMatrix ();
       }
 
-    }
+
 }
 
 //**************************************************************************
@@ -224,13 +266,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
              //adibujar="piramide";
            if(modoMenu==SELVISUALIZACION){
               if(modoso){
-                cubo->modo_solido=false;
-                piramide->modo_solido=false;
                 modoso=false;
               }
               else{
-                cubo->modo_solido=true;
-                piramide->modo_solido=true;
                 modoso=true;
               }
                this->dibujar();
@@ -241,13 +279,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
            if(modoMenu==SELVISUALIZACION){
               if(modolin){
-                cubo->modo_alambre=false;
-                piramide->modo_alambre=false;
                 modolin=false;
               }
               else{
-                cubo->modo_alambre=true;
-                piramide->modo_alambre=true;
                 modolin=true;
               }
                this->dibujar();
@@ -258,13 +292,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
              if(modoMenu==SELVISUALIZACION){
                 if(modovert){
-                  cubo->modo_puntos=false;
-                  piramide->modo_puntos=false;
                   modovert=false;
                 }
                 else{
-                  cubo->modo_puntos=true;
-                  piramide->modo_puntos=true;
                   modovert=true;
                 }
                  this->dibujar();

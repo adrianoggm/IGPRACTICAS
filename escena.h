@@ -45,7 +45,11 @@ class Escena
    bool modoso=true;
    bool modovert=false;
    bool modolin=false;
-   ObjPLY dodge =ObjPLY("./plys/big_dodge.ply");
+   //ObjPLY dodge =ObjPLY("./plys/big_dodge.ply");
+   ObjRevolucion * peon=nullptr;
+   Cilindro  * cilindro=nullptr;
+   Cono * cono= nullptr;
+   Esfera * esfera=nullptr;
    public:
 
     Escena();
