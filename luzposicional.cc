@@ -15,16 +15,8 @@
 
 
 
-void LuzPosicional:: LuzPosicional ( const Tupla2f & orientacion ){
+LuzPosicional :: LuzPosicional ( const Tupla3f & posicion ) {
 
-  alpha=orientacion(0);
-  beta=orientacion(1);
+  this->posicion=Tupla4f(posicion(0),posicion(1),posicion(2),10.0);
 
-}
-
-void variarAnguloAlpha:: LuzDireccional  ( float incremento ){
-  alpha+=incremento;
-}
-void variarAnguloBeta:: LuzDireccional  ( float incremento ){
-  beta+=incremento;
 }

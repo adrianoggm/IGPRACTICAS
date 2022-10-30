@@ -14,16 +14,16 @@
 // *****************************************************************************
 
 
-void LuzDireccional:: LuzDireccional ( const Tupla2f & orientacion ){
+LuzDireccional:: LuzDireccional ( const Tupla2f & orientacion ){
 
-  alpha=orientacion(0);
-  betha=orientacion(1);
+  this->alpha=orientacion(0);
+  this->beta=orientacion(1);
 
 }
 
-void variarAnguloAlpha:: LuzDireccional  ( float incremento ){
-  alpha+=incremento;
+void LuzDireccional :: variarAnguloAlpha  ( float incremento ){
+  this->alpha+=incremento;
 }
-void variarAnguloBeta:: LuzDireccional  ( float incremento ){
-  beta+=incremento;
+void LuzDireccional :: variarAnguloBeta ( float incremento ){
+  this->beta+=incremento;
 }

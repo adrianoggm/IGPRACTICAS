@@ -30,10 +30,10 @@ class  Luz
 
 
 
-   std::vector<Tupla4f> posicion;
-   std::vector<Tupla4f> colorDifuso;
-   std::vector<Tupla4f> colorAmbiente;
-   std::vector<Tupla4f> Especular;
+   Tupla4f posicion;
+   Tupla4f colorDifuso;
+   Tupla4f colorAmbiente;
+   Tupla4f Especular;
    GLenum id;
 
 
@@ -41,6 +41,7 @@ class  Luz
 
 
 } ;
+
 
 
 #endif
