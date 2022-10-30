@@ -17,21 +17,30 @@
 
 
 void Luz:: activar(){
+  std::vector <bool> lucesLibres={true,true,true,true,true,true,true,true};
+  std::vector <GLenum> luces={GL_LIGHT0,GL_LIGHT1,GL_LIGHT2,GL_LIGHT3,GL_LIGHT4,GL_LIGHT5,GL_LIGHT6,GL_LIGHT7};
 
-  glEnable( GL_LIGHTING );
-/*
-  int luzlibre=10;
-  for(int j=0;j<luceslibres.size();j++){
-    if(luceslibres[j]=true){
-      luzlibre=j;
+
+  bool activado=false;
+  GLenum idluz;
+  for(int j=0;j<lucesLibres.size()&& !activado;j++){
+    if(lucesLibres[j]=true){
+      idluz=luces[j];
+      activado=true;
     }
   }
-  if(luzlibre==-1){
+  if(!activado){
     printf("Para Poder activar esta luz debe previamente liberar con glDisable(GL_LIGHTi) \n ");
   }
   else{
-    luceslibres[luzlibre]=false;
-      //glEnable ( "GL_LIGHT"+to_string(luzlibre));
+      glEnable( GL_LIGHTING );
+      this->id=idluz;
+      glEnable (this->id);
+      glLightfv(this->id,GL_POSITION,this->posicion);
+      glLightfv(this->id,GL_SPECULAR,this->Especular);
+      glLightfv(this->id,GL_AMBIENT,this->colorAmbiente);
+      glLightfv(this->id,GL_DIFFUSE,this->colorDifuso);
+
   }
-  */
+
 }

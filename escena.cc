@@ -21,20 +21,20 @@ Escena::Escena()
     // crear los objetos de la escena....
     // .......completar: ...
     // .....
-    piramide= new PiramidePentagonal(150.0,100.0);
-    cubo = new Cubo(70.0);
+    piramide= new PiramidePentagonal(50.0,25.0);
+    cubo = new Cubo(40.0);
     peon =new ObjRevolucion("./plys/peon.ply",10);
 
 
-    cilindro=new Cilindro(11,35,100,50);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
+    cilindro=new Cilindro(11,35,50,25);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
 
     //cilindro.draw();
 
 
-    cono=new Cono(11,35,100,50);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
+    cono=new Cono(11,35,50,25);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
 
 
-    esfera=new Esfera(11,35,100);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
+    esfera=new Esfera(11,35,25);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
 
 
 }
@@ -118,12 +118,15 @@ void Escena::dibujar()
 
 
       if(modoso){
-        printf("pintapiramide con solido");
+
 
 
         glPolygonMode(GL_FRONT,GL_FILL);
         piramide->draw();
+        glPushMatrix ();
+        glTranslatef (50,0,50);
         cubo->draw();
+        glPopMatrix ();
 
         glPushMatrix ();
         glTranslatef (-100,0,100);
@@ -156,10 +159,15 @@ void Escena::dibujar()
            */
       }
       if(modolin){
-        printf("pintapiramide con alambre");
+
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         piramide->draw();
+        glPushMatrix ();
+        glTranslatef (50,0,50);
         cubo->draw();
+        glPopMatrix ();
+
+
         glPushMatrix ();
         glTranslatef (-100,0,100);
         // dibujar el primer objeto
@@ -183,10 +191,13 @@ void Escena::dibujar()
         glPopMatrix ();
       }
       if(modovert){
-          printf("pintapira con vertices");
+
           glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
           piramide->draw();
+          glPushMatrix ();
+          glTranslatef (50,0,50);
           cubo->draw();
+          glPopMatrix ();
           glPushMatrix ();
           glTranslatef (-100,0,100);
           // dibujar el primer objeto
