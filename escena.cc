@@ -70,8 +70,8 @@ void Escena::dibujar()
     beethoven.draw();
     */
 
-    ObjRevolucion peon =ObjRevolucion("./plys/peon.ply",26);
-    peon.estadodibujo=1;
+    ObjRevolucion peon =ObjRevolucion("./plys/peon.ply",10);
+    peon.estadodibujo=2;
     peon.modo_alambre=true;
 
 
@@ -112,7 +112,7 @@ void Escena::dibujar()
 
     glPushMatrix ();
     glTranslatef (0,100,0);
-    glScalef(7,7,7);
+    glScalef(17,17,17);
     peon.draw();
     glPopMatrix ();
 
