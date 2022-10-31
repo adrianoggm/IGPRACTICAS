@@ -10,6 +10,10 @@
 #include "piramidepentagonal.h"
 #include "objply.h"
 #include "objrevolucion.h"
+#include "luzdireccional.h"
+#include "luz.h"
+#include "luzposicional.h"
+
 typedef enum {NADA, SELOBJETO,SELVISUALIZACION} menu;
 class Escena
 {
@@ -45,11 +49,18 @@ class Escena
    bool modoso=true;
    bool modovert=false;
    bool modolin=false;
+   bool modoluces=false;
    //ObjPLY dodge =ObjPLY("./plys/big_dodge.ply");
+   //OBJETOS DE LA ESCENA
    ObjRevolucion * peon=nullptr;
    Cilindro  * cilindro=nullptr;
    Cono * cono= nullptr;
    Esfera * esfera=nullptr;
+
+   //LUCES DE LA Escena
+   LuzPosicional * luzposi;
+   LuzDireccional * luzdire;
+
    public:
 
     Escena();

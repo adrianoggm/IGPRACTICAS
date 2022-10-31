@@ -32,7 +32,7 @@ void Luz:: activar(){
     printf("Para Poder activar esta luz debe previamente liberar con glDisable(GL_LIGHTi) \n ");
   }
   else{
-      glEnable( GL_LIGHTING );
+      
       this->id=idluz;
       glEnable (this->id);
       glLightfv(this->id,GL_POSITION,this->posicion);

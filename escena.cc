@@ -36,6 +36,10 @@ Escena::Escena()
 
     esfera=new Esfera(11,35,25);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
 
+    //LUCES Escena
+    luzdire=new LuzDireccional();
+    luzposi=new LuzPosicional();
+
 
 }
 
@@ -259,23 +263,32 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
              this->dibujar();
         }
         break;
-      case 'P':
-          //adibujar="piramide";
-        if(modoMenu==SELOBJETO){
-            FiguraCubooPiramide=2;
 
-            this->dibujar();
-        }
-        break;
 
         case 'V' :
          // ESTAMOS EN MODO SELECCION DE MODO DE VISUALIZACION
          modoMenu=SELVISUALIZACION;
          break ;
 
-         case 'S':
+         case 'P': //modo puntos
+
+             if(modoMenu==SELVISUALIZACION){
+               modoluces=false;
+               glDisable ( GL_LIGHTING );
+                if(modovert){
+                  modovert=false;
+                }
+                else{
+                  modovert=true;
+                }
+                 this->dibujar();
+             }
+             break ;
+         case 'S'://modo solido
              //adibujar="piramide";
            if(modoMenu==SELVISUALIZACION){
+             modoluces=false;
+             glDisable ( GL_LIGHTING );
               if(modoso){
                 modoso=false;
               }
@@ -286,9 +299,11 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
            }
            break ;
          // COMPLETAR con los diferentes opciones de teclado
-         case 'L':
+         case 'L'://modo lineas
 
            if(modoMenu==SELVISUALIZACION){
+             modoluces=false;
+             glDisable ( GL_LIGHTING );
               if(modolin){
                 modolin=false;
               }
@@ -299,16 +314,12 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
            }
            break ;
 
-           case 'D':
+           case 'T': //modo luces
 
              if(modoMenu==SELVISUALIZACION){
-                if(modovert){
-                  modovert=false;
-                }
-                else{
-                  modovert=true;
-                }
-                 this->dibujar();
+                glEnable( GL_LIGHTING );
+                modoluces=true;
+                this->dibujar();
              }
              break ;
    }
