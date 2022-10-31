@@ -27,7 +27,7 @@ class Material {
     Tupla4f ambiente ;
     float brillo ;
   public :
-    Material ( Tupla4f mdifuso ,Tupla4f mespecular ,Tupla4f mambiente ,float brillo );
+    Material ( Tupla4f mdifuso ,Tupla4f mespecular ,Tupla4f mambiente ,float mbrillo );
     void aplicar();
 };
 

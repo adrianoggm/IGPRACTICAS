@@ -45,7 +45,6 @@ class Escena
    Ejes ejes;
    Cubo * cubo = nullptr ; // es importante inicializarlo a 'nullptr'
    PiramidePentagonal * piramide= nullptr ; // es importante inicializarlo a 'nullptr'
-   int FiguraCubooPiramide=0;
    bool modoso=true;
    bool modovert=false;
    bool modolin=false;
@@ -58,8 +57,8 @@ class Escena
    Esfera * esfera=nullptr;
 
    //LUCES DE LA Escena
-   LuzPosicional * luzposi;
-   LuzDireccional * luzdire;
+   LuzPosicional * luzposi=nullptr;
+   LuzDireccional * luzdire=nullptr;
 
    public:
 

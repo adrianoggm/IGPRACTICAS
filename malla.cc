@@ -129,3 +129,9 @@ void Malla3D::calcularNormales(){
       nv[i]=nv[i]/modulo;
     }
 }
+
+void Malla3D::setMaterial(Material m){
+  m.aplicar();
+
+
+}

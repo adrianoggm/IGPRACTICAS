@@ -11,7 +11,7 @@
 #define MALLA3D_H_INCLUDED
 
 #include "auxiliar.h"
-
+#include "material.h"
 // *****************************************************************************
 //
 // clase para objetos 3D (mallas indexadas)
@@ -29,9 +29,8 @@ class Malla3D
    bool modo_solido=true;
    int  estadodibujo=1;
    void calcularNormales();
-   //void setMaterial(Material m);
+   void setMaterial(Material m);
    protected:
-
 
 
    std::vector<Tupla3f> v ;   // tabla de coordenadas de vértices (una tupla por vértice, con tres floats)
@@ -45,6 +44,7 @@ class Malla3D
 
    GLuint id_vbo_ver=0;
    GLuint id_vbo_tri=0;
+   GLuint id_vbo_nv=0;
    GLuint id_vbo_c=0;
    GLuint id_vbo_l=0;
    GLuint id_vbo_p=0;

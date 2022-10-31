@@ -37,8 +37,8 @@ Escena::Escena()
     esfera=new Esfera(11,35,25);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
 
     //LUCES Escena
-    luzdire=new LuzDireccional();
-    luzposi=new LuzPosicional();
+    luzdire=new LuzDireccional(Tupla2f(0.0,0.0));
+    luzposi=new LuzPosicional(Tupla3f(0.0,0.0,100.f));
 
 
 }
@@ -119,8 +119,10 @@ void Escena::dibujar()
        glPopMatrix ();
        */
 
+if(modoluces){
 
-
+}
+else{
       if(modoso){
 
 
@@ -224,7 +226,7 @@ void Escena::dibujar()
           peon->draw();
           glPopMatrix ();
       }
-
+    }
 
 }
 
@@ -259,7 +261,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
           //una vez creado será necesario un mecanismo para ocultar la escena
           //adibujar="cubo";
         if(modoMenu==SELOBJETO){
-             FiguraCubooPiramide=1;
+
              this->dibujar();
         }
         break;
