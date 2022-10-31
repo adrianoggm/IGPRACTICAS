@@ -27,10 +27,11 @@ LuzDireccional:: LuzDireccional ( const Tupla2f & orientacion ){
 }
 
 void LuzDireccional :: variarAnguloAlpha  ( float incremento ){
-  this->alpha=(alpha+(incremento*PI)/180)%180.0f;
+  this->alpha=(alpha+(incremento*PI)/180);
+  //aqui igual puede haber algun problema ya que va hasta 180 y no hasta 360 igual con round se puede si lo dejamos como grados
   this->posicion=Tupla4f(cos(beta)*sin(alpha),sin(beta)*sin(alpha),cos(alpha),0.0f);
 }
 void LuzDireccional :: variarAnguloBeta ( float incremento ){
-  this->beta=(beta+(incremento*PI)/180)%360.0f;
+  this->beta=(beta+(incremento*PI)/180);
   this->posicion=Tupla4f(cos(beta)*sin(alpha),sin(beta)*sin(alpha),cos(alpha),0.0f);
 }

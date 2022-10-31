@@ -7,8 +7,8 @@
 //
 // #############################################################################
 
-#ifndef LUZ_H_INCLUDED
-#define LUZ_H_INCLUDED
+#ifndef MATERIAL_H_INCLUDED
+#define MATERIAL_H_INCLUDED
 
 #include "auxiliar.h"
 
@@ -20,29 +20,16 @@
 
 
 
-class  Luz
-{
-   public:
-
-   // función que dibuja el objeto en modo diferido (usando VBOs)
-   void activar() ;
-
-   //void setMaterial(Material m);
-   protected:
-
-
-
-   Tupla4f posicion;
-   Tupla4f colorDifuso;
-   Tupla4f colorAmbiente;
-   Tupla4f Especular;
-   GLenum id;
-   std::vector <GLenum> luces={GL_LIGHT0,GL_LIGHT1,GL_LIGHT2,GL_LIGHT3,GL_LIGHT4,GL_LIGHT5,GL_LIGHT6,GL_LIGHT7};
-
-
-
-
-} ;
+class Material {
+  private :
+    Tupla4f difuso ;
+    Tupla4f especular ;
+    Tupla4f ambiente ;
+    float brillo ;
+  public :
+    Material ( Tupla4f mdifuso ,Tupla4f mespecular ,Tupla4f mambiente ,float brillo );
+    void aplicar();
+};
 
 
 
