@@ -13,7 +13,7 @@
 #include "luzdireccional.h"
 #include "luz.h"
 #include "luzposicional.h"
-
+#include "material.h"
 typedef enum {NADA, SELOBJETO,SELVISUALIZACION} menu;
 class Escena
 {
@@ -51,6 +51,7 @@ class Escena
    bool modoluces=false;
    //ObjPLY dodge =ObjPLY("./plys/big_dodge.ply");
    //OBJETOS DE LA ESCENA
+   ObjRevolucion * peon1=nullptr;
    ObjRevolucion * peon=nullptr;
    Cilindro  * cilindro=nullptr;
    Cono * cono= nullptr;

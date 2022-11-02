@@ -38,7 +38,8 @@ Escena::Escena()
 
     //LUCES Escena
     luzdire=new LuzDireccional(Tupla2f(0.0,0.0));
-    luzposi=new LuzPosicional(Tupla3f(0.0,0.0,100.f));
+    luzposi=new LuzPosicional(Tupla3f(40.0f,40.0f,40.f));
+    peon1 =new ObjRevolucion("./plys/peon.ply",10);
 
 
 }
@@ -75,6 +76,7 @@ void Escena::dibujar()
 {
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT ); // Limpiar la pantalla
 	change_observer();
+    glDisable(GL_LIGHTING);
     ejes.draw();
     // COMPLETAR
     //   Dibujar los diferentes elementos de la escena
@@ -120,6 +122,34 @@ void Escena::dibujar()
        */
 
 if(modoluces){
+
+    luzdire->activar();//creo que es porque las declaro como luces negras
+    //luzposi->activar();
+    GLfloat lmodel_ambient[] = { 0, 0, 0, 1.0 }; //La pongo como luz negra y asi intento ver porque no funcionan mis luces
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
+
+
+    Material negro (Tupla4f(0,0,0,1),Tupla4f(1,1,1,1),Tupla4f(0.0f,0.0f,0.0f,1.f),128.f);
+    Material blanco (Tupla4f(1.0f,1.0f,1.0f,1.0f),Tupla4f(0.0f,0.0f,0.0f,1.0f),Tupla4f(1.0f,1.0f,1.0f,1.0f),128.f);
+//1.0f,1.0f,1.0f
+
+
+    glPushMatrix ();
+    glScalef(17,17,17);
+    peon1->calcularNormales();
+    peon1->setMaterial(negro);
+    peon1->draw();
+    glPopMatrix ();
+
+    glPushMatrix ();
+    glTranslatef (0,100,0);
+    glScalef(17,17,17);
+
+    peon->calcularNormales();
+    peon->setMaterial(blanco);
+    peon->draw();
+    glPopMatrix ();
+
 
 }
 else{
@@ -319,11 +349,18 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
            case 'T': //modo luces
 
              if(modoMenu==SELVISUALIZACION){
-                glEnable( GL_LIGHTING );
+
                 modoluces=true;
                 this->dibujar();
              }
              break ;
+
+             case '0': //modo luces
+
+               if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                  this->dibujar();
+               }
+               break ;
    }
    return salir;
 }

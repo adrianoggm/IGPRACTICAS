@@ -38,42 +38,61 @@ void Malla3D::draw()
    }
    if(id_vbo_c==0)
    {
-     id_vbo_c=CrearVBO(GL_ARRAY_BUFFER,c.size()*sizeof(Tupla3i),c.data());
-    id_vbo_l=CrearVBO(GL_ARRAY_BUFFER,l.size()*sizeof(Tupla3i),l.data());
-    id_vbo_p=CrearVBO(GL_ARRAY_BUFFER,p.size()*sizeof(Tupla3i),p.data());
+     id_vbo_c=CrearVBO(GL_ARRAY_BUFFER,c.size()*sizeof(Tupla3f),c.data());
+    id_vbo_l=CrearVBO(GL_ARRAY_BUFFER,l.size()*sizeof(Tupla3f),l.data());
+    id_vbo_p=CrearVBO(GL_ARRAY_BUFFER,p.size()*sizeof(Tupla3f),p.data());
+   }
+   if(id_vbo_nv==0 && nv.size()>0)
+   {
+     printf("calculamos vbo normales \n");
+     id_vbo_nv=CrearVBO(GL_NORMAL_ARRAY,nv.size()*sizeof(Tupla3f),nv.data());
+
    }
    // activar buffer
    if ( id_vbo_c!=0 && id_vbo_tri!=0 && id_vbo_ver!=0) {
-     GLint polygonMode[2];
-
-     glGetIntegerv(GL_POLYGON_MODE,polygonMode);
-
-    if(polygonMode[0]==GL_POINT){
-      glPointSize(	3.0f);
-      glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_p );
-     // h
-      glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
-      glBindBuffer ( GL_ARRAY_BUFFER , 0);
-     glEnableClientState( GL_COLOR_ARRAY );
+     GLboolean islight=GL_FALSE;
+     glGetBooleanv(GL_LIGHTING,&islight);
+    if(islight==GL_TRUE){
+        printf("La luz me ilumina \n");
+       glEnable(GL_NORMALIZE);
+       glShadeModel(GL_SMOOTH);
+       glBindBuffer ( GL_NORMAL_ARRAY,id_vbo_nv);
+       glNormalPointer(GL_FLOAT, 0,0);
+       glBindBuffer ( GL_NORMAL_ARRAY,0);
+       glEnableClientState(GL_NORMAL_ARRAY);
 
      }
-    if(polygonMode[0]==GL_LINE){
+   else{
+     GLint polygonMode[2];
+     glGetIntegerv(GL_POLYGON_MODE,polygonMode);
+
+     if(polygonMode[0]==GL_POINT){
+      glPointSize(	3.0f);
+      glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_p );
+     //
+      glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
+      glBindBuffer ( GL_ARRAY_BUFFER , 0);
+      glEnableClientState( GL_COLOR_ARRAY );
+
+     }
+     if(polygonMode[0]==GL_LINE){
       glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_l );
        // habilitar uso de array de col.
       glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
       glBindBuffer ( GL_ARRAY_BUFFER , 0);
       glEnableClientState( GL_COLOR_ARRAY );
-  }
-  if(polygonMode[0]==GL_FILL){
-
-    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_c );
-    // habilitar uso de array de col.
-    glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
-    glBindBuffer ( GL_ARRAY_BUFFER , 0);
-    glEnableClientState( GL_COLOR_ARRAY );
-
     }
+    if(polygonMode[0]==GL_FILL){
 
+      glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_c );
+      // habilitar uso de array de col.
+      glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
+      glBindBuffer ( GL_ARRAY_BUFFER , 0);
+      glEnableClientState( GL_COLOR_ARRAY );
+
+
+      }
+  }
 
   glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
  // usar como buffer de vertices el actualmente activo
@@ -93,7 +112,7 @@ void Malla3D::draw()
   // desactivar uso de array de vértices
   glDisableClientState ( GL_VERTEX_ARRAY );
   glDisableClientState ( GL_COLOR_ARRAY );
-
+  glDisableClientState(GL_NORMAL_ARRAY);
   }
 }
 void Malla3D::calcularNormales(){
@@ -131,7 +150,5 @@ void Malla3D::calcularNormales(){
 }
 
 void Malla3D::setMaterial(Material m){
-  m.aplicar();
-
-
+    m.aplicar();
 }

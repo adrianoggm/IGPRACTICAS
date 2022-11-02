@@ -21,9 +21,9 @@ LuzDireccional:: LuzDireccional ( const Tupla2f & orientacion ){
   //suponemos un vector unitario osea que r será =1
   //si w=0 esta en el infinito es luz direccional
   this->posicion=Tupla4f(cos(beta)*sin(alpha),sin(beta)*sin(alpha),cos(alpha),0.0f);
-  this->colorAmbiente=Tupla4f(0.0f,0.0f, 0.0f,1.0f);
-  this->colorDifuso= Tupla4f(0.0f,0.0f, 0.0f,1.0f);
-  this->Especular= Tupla4f(0.0f,0.0f, 0.0f,1.0f);
+  this->colorAmbiente=Tupla4f(0.8f,0.8f, 0.8f,0.0f);
+  this->colorDifuso= Tupla4f(0.8f,0.8f, 0.8f,0.0f);
+  this->Especular= Tupla4f(0.8f,0.8f, 0.8f,0.0f);
 }
 
 void LuzDireccional :: variarAnguloAlpha  ( float incremento ){
