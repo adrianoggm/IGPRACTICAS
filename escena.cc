@@ -136,8 +136,9 @@ if(modoluces){
 
     glPushMatrix ();
     glScalef(17,17,17);
-    peon1->calcularNormales();
+    
     peon1->setMaterial(negro);
+    peon1->calcularNormales();
     peon1->draw();
     glPopMatrix ();
 
@@ -145,8 +146,9 @@ if(modoluces){
     glTranslatef (0,100,0);
     glScalef(17,17,17);
 
-    peon->calcularNormales();
+    
     peon->setMaterial(blanco);
+    peon->calcularNormales();
     peon->draw();
     glPopMatrix ();
 

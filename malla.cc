@@ -44,7 +44,7 @@ void Malla3D::draw()
    }
    if(id_vbo_nv==0 && nv.size()>0)
    {
-     printf("calculamos vbo normales \n");
+
      id_vbo_nv=CrearVBO(GL_NORMAL_ARRAY,nv.size()*sizeof(Tupla3f),nv.data());
 
    }
@@ -117,36 +117,35 @@ void Malla3D::draw()
 }
 void Malla3D::calcularNormales(){
 
-    std::vector<Tupla3f> normcaras;
-    for(int i=0;i<=c.size();i++){
-      Tupla3f p=v[c[i](0)];
-      Tupla3f q=v[c[i](1)];
-      Tupla3f r=v[c[i](2)];
-      Tupla3f a= p-r;
-      Tupla3f b=q-r;
-      Tupla3f normales=Tupla3f(a(1)*b(2)-b(1)*a(2),b(0)*a(2)-a(0)*b(2),a(0)*b(1)-b(0)*a(1)) ;
-      float modulo=sqrt(pow(normales(0),2)+pow(normales(1),2)+pow(normales(2),2));
-      normcaras.push_back(normales/modulo);
+    for(int i=0;i<v.size();i++){
+      nv.push_back(Tupla3f(0,0,0));
+    }
+    for(int i=0;i<f.size();i++){
+      Tupla3f p=v[f[i](0)];
+      Tupla3f q=v[f[i](1)];
+      Tupla3f r=v[f[i](2)];
+      Tupla3f a= p-q;
+      Tupla3f b=p-r;
+      Tupla3f m=a.cross(b);
+      int e=f[i](0);
+      int g=f[i](1);
+      int d=f[i](2);
+      nv[e]=nv[e]+m;
+      nv[g]=nv[g]+m;
+      nv[d]=nv[d]+m;
     }
     // inizializo a 0
     //nv.pushback tupla3f (0 0 ,0)
     //
-    for(int i=0;i<v.size();i++){
-      nv.push_back(Tupla3f(0,0,0));
-    }
-    for (int i=0;i<f.size();i++){
-          int a=c[i](0);
-          int b=c[i](1);
-          int d=c[i](2);
-          nv[a]=nv[a]+normcaras[a];
-          nv[b]=nv[b]+normcaras[b];
-          nv[d]=nv[d]+normcaras[d];
-        }
+
     //for normalizo nv
-    for(int i=0;i<nv.size();i++){
+     for(int i=0;i<nv.size();i++){
       float modulo=sqrt(pow(nv[i](0),2)+pow(nv[i](1),2)+pow(nv[i](2),2));
       nv[i]=nv[i]/modulo;
     }
+
+    //for normalizo nv
+
 }
 
 void Malla3D::setMaterial(Material m){
