@@ -22,12 +22,14 @@ const float radio ){
     for(int i=0;i<num_vert_perfil;i++){
       perfil.push_back(Tupla3f(radio,altura*i/num_vert_perfil,0.0f));
     }
+    /*
     for(int i=0;i<perfil.size();i++){
         printf("%f  ,",perfil[i][0]);
         printf("%f  ,",perfil[i][1]);
         printf(" %f \n",perfil[i][2]);
       }
       printf("PUNTOS PERFIL  \n");
+    */
     crearMalla(perfil,num_instancias_perf);
 
 };

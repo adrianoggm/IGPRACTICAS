@@ -19,7 +19,7 @@
 void Luz:: activar(){
 
 //
-  glEnable( GL_LIGHTING );
+  
   if(!this->activada){
     GLboolean activado=GL_TRUE;
     GLenum idluz;

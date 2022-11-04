@@ -116,6 +116,7 @@ v.push_back(polonorte);
   for(int i=0;i<num_instancias;i++){
     f.push_back(Tupla3i(v.size()-1,(num_instancias)*(vori.size()-1)+i,(num_instancias)*(vori.size()-1)+(i+1)%num_instancias));
   }
+  /*
   for(int i=0;i<v.size();i++){
     printf("%f  ,",v[i][0]);
     printf("%f  ,",v[i][1]);
@@ -128,6 +129,7 @@ for(int i=0;i<f.size();i++){
   printf("%d \n",f[i][2]);
 }
 printf("EL TAMANO ES %ld \n",vori.size());
+*/
 for(int i=0;i<f.size();i++){
   c.push_back(Tupla3f(0.5f,0.0f,0.5f));
   p.push_back(Tupla3f(1.0f,0.0f,0.0f));

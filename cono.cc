@@ -27,11 +27,11 @@ Cono::Cono ( const int num_vert_perfil ,const int num_instancias_perf,const floa
     for(int i=0;i<perfil.size();i++){
       std::vector<Tupla3f> r(perfil.rbegin(),perfil.rend());
       perfil.swap(r);
-        printf("%f  ,",perfil[i][0]);
-        printf("%f  ,",perfil[i][1]);
-        printf(" %f \n",perfil[i][2]);
+        //printf("%f  ,",perfil[i][0]);
+        //printf("%f  ,",perfil[i][1]);
+        //printf(" %f \n",perfil[i][2]);
       }
-      printf("PUNTOS PERFIL  \n");
+      //printf("PUNTOS PERFIL  \n");
     crearMalla(perfil,num_instancias_perf);
 
 };

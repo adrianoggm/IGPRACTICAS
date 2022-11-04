@@ -53,12 +53,13 @@ void Malla3D::draw()
      GLboolean islight=GL_FALSE;
      glGetBooleanv(GL_LIGHTING,&islight);
     if(islight==GL_TRUE){
-        printf("La luz me ilumina \n");
-       glEnable(GL_NORMALIZE);
-       glShadeModel(GL_SMOOTH);
-       glBindBuffer ( GL_NORMAL_ARRAY,id_vbo_nv);
+
+       //glEnable(GL_NORMALIZE);
+
+       glShadeModel(GL_SMOOTH);//
+       glBindBuffer ( GL_ARRAY_BUFFER,id_vbo_nv);
        glNormalPointer(GL_FLOAT, 0,0);
-       glBindBuffer ( GL_NORMAL_ARRAY,0);
+       glBindBuffer ( GL_ARRAY_BUFFER,0);
        glEnableClientState(GL_NORMAL_ARRAY);
 
      }
@@ -124,8 +125,8 @@ void Malla3D::calcularNormales(){
       Tupla3f p=v[f[i](0)];
       Tupla3f q=v[f[i](1)];
       Tupla3f r=v[f[i](2)];
-      Tupla3f a= p-q;
-      Tupla3f b=p-r;
+      Tupla3f a= q-p;
+      Tupla3f b=r-p;
       Tupla3f m=a.cross(b);
       int e=f[i](0);
       int g=f[i](1);
@@ -145,7 +146,7 @@ void Malla3D::calcularNormales(){
     }
 
     //for normalizo nv
-
+    
 }
 
 void Malla3D::setMaterial(Material m){

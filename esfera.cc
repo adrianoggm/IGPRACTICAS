@@ -30,12 +30,14 @@ Esfera::Esfera ( const int num_vert_perfil ,const int num_instancias_perf ,const
       perfil.push_back(Tupla3f(radio*cosen,radio*sen,0));
      i+=angulo;
     }
+   /* 
     for(int i=0;i<perfil.size();i++){
         printf("%f  ,",perfil[i][0]);
         printf("%f  ,",perfil[i][1]);
         printf(" %f \n",perfil[i][2]);
       }
-      printf("PUNTOS PERFIL  \n");
+      printf("PUNTOS PERFIL  \n");*/
+   
     crearMalla(perfil,num_instancias_perf);
 
 };

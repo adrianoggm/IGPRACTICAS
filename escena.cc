@@ -21,7 +21,7 @@ Escena::Escena()
     // crear los objetos de la escena....
     // .......completar: ...
     // .....
-    piramide= new PiramidePentagonal(50.0,25.0);
+    piramide= new PiramidePentagonal(30.0,25.0);
     cubo = new Cubo(40.0);
     peon =new ObjRevolucion("./plys/peon.ply",10);
 
@@ -78,78 +78,82 @@ void Escena::dibujar()
 	change_observer();
     glDisable(GL_LIGHTING);
     ejes.draw();
-    // COMPLETAR
-    //   Dibujar los diferentes elementos de la escena
-    // Habrá que tener en esta primera práctica una variable que indique qué objeto se ha de visualizar
-    // y hacer
-    // cubo->draw()
-    // o    piramide->draw()
-    /*
-    ObjPLY beethoven =ObjPLY("beethoven.ply");
-    beethoven.draw();
-    */
 
-/*
-
-    glPushMatrix ();
-    glTranslatef (-100,0,100);
-    // dibujar el primer objeto
-    esfera.draw();
-    glPopMatrix ();
-
-    glPushMatrix ();
-    glTranslatef (100,0,-100);
-    cono.draw();
-    glPopMatrix ();
-    //...
-    glPushMatrix ();
-    glTranslatef (-100,0,-100);
-    cilindro.draw();
-    glPopMatrix ();
-
-    glPushMatrix ();
-    glTranslatef (0,100,0);
-    glScalef(17,17,17);
-    peon.draw();
-    glPopMatrix ();
-
-    dodge.estadodibujo=2;
-    dodge.modo_alambre=true;
-        glPushMatrix ();
-        glScalef(4,4,4);
-        dodge.draw();
-       glPopMatrix ();
-       */
 
 if(modoluces){
-
-    luzdire->activar();//creo que es porque las declaro como luces negras
-    //luzposi->activar();
+    glEnable( GL_LIGHTING );
+    glEnable(GL_NORMALIZE);
+    luzdire->activar();
+    //
+    luzposi->activar();//creo que es porque las declaro como luces negras
     GLfloat lmodel_ambient[] = { 0, 0, 0, 1.0 }; //La pongo como luz negra y asi intento ver porque no funcionan mis luces
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
 
-
-    Material negro (Tupla4f(0,0,0,1),Tupla4f(1,1,1,1),Tupla4f(0.0f,0.0f,0.0f,1.f),128.f);
-    Material blanco (Tupla4f(1.0f,1.0f,1.0f,1.0f),Tupla4f(0.0f,0.0f,0.0f,1.0f),Tupla4f(1.0f,1.0f,1.0f,1.0f),128.f);
+    Tupla4f ambiente_pearl(0.25,0.20725,0.20725, 1.0);
+    Tupla4f especular_pearl(0.296648,0.296648, 0.296648, 1.0);
+    Tupla4f difuso_pearl(	1, 0.829,0.829, 1.0);
+    Material pearl = Material(ambiente_pearl,especular_pearl,difuso_pearl,0.088*128);
+    Material negro (Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),128.f);
+    Material blanco (Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),128.f);
 //1.0f,1.0f,1.0f
 
 
     glPushMatrix ();
+
     glScalef(17,17,17);
-    
-    peon1->setMaterial(negro);
+    glTranslatef (1,1.4,0);
     peon1->calcularNormales();
+    peon1->setMaterial(pearl);
+
     peon1->draw();
     glPopMatrix ();
 
     glPushMatrix ();
-    glTranslatef (0,100,0);
+    glTranslatef (0,0,50);
     glScalef(17,17,17);
+    glTranslatef (1,1.4,0);
 
-    
-    peon->setMaterial(blanco);
     peon->calcularNormales();
+    peon->setMaterial(negro);
     peon->draw();
+    glPopMatrix ();
+
+    glPushMatrix ();
+    glTranslatef (-50,0,0);
+    piramide->calcularNormales();
+    piramide->setMaterial(negro);
+    piramide->draw();
+    glPopMatrix ();
+
+    glPushMatrix ();
+    glTranslatef (-100,0,100);
+    cubo->calcularNormales();
+    cubo->setMaterial(blanco);
+    cubo->draw();
+
+    glPopMatrix ();
+
+    glPushMatrix ();
+    glTranslatef (100,0,50);
+
+    // dibujar el primer objeto
+    esfera->calcularNormales();
+    esfera->setMaterial(blanco);
+    esfera->draw();
+    glPopMatrix ();
+
+    glPushMatrix ();
+    glTranslatef (100,0,-100);
+    cono->calcularNormales();
+    cono->setMaterial(pearl);
+    cono->draw();
+    glPopMatrix ();
+    //...
+    glPushMatrix ();
+    glTranslatef (-100,0,-100);
+    cilindro->calcularNormales();
+    cilindro->setMaterial(negro);
+    cilindro->draw();
     glPopMatrix ();
 
 
