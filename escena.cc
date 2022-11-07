@@ -368,6 +368,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                     luzdire->activar();
                 else{
                   glDisable(luzdire->id);
+                  luzdire->activada=false;
                 }
                   //ultimaselec=
                   this->dibujar();
@@ -380,6 +381,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                  luzposi->activar();
              else{
                glDisable(luzposi->id);
+               luzposi->activada=false;
              }
 
                this->dibujar();
@@ -435,18 +437,19 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                         angulo=BETA;
                }
             break;
-            case '<':
+            case '>':
                 if(modoMenu==SELVISUALIZACION&&modoluces==true&&angulo==ALPHA){
                             luzdire->variarAnguloAlpha(20);
                               this->dibujar();
-                              cout << " vario el angulo: '" << tecla << "'" << endl;
+
                    }
                 if(modoMenu==SELVISUALIZACION&&modoluces==true&&angulo==BETA){
 
                                 luzdire->variarAnguloBeta(20);
                                  this->dibujar();
                   }
-            case '>':
+                   break ;
+            case '<':
                       if(modoMenu==SELVISUALIZACION&&modoluces==true&&angulo==ALPHA){
                                   luzdire->variarAnguloAlpha(-20);
 
