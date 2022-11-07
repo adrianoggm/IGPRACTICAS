@@ -15,6 +15,7 @@
 #include "luzposicional.h"
 #include "material.h"
 typedef enum {NADA, SELOBJETO,SELVISUALIZACION} menu;
+typedef enum {NADAA,ALPHA,BETA} menuangulo;
 class Escena
 {
 
@@ -56,7 +57,7 @@ class Escena
    Cilindro  * cilindro=nullptr;
    Cono * cono= nullptr;
    Esfera * esfera=nullptr;
-
+   menuangulo angulo=NADAA;
    //LUCES DE LA Escena
    LuzPosicional * luzposi=nullptr;
    LuzDireccional * luzdire=nullptr;

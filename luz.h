@@ -26,6 +26,8 @@ class  Luz
 
    // función que dibuja el objeto en modo diferido (usando VBOs)
    void activar() ;
+   GLenum id;
+   bool activada=false;
 
    //void setMaterial(Material m);
    protected:
@@ -36,8 +38,7 @@ class  Luz
    Tupla4f colorDifuso;
    Tupla4f colorAmbiente;
    Tupla4f Especular;
-   GLenum id;
-   bool activada=false;
+
    std::vector <GLenum> luces={GL_LIGHT0,GL_LIGHT1,GL_LIGHT2,GL_LIGHT3,GL_LIGHT4,GL_LIGHT5,GL_LIGHT6,GL_LIGHT7};
 
 

@@ -83,11 +83,11 @@ void Escena::dibujar()
 if(modoluces){
     glEnable( GL_LIGHTING );
     glEnable(GL_NORMALIZE);
-    luzdire->activar();
+    //luzdire->activar();
     //
-    luzposi->activar();//creo que es porque las declaro como luces negras
+    //luzposi->activar();//creo que es porque las declaro como luces negras
     GLfloat lmodel_ambient[] = { 0, 0, 0, 1.0 }; //La pongo como luz negra y asi intento ver porque no funcionan mis luces
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
+    //glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
 
     Tupla4f ambiente_pearl(0.25,0.20725,0.20725, 1.0);
     Tupla4f especular_pearl(0.296648,0.296648, 0.296648, 1.0);
@@ -364,9 +364,103 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
              case '0': //modo luces
 
                if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                if(luzdire->activada==false )
+                    luzdire->activar();
+                else{
+                  glDisable(luzdire->id);
+                }
+                  //ultimaselec=
                   this->dibujar();
                }
                break ;
+            case '1': //modo luces
+
+            if(modoMenu==SELVISUALIZACION&&modoluces==true){
+             if(luzposi->activada==false )
+                 luzposi->activar();
+             else{
+               glDisable(luzposi->id);
+             }
+
+               this->dibujar();
+            }
+                 break ;
+            case '2': //modo luces
+
+                   if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                      this->dibujar();
+                   }
+                   break ;
+
+            case '3': //modo luces
+
+              if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                        this->dibujar();
+                     }
+                     break ;
+            case '4': //modo luces
+
+                  if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                         this->dibujar();
+                      }
+                     break ;
+
+             case '5': //modo luces
+
+                  if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                            this->dibujar();
+                      }
+                      break ;
+            case '6': //modo luces
+
+                  if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                            this->dibujar();
+                    }
+                      break ;
+
+           case '7': //modo luces
+
+                  if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                                  this->dibujar();
+                     }
+                     break ;
+            case 'A':
+                if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                            angulo=ALPHA;
+                   }
+               break ;
+
+            case 'B':
+            if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                        angulo=BETA;
+               }
+            break;
+            case '<':
+                if(modoMenu==SELVISUALIZACION&&modoluces==true&&angulo==ALPHA){
+                            luzdire->variarAnguloAlpha(20);
+                              this->dibujar();
+                              cout << " vario el angulo: '" << tecla << "'" << endl;
+                   }
+                if(modoMenu==SELVISUALIZACION&&modoluces==true&&angulo==BETA){
+
+                                luzdire->variarAnguloBeta(20);
+                                 this->dibujar();
+                  }
+            case '>':
+                      if(modoMenu==SELVISUALIZACION&&modoluces==true&&angulo==ALPHA){
+                                  luzdire->variarAnguloAlpha(-20);
+
+                                    this->dibujar();
+                         }
+                      if(modoMenu==SELVISUALIZACION&&modoluces==true&&angulo==BETA){
+
+                                      luzdire->variarAnguloBeta(-20);
+                                       this->dibujar();
+                        }
+
+
+               break ;
+
    }
    return salir;
 }
