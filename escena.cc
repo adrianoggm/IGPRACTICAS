@@ -143,14 +143,14 @@ if(modoluces){
     glPopMatrix ();
 
     glPushMatrix ();
-    glTranslatef (100,0,-100);
+    glTranslatef (100,50,-100);
     cono->calcularNormales();
     cono->setMaterial(pearl);
     cono->draw();
     glPopMatrix ();
     //...
     glPushMatrix ();
-    glTranslatef (-100,0,-100);
+    glTranslatef (-100,50,-100);
     cilindro->calcularNormales();
     cilindro->setMaterial(negro);
     cilindro->draw();
@@ -177,12 +177,12 @@ else{
         glPopMatrix ();
 
         glPushMatrix ();
-        glTranslatef (100,0,-100);
+        glTranslatef (100,50,-100);
         cono->draw();
         glPopMatrix ();
         //...
         glPushMatrix ();
-        glTranslatef (-100,0,-100);
+        glTranslatef (-100,50,-100);
         cilindro->draw();
         glPopMatrix ();
 
@@ -217,12 +217,12 @@ else{
         glPopMatrix ();
 
         glPushMatrix ();
-        glTranslatef (100,0,-100);
+        glTranslatef (100,50,-100);
         cono->draw();
         glPopMatrix ();
         //...
         glPushMatrix ();
-        glTranslatef (-100,0,-100);
+        glTranslatef (-100,50,-100);
         cilindro->draw();
         glPopMatrix ();
 
@@ -247,12 +247,12 @@ else{
           glPopMatrix ();
 
           glPushMatrix ();
-          glTranslatef (100,0,-100);
+          glTranslatef (100,50,-100);
           cono->draw();
           glPopMatrix ();
           //...
           glPushMatrix ();
-          glTranslatef (-100,0,-100);
+          glTranslatef (-100,50,-100);
           cilindro->draw();
           glPopMatrix ();
 
@@ -438,8 +438,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                }
             break;
             case '>':
+            	printf("llave>");
                 if(modoMenu==SELVISUALIZACION&&modoluces==true&&angulo==ALPHA){
                             luzdire->variarAnguloAlpha(20);
+                             
                               this->dibujar();
 
                    }
@@ -450,6 +452,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   }
                    break ;
             case '<':
+            		printf("llave<");
                       if(modoMenu==SELVISUALIZACION&&modoluces==true&&angulo==ALPHA){
                                   luzdire->variarAnguloAlpha(-20);
 

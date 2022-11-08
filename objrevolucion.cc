@@ -42,22 +42,30 @@ void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_ins
   const float PI=3.14159265358979323846l;
   Tupla3f polosur=Tupla3f(-1,-1,-1);
   Tupla3f polonorte=Tupla3f(-1,-1,-1);
+  bool tapanorte=true;
+  bool tapasur=true;
+  
 
   if(abs(vori[0](0))<=epsilon){
     polosur=vori[0];
+     printf("Polo sur \n");
     vori.erase(vori.begin());//v.begin()
   }
   else{
-    polosur=Tupla3f(0,vori[0](1) ,0);
+    //polosur=Tupla3f(0,vori[0](1) ,0);
+     tapasur=false;
+    
   }
   if(abs(vori[vori.size()-1](0))<=epsilon){
+    printf("Polo norte \n");
     polonorte=vori[vori.size()-1];
     vori.pop_back();
   }
   else{
-    polonorte=Tupla3f(0,vori[vori.size()-1](1) ,0);
+    //polonorte=Tupla3f(0,vori[vori.size()-1](1) ,0);
+    tapanorte=false;
   }
-  if(polonorte[1]<polosur[1]){
+  if(perfil_original[0](1)<perfil_original[perfil_original.size()](1)){
     Tupla3f aux=polonorte;
     polonorte=polosur;
     polosur=aux;
@@ -100,21 +108,23 @@ for(int i=0;i<num_instancias;i++){ //perfil
     int a1=j*num_instancias+(i+1)%num_instancias;
     int b=(num_instancias*((j+1)%vori.size()))+i;
     int b1=(num_instancias*((j+1)%vori.size()))+(i+1)%num_instancias;
-    f.push_back(Tupla3i(a,b1,b));
-    f.push_back(Tupla3i(a,a1,b1));
+    f.push_back(Tupla3i(a,b,b1));
+    f.push_back(Tupla3i(a,b1,a1));
   }
 }
 
 
-
+if(tapasur){
 v.push_back(polosur);
   for(int i=0;i<num_instancias;i++){
-    f.push_back(Tupla3i(v.size()-1,(i+1)%num_instancias,i));
+    f.push_back(Tupla3i(v.size()-1,i,(i+1)%num_instancias));
   }
-
+}
+if(tapanorte){
 v.push_back(polonorte);
   for(int i=0;i<num_instancias;i++){
-    f.push_back(Tupla3i(v.size()-1,(num_instancias)*(vori.size()-1)+i,(num_instancias)*(vori.size()-1)+(i+1)%num_instancias));
+    f.push_back(Tupla3i(v.size()-1,(num_instancias)*(vori.size()-1)+(i+1)%num_instancias,(num_instancias)*(vori.size()-1)+i));
+  }
   }
   /*
   for(int i=0;i<v.size();i++){

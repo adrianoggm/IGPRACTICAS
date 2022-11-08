@@ -18,10 +18,13 @@ Cilindro::Cilindro() {};
 
 Cilindro::Cilindro ( const int num_vert_perfil ,const int num_instancias_perf ,const float altura ,
 const float radio ){
+    
     std::vector<Tupla3f>perfil;
-    for(int i=0;i<num_vert_perfil;i++){
-      perfil.push_back(Tupla3f(radio,altura*i/num_vert_perfil,0.0f));
+     perfil.push_back(Tupla3f(0.0f,0.0f,0.0f));//POLO SUR
+    for(int i=0;i<(num_vert_perfil);i++){
+      perfil.push_back(Tupla3f(radio,-altura*i/(num_vert_perfil-1),0.0f));
     }
+    perfil.push_back(Tupla3f(0.0f,-altura,0.0f));//POLO NORTE
     /*
     for(int i=0;i<perfil.size();i++){
         printf("%f  ,",perfil[i][0]);

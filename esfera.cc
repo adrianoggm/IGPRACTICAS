@@ -21,7 +21,7 @@ Esfera::Esfera ( const int num_vert_perfil ,const int num_instancias_perf ,const
     const float PI=3.14159265358979323846l;
     const float angulo=180/(num_instancias_perf-1);
 
-
+    
     //vertices del 0 al 4
     for(int i=270;i<450;){
       float degtorad=(i*PI)/180;
@@ -30,6 +30,7 @@ Esfera::Esfera ( const int num_vert_perfil ,const int num_instancias_perf ,const
       perfil.push_back(Tupla3f(radio*cosen,radio*sen,0));
      i+=angulo;
     }
+    perfil.push_back(Tupla3f(0.0f,+radio,0.0f));//polonorte
    /* 
     for(int i=0;i<perfil.size();i++){
         printf("%f  ,",perfil[i][0]);
