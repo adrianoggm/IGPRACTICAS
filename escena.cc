@@ -84,6 +84,7 @@ if(modoluces){
     glEnable( GL_LIGHTING );
     glEnable(GL_NORMALIZE);
     //luzdire->activar();
+    glShadeModel(GL_SMOOTH);
     //
     //luzposi->activar();//creo que es porque las declaro como luces negras
     GLfloat lmodel_ambient[] = { 0, 0, 0, 1.0 }; //La pongo como luz negra y asi intento ver porque no funcionan mis luces
@@ -92,6 +93,10 @@ if(modoluces){
     Tupla4f ambiente_pearl(0.25,0.20725,0.20725, 1.0);
     Tupla4f especular_pearl(0.296648,0.296648, 0.296648, 1.0);
     Tupla4f difuso_pearl(	1, 0.829,0.829, 1.0);
+    Tupla4f ambiente_esmerald(0.0215,0.1745,0.0215, 1.0);
+    Tupla4f especular_esmerald(0.07568, 	0.61424, 0.07568, 1.0);
+    Tupla4f difuso_esmerald(	0.633, 0.727811, 0.633, 1.0);
+    Material  esmerald = Material(ambiente_esmerald,especular_esmerald,difuso_esmerald, 128.0*0.6);
     Material pearl = Material(ambiente_pearl,especular_pearl,difuso_pearl,0.088*128);
     Material negro (Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),128.f);
     Material blanco (Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),128.f);
@@ -128,7 +133,7 @@ if(modoluces){
     glPushMatrix ();
     glTranslatef (-100,0,100);
     cubo->calcularNormales();
-    cubo->setMaterial(blanco);
+    cubo->setMaterial(esmerald);
     cubo->draw();
 
     glPopMatrix ();
@@ -163,6 +168,7 @@ else{
 
 
 
+
         glPolygonMode(GL_FRONT,GL_FILL);
         piramide->draw();
         glPushMatrix ();
@@ -189,7 +195,7 @@ else{
         glPushMatrix ();
         glTranslatef (0,100,0);
         glScalef(17,17,17);
-        peon->draw();
+        dodge.draw();//peon->draw();
         glPopMatrix ();
         /*
         dodge.estadodibujo=2;
@@ -229,7 +235,8 @@ else{
         glPushMatrix ();
         glTranslatef (0,100,0);
         glScalef(17,17,17);
-        peon->draw();
+        //peon->draw();
+        dodge.draw();
         glPopMatrix ();
       }
       if(modovert){
@@ -259,7 +266,8 @@ else{
           glPushMatrix ();
           glTranslatef (0,100,0);
           glScalef(17,17,17);
-          peon->draw();
+          //peon->draw();
+          dodge.draw();
           glPopMatrix ();
       }
     }
@@ -441,7 +449,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             	printf("llave>");
                 if(modoMenu==SELVISUALIZACION&&modoluces==true&&angulo==ALPHA){
                             luzdire->variarAnguloAlpha(20);
-                             
+
                               this->dibujar();
 
                    }

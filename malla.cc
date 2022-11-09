@@ -45,7 +45,7 @@ void Malla3D::draw()
    if(id_vbo_nv==0 && nv.size()>0)
    {
 
-     id_vbo_nv=CrearVBO(GL_NORMAL_ARRAY,nv.size()*sizeof(Tupla3f),nv.data());
+     id_vbo_nv=CrearVBO(GL_ARRAY_BUFFER,nv.size()*sizeof(Tupla3f),nv.data());
 
    }
    // activar buffer
@@ -56,7 +56,7 @@ void Malla3D::draw()
 
        //glEnable(GL_NORMALIZE);
 
-       glShadeModel(GL_SMOOTH);//
+       //
        glBindBuffer ( GL_ARRAY_BUFFER,id_vbo_nv);
        glNormalPointer(GL_FLOAT, 0,0);
        glBindBuffer ( GL_ARRAY_BUFFER,0);
@@ -134,6 +134,7 @@ void Malla3D::calcularNormales(){
       nv[e]=nv[e]+m;
       nv[g]=nv[g]+m;
       nv[d]=nv[d]+m;
+
     }
     // inizializo a 0
     //nv.pushback tupla3f (0 0 ,0)
@@ -146,9 +147,16 @@ void Malla3D::calcularNormales(){
     }
 
     //for normalizo nv
-    
+
 }
 
 void Malla3D::setMaterial(Material m){
     m.aplicar();
 }
+/*for(int i=0;i<perfil.size();i++){
+  std::vector<Tupla3f> r(perfil.rbegin(),perfil.rend());
+  perfil.swap(r);
+    //
+    //printf("%f  ,",perfil[i][1]);
+    //printf(" %f \n",perfil[i][2]);
+  }*/
