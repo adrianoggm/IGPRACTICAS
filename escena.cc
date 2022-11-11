@@ -118,8 +118,20 @@ if(modoluces){
     Material negro (Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),128.f);
     Material blanco (Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),128.f);
 *///1.0f,1.0f,1.0f
+    if(luzposi->encendida==true){
+      luzposi->activar();
 
+    }
+    else{
+        glDisable(luzposi->id);
+    }
 
+    if(luzdire->encendida==true){
+      luzdire->activar();
+    }
+    else{
+          glDisable(luzdire->id);
+    }
     glPushMatrix ();
 
     glScalef(17,17,17);
@@ -371,24 +383,27 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
              case '0': //modo luces
 
                if(modoMenu==SELVISUALIZACION&&modoluces==true){
-                if(luzdire->activada==false )
-                    luzdire->activar();
+                if(luzdire->encendida==false ){
+                    luzdire->encendida=true;
+                }
+
                 else{
-                  glDisable(luzdire->id);
-                  luzdire->activada=false;
+                  printf("desactivo");
+                  luzdire->encendida=false;
                 }
                   //ultimaselec=
-                  this->dibujar();
+
                }
                break ;
             case '1': //modo luces
 
             if(modoMenu==SELVISUALIZACION&&modoluces==true){
-             if(luzposi->activada==false )
-                 luzposi->activar();
+             if(luzposi->encendida==false ){
+               luzposi->encendida=true;
+             }
              else{
-               glDisable(luzposi->id);
-               luzposi->activada=false;
+
+               luzposi->encendida=false;
              }
 
                this->dibujar();

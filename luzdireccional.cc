@@ -37,17 +37,19 @@ void LuzDireccional :: variarAnguloAlpha  ( float incremento ){
   //aqui igual puede haber algun problema ya que va hasta 180 y no hasta 360 igual con round se puede si lo dejamos como grados
   // printf("alpha %f  \n ,",this->alpha*180/PI);
   this->posicion=Tupla4f(cos(this->beta)*sin(this->alpha),sin(this->beta)*sin(this->alpha),cos(this->alpha),0.0f);
-  glLightfv(this->id,GL_POSITION,this->posicion);
+/*  glLightfv(this->id,GL_POSITION,this->posicion);
   glLightfv(this->id,GL_SPECULAR,this->Especular);
   glLightfv(this->id,GL_AMBIENT,this->colorAmbiente);
   glLightfv(this->id,GL_DIFFUSE,this->colorDifuso);
+*/
 }
 void LuzDireccional :: variarAnguloBeta ( float incremento ){
   this->beta=(this->beta+(incremento*PI)/180);
   //printf("beta %f  \n ,",this->beta*180/PI);
   this->posicion=Tupla4f(cos(this->beta)*sin(this->alpha),sin(this->beta)*sin(this->alpha),cos(this->alpha),0.0f);
-  glLightfv(this->id,GL_POSITION,this->posicion);
+  /*glLightfv(this->id,GL_POSITION,this->posicion);
   glLightfv(this->id,GL_SPECULAR,this->Especular);
   glLightfv(this->id,GL_AMBIENT,this->colorAmbiente);
   glLightfv(this->id,GL_DIFFUSE,this->colorDifuso);
+*/
 }

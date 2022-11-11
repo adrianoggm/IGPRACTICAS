@@ -28,7 +28,7 @@ class  Luz
    void activar() ;
    GLenum id;
    bool activada=false;
-
+   bool encendida=false;
    //void setMaterial(Material m);
    protected:
 
