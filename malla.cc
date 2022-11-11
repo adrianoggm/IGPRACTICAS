@@ -28,6 +28,8 @@ void Malla3D::draw()
    // completar (práctica 1)
    // .....
    //COMPRUEBO SI NO ESTAN CREADOS LOS ID DE OBJETO DE LOS VBOs
+   calcularNormales();
+
    if(id_vbo_ver==0)
    {
      id_vbo_ver=CrearVBO(GL_ARRAY_BUFFER,v.size()*sizeof(Tupla3f),v.data());
@@ -55,7 +57,7 @@ void Malla3D::draw()
     if(islight==GL_TRUE){
 
        //glEnable(GL_NORMALIZE);
-
+       this->material.aplicar();
        //
        glBindBuffer ( GL_ARRAY_BUFFER,id_vbo_nv);
        glNormalPointer(GL_FLOAT, 0,0);
@@ -151,7 +153,8 @@ void Malla3D::calcularNormales(){
 }
 
 void Malla3D::setMaterial(Material m){
-    m.aplicar();
+
+    this->material=m;
 }
 /*for(int i=0;i<perfil.size();i++){
   std::vector<Tupla3f> r(perfil.rbegin(),perfil.rend());

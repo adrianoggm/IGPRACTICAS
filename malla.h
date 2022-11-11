@@ -41,7 +41,7 @@ class Malla3D
    std::vector<Tupla3f> l;
    std::vector<Tupla3f> p;
    std::vector<Tupla3f> nv;
-
+   Material material;
    GLuint id_vbo_ver=0;
    GLuint id_vbo_tri=0;
    GLuint id_vbo_nv=0;

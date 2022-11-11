@@ -12,7 +12,8 @@
 
 
 // *****************************************************************************
-
+Material:: Material ( ){
+}
 Material:: Material ( Tupla4f mdifuso ,Tupla4f mespecular ,Tupla4f mambiente ,float mbrillo ){
   this->difuso=mdifuso;
   this->especular=mespecular;
