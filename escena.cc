@@ -51,7 +51,6 @@ Escena::Escena()
     Material pearl = Material(ambiente_pearl,especular_pearl,difuso_pearl,0.088*128);
     Material negro (Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),128.f);
     Material blanco (Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),128.f);
-
     cilindro->setMaterial(negro);
     cubo->setMaterial(esmerald);
     peon1->setMaterial(pearl);
