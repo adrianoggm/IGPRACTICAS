@@ -22,3 +22,9 @@ LuzPosicional :: LuzPosicional ( const Tupla3f & posicion ) {
   this->colorDifuso= Tupla4f(0.9f,0.9f,0.9f,1.0f);
   this->Especular= Tupla4f(0.9f,0.9f,0.9f,1.0f);
 }
+void LuzPosicional :: Incrementarluz ( Tupla4f incremento ) {
+     //LAS TECLAS DE LUCES SON  M incrementar y N decrementar
+  this->colorAmbiente=this->colorAmbiente+incremento;
+  this->colorDifuso= this->colorDifuso+incremento;
+  this->Especular= this->Especular+incremento;
+}

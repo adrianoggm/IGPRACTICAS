@@ -18,7 +18,7 @@ Cilindro::Cilindro() {};
 
 Cilindro::Cilindro ( const int num_vert_perfil ,const int num_instancias_perf ,const float altura ,
 const float radio ){
-    
+
     std::vector<Tupla3f>perfil;
      perfil.push_back(Tupla3f(0.0f,0.0f,0.0f));//POLO SUR
     for(int i=0;i<(num_vert_perfil);i++){
@@ -33,6 +33,6 @@ const float radio ){
       }
       printf("PUNTOS PERFIL  \n");
     */
-    crearMalla(perfil,num_instancias_perf);
+    crearMalla(perfil,num_instancias_perf,50);
 
 };

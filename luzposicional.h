@@ -20,11 +20,11 @@
 
 class  LuzPosicional : public Luz
 {
+
   public :
   LuzPosicional ( const Tupla3f & posicion ) ;
 
-
-
+  void Incrementarluz (Tupla4f incremento ) ;
 
 } ;
 

@@ -23,8 +23,8 @@ Escena::Escena()
     // .....
     piramide= new PiramidePentagonal(30.0,25.0);
     cubo = new Cubo(40.0);
-    peon =new ObjRevolucion("./plys/peon.ply",10);
-
+    peon =new ObjRevolucion("./plys/peon.ply",10,100);
+    tetraedro=new Tetraedro(45);
 
     cilindro=new Cilindro(11,35,50,25);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
 
@@ -39,7 +39,7 @@ Escena::Escena()
     //LUCES Escena
     luzdire=new LuzDireccional(Tupla2f(0.0,0.0));
     luzposi=new LuzPosicional(Tupla3f(40.0f,40.0f,40.f));
-    peon1 =new ObjRevolucion("./plys/peon.ply",10);
+    peon1 =new ObjRevolucion("./plys/peon.ply",10,25);
 
     Tupla4f ambiente_pearl(0.25,0.20725,0.20725, 1.0);
     Tupla4f especular_pearl(0.296648,0.296648, 0.296648, 1.0);
@@ -57,6 +57,8 @@ Escena::Escena()
     peon->setMaterial(negro);
     piramide->setMaterial(negro);
     cono->setMaterial(pearl);
+
+    incremento= Tupla4f(0.1f,0.1f,0.1f,0.1f);//Incremento de las luces posicionales examen
 
 }
 
@@ -180,7 +182,8 @@ else{
 
 
         glPolygonMode(GL_FRONT,GL_FILL);
-        piramide->draw();
+        //piramide->draw();
+        tetraedro->draw();
         glPushMatrix ();
         glTranslatef (50,0,50);
         cubo->draw();
@@ -205,21 +208,22 @@ else{
         glPushMatrix ();
         glTranslatef (0,100,0);
         glScalef(17,17,17);
-        dodge.draw();//peon->draw();
+        //dodge.draw();//peon->draw();
         glPopMatrix ();
         /*
         dodge.estadodibujo=2;
         dodge.modo_alambre=true;
             glPushMatrix ();
             glScalef(4,4,4);
-            dodge.draw();
+            //dodge.draw();
            glPopMatrix ();
            */
       }
       if(modolin){
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        piramide->draw();
+        //piramide->draw();
+        tetraedro->draw();
         glPushMatrix ();
         glTranslatef (50,0,50);
         cubo->draw();
@@ -246,13 +250,14 @@ else{
         glTranslatef (0,100,0);
         glScalef(17,17,17);
         //peon->draw();
-        dodge.draw();
+        //dodge.draw();
         glPopMatrix ();
       }
       if(modovert){
 
           glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-          piramide->draw();
+          //piramide->draw();
+          tetraedro->draw();
           glPushMatrix ();
           glTranslatef (50,0,50);
           cubo->draw();
@@ -277,7 +282,7 @@ else{
           glTranslatef (0,100,0);
           glScalef(17,17,17);
           //peon->draw();
-          dodge.draw();
+          //dodge.draw();
           glPopMatrix ();
       }
     }
@@ -459,7 +464,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                }
             break;
             case '>':
-            	printf("llave>");
+
                 if(modoMenu==SELVISUALIZACION&&modoluces==true&&angulo==ALPHA){
                             luzdire->variarAnguloAlpha(20);
 
@@ -473,7 +478,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   }
                    break ;
             case '<':
-            		printf("llave<");
+
                       if(modoMenu==SELVISUALIZACION&&modoluces==true&&angulo==ALPHA){
                                   luzdire->variarAnguloAlpha(-20);
 
@@ -488,6 +493,17 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
                break ;
 
+            case 'M':
+              if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                      luzposi->Incrementarluz(incremento);
+              }
+
+              break ;
+            case 'N':
+            if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                      luzposi->Incrementarluz(incremento*-1);
+            }
+              break ;
    }
    return salir;
 }

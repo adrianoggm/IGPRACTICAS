@@ -14,6 +14,7 @@
 #include "luz.h"
 #include "luzposicional.h"
 #include "material.h"
+#include "tetraedro.h"
 typedef enum {NADA, SELOBJETO,SELVISUALIZACION} menu;
 typedef enum {NADAA,ALPHA,BETA} menuangulo;
 class Escena
@@ -61,6 +62,8 @@ class Escena
    //LUCES DE LA Escena
    LuzPosicional * luzposi=nullptr;
    LuzDireccional * luzdire=nullptr;
+   Tupla4f incremento;
+   Tetraedro * tetraedro=nullptr;
 
    public:
 
