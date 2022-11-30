@@ -6,12 +6,12 @@ Tetraedro::Tetraedro( float r)
 {
 
    // inicializar la tabla de vértices
-
+   //LAS TECLAS DE LUCES SON  M Y N 
 
 
    const float PI=3.14159265358979323846l;
    const float angulo=360/3;
-   float h=r*1.3;
+   float h=r*1.41;
 
    //vertices del 0 al 4
    for(int i=0;i<360;){

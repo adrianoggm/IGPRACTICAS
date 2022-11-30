@@ -24,7 +24,7 @@ Escena::Escena()
     piramide= new PiramidePentagonal(30.0,25.0);
     cubo = new Cubo(40.0);
     peon =new ObjRevolucion("./plys/peon.ply",10,100);
-    tetraedro=new Tetraedro(45);
+    tetraedro=new Tetraedro(70);
 
     cilindro=new Cilindro(11,35,50,25);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
 
