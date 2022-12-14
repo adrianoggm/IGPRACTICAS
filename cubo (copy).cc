@@ -4,47 +4,6 @@
 
 
 
-Pierna::Pierna(){
-  cadera=new Esfera();
-  rodilla=new Rodilla();
-  femur=new Cilindro();
-}
-
-void Pierna:: dibuja(rotopiernax,rotopiernay,rotopiernaz,rotorodillaz,rotopiey,rotopiez){
-  glPushMatrix();
-    glRotatef
-    glRotatef
-    glRotatef
-    glPushMatrix();
-      glTranslatef(0,-(radiocadera+alturafemur),0);
-      femur.draw();
-    glPopMatrix();
-    glPushMatrix();
-      glTranslatef(0,-(radiocadera+alturafemur),0);
-      rodilla.dibuja(rotorodillaz,rotopiey,rotopiez);
-    glPopMatrix();
-    rotula.draw();
-  glPopMatrix();
-
-}
-Piernabalon ::Piernabalon(){
-  pierna=new Pierna();
-  balon=new Esfera();
-}
-void Pierna:: dibuja(rotopiernax,rotopiernay,rotopiernaz,rotorodillaz,rotopiey,rotopiez,translacionbalon){
-  glPushMatrix();
-    glRotatef -rotopiernax;
-    glRotatef -rotopiernay;
-    glRotatef -rotopiernaz;
-    glPushMatrix();
-      glTranslatef(translacionbalon);
-      //si quisiese rotar el balon lo puedo meter aqui
-      balon.draw();
-    glPopMatrix();
-  glPopMatrix();
-  pierna.dibuja(rotopiernax,rotopiernay,rotopiernaz,rotorodillaz,rotopiey,rotopiez);
-
-}
 void Mano::Mano(){
 
   palma=new Esfera();
