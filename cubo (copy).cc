@@ -2,91 +2,8 @@
 #include "malla.h"
 #include "cabeza.h"
 
-Cabeza::Cabeza()
-{
-
-   // inicializar la tabla de vértices
-   cara= new Esfera();
-   cuello= new Cilindro();
-   /*
-   //colores
-   c[0]=Tupla3f(1.0f,0.0f,1.0f);
-   c[1]=Tupla3f(1.0f,0.0f,1.0f);
-   //CARA2
-   c[2]=Tupla3f(1.0f,0.0f,1.0f);
-   c[3]=Tupla3f(1.0f,0.0f,1.0f);
-   //CARA3
-   c[4]=Tupla3f(1.0f,0.0f,1.0f);
-   c[5]=Tupla3f(1.0f,0.0f,1.0f);
-   //CARA4
-   c[6]=Tupla3f(1.0f,0.0f,1.0f);
-   c[7]=Tupla3f(1.0f,0.0f,1.0f);
-   //CARA5
-   c[8]=Tupla3f(1.0f,0.0f,1.0f);
-   c[9]=Tupla3f(1.0f,0.0f,1.0f);
-   //CARA6
-   c[10]=Tupla3f(1.0f,0.0f,1.0f);
-   c[11]=Tupla3f(1.0f,0.0f,1.0f);
-   */
-}
-void Cabeza::dibuja(rotocarax,rotocaray,rotocaraz){
-  glPushMatrix();
-  glTranslatef(0,alturacuello,0);
-  glRotatef
-  glRotatef
-  glRotatef
-  cara.draw();
-  glPopMatrix();
-
-  cuello.draw();
-}
 
 
-Pie::Pie()
-{
-  planta= new Cilindro();
-  tobillo=new Esfera();
-}
-void Pie:: dibuja(rotopiey,rotopiez){
-  glPushMatrix();
-    glRotatef
-    glRotatef
-    glPushMatrix();
-      glTranslatef(pieanchura,0,0);
-      planta.draw();
-    glPopMatrix();
-
-    tobillo.draw();
-  glPopMatrix();
-}
-Tibia{
-  rotula= new Cilindro();
-  perone=new Esfera();
-
-
-}
-void Tibia:: dibuja(){
-  glPushMatrix();
-  glTranslatef(0,-(radiorotula+alturaperone),0);
-  perone.draw();
-  glPopMatrix();
-
-  rotula.draw();
-}
-
-
-Rodilla::Rodilla(){
-  tibia=new Tibia();
-  pie= new Pie();
-}
-void Rodilla:: dibuja(rotorodillaz,rotopiey,rotopiez){
-  glPushMatrix();
-  glTranslatef(0,-(radiorotula+alturaperone),0);
-  pie.dibuja(rotopiey,rotopiez);
-  glPopMatrix();
-
-  tibia.dibuja();
-}
 Pierna::Pierna(){
   cadera=new Esfera();
   rodilla=new Rodilla();
@@ -110,7 +27,24 @@ void Pierna:: dibuja(rotopiernax,rotopiernay,rotopiernaz,rotorodillaz,rotopiey,r
   glPopMatrix();
 
 }
+Piernabalon ::Piernabalon(){
+  pierna=new Pierna();
+  balon=new Esfera();
+}
+void Pierna:: dibuja(rotopiernax,rotopiernay,rotopiernaz,rotorodillaz,rotopiey,rotopiez,translacionbalon){
+  glPushMatrix();
+    glRotatef -rotopiernax;
+    glRotatef -rotopiernay;
+    glRotatef -rotopiernaz;
+    glPushMatrix();
+      glTranslatef(translacionbalon);
+      //si quisiese rotar el balon lo puedo meter aqui
+      balon.draw();
+    glPopMatrix();
+  glPopMatrix();
+  pierna.dibuja(rotopiernax,rotopiernay,rotopiernaz,rotorodillaz,rotopiey,rotopiez);
 
+}
 void Mano::Mano(){
 
   palma=new Esfera();
@@ -178,9 +112,45 @@ void Brazo::dibujar(rotabrax,rotabray,rotabraz,rotoantx,rotantz){
 
 Jugador::Jugador(){
   tronco= new Cilindro();
-  brazoizq
-  brazodch=new  Pierna();
-  manoizq=new Brazo();
+  piernaizq = new Pierna()
+  piernadch=new  Piernabalon();
+  brazoizq=new Brazo();
   brazodch=new Brazo();
   cabeza=new Cabeza()
+}
+void Jugador::dibujar(rotabraizqx,rotabraizqy,rotabraizqz,rotoantizqx,rotantizqz,
+rotabradchx,rotabradchy,rotabradchz,rotoantdchx,rotantdchz,
+rotopiernaizqx,rotopiernaizqy,rotopiernaizqz,rotorodillaizqz,rotopieizqy,rotopieizqz,
+rotopiernadchx,rotopiernadchy,rotopiernadchz,rotorodilladchz,rotopiedchy,rotopiedchz,translacionbalon,
+rotocarax,rotocaray,rotocaraz){
+
+      tronco.draw();
+    glPushMatrix();
+      glTranslatef(0,(alturabrazos),anchurapecho);
+      brazoizq.dibuja(rotabraizqx,rotabraizqy,rotabraizqz,rotoantizqx,rotantizqz);
+    glPopMatrix();
+    glPushMatrix();
+      glTranslatef(0,(alturabrazos),-anchurapecho);
+      brazodch.dibuja(rotabradchx,rotabradchy,rotabradchz,rotoantdchx,rotantdchz);
+    glPopMatrix();
+
+    glPushMatrix();
+      glTranslatef(0,0,anchurapiernas);
+        piernaizq.dibuja(rotopiernaizqx,rotopiernaizqy,rotopiernaizqz,rotorodillaizqz,rotopieizqy,rotopieizqz);
+    glPopMatrix();
+
+    glPushMatrix();
+      glTranslatef(0,0,-anchurapiernas);
+        piernadch.dibuja(rotopiernadchx,rotopiernadchy,rotopiernadchz,rotorodilladchz,rotopiedchy,rotopiedchz,translacionbalon);
+    glPopMatrix();
+
+    glPushMatrix();
+      glTranslatef(0,alturatronco,0);
+        cabeza.dibuja(rotocarax,rotocaray,rotocaraz);
+    glPopMatrix();
+}
+
+
+
+
 }
