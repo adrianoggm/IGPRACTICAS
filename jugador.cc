@@ -53,4 +53,11 @@ void Jugador::animacion(){
       descarga pie derecho hacia delante  brazo derecho tmb y izq atras.
       golpeo justo cuando pasa de esta fase de la animación propulsa la bola con una aceleracón cte
   */
+  //carga tendremos un total de 56/2 estados lo que lo hace un total de 28 estados
+  float angulo_final=56;
+  foat incremento =2;
+  int n_iteraciones_carga=28;
+  //for(int i=0; i<56;i++){
+
+  //}
 }
