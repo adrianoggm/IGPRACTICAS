@@ -6,7 +6,7 @@
 #include "auxiliar.h"
 #include "malla.h"
 #include "cilindro.h"
-#include "esfera.h
+#include "esfera.h"
 #include "rodilla.h"
 
 
@@ -21,7 +21,13 @@
 // (tiene 9 vertices y 6 caras)
 
 class Pierna
-{
+  {
+  private:
+  Rodilla * rodilla=nullptr;
+  Cilindro  *femur=nullptr ;
+  Esfera *  cadera=nullptr;
+
+
   public :
   Pierna();
   void dibuja(float rotopiernax,float rotopiernay,float rotopiernaz,float rotorodillaz,float rotopiey,float rotopiez);

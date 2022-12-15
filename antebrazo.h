@@ -1,13 +1,14 @@
 
 
-#ifndef OBJPIERNABALON_H_INCLUDED
-#define OBJPIERNABALON_H_INCLUDED
+#ifndef OBJANTEBRAZ_H_INCLUDED
+#define OBJANTEBRAZ_H_INCLUDED
 
 #include "auxiliar.h"
 #include "malla.h"
 #include "cilindro.h"
-#include "esfera.h
-#include "pierna.h"
+#include "esfera.h"
+#include "mano.h"
+
 
 
 // *****************************************************************************
@@ -20,14 +21,19 @@
 // Cubo con centro en el origen y lado unidad por defecto
 // (tiene 9 vertices y 6 caras)
 
-class Pierna
+class Antebrazo
 {
-private:
-  Pierna * pierna=nullptr;
-  Esfera *  balon=nullptr;
+  private:
+
+  Esfera * codo=nullptr;
+  Cilindro  *radio=nullptr ;
+  Mano *mano=nullptr;
+
   public :
-  Pierna();
-  void dibuja(float rotopiernax,float rotopiernay,float rotopiernaz,float rotorodillaz,float rotopiey,float rotopiez,Tupla3f translacionbalon);
+  Antebrazo();
+  void dibuja(float rotoantx,float rotoantz);
+
+
   };
 
 

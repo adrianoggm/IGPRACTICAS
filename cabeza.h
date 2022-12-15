@@ -26,6 +26,10 @@
 
 class Cabeza
 {
+private:
+  Esfera * cara=nullptr;
+  Cilindro  *cuello=nullptr ;
+
   public :
   Cabeza();
   void dibuja(float rotocarax,float rotocaray,float rotocaraz);

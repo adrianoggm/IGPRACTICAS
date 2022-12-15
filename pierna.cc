@@ -12,9 +12,9 @@ Pierna::Pierna(){
 
 void Pierna:: dibuja(float rotopiernax,float rotopiernay,float rotopiernaz,float rotorodillaz,float rotopiey,float rotopiez){
   glPushMatrix();
-    glRotatef(rotopiernax);
-    glRotatef(rotopiernay);
-    glRotatef(rotopiernaz);
+    glRotatef(rotopiernax,1.0,0.0,0.0);
+    glRotatef(rotopiernay,0.0,1.0,0.0);
+    glRotatef(rotopiernaz,0.0,0.0,1.0);
     glPushMatrix();
       glTranslatef(0,-(5),0);//radio cadera
       femur.draw();

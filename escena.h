@@ -15,6 +15,7 @@
 #include "luzposicional.h"
 #include "material.h"
 #include "tetraedro.h"
+#include "jugador.h"
 typedef enum {NADA, SELOBJETO,SELVISUALIZACION} menu;
 typedef enum {NADAA,ALPHA,BETA} menuangulo;
 class Escena
@@ -65,6 +66,7 @@ class Escena
    Tupla4f incremento;
    Tetraedro * tetraedro=nullptr;
 
+   Jugador * jugador1=nullptr;
    public:
 
     Escena();

@@ -25,7 +25,7 @@ Escena::Escena()
     cubo = new Cubo(40.0);
     peon =new ObjRevolucion("./plys/peon.ply",10,100);
     tetraedro=new Tetraedro(70);
-
+    jugador1=new Jugador();
     cilindro=new Cilindro(11,35,50,25);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
 
     //cilindro.draw();
@@ -183,6 +183,8 @@ else{
 
         glPolygonMode(GL_FRONT,GL_FILL);
         //piramide->draw();
+        jugador1->draw();
+        /*
         tetraedro->draw();
         glPushMatrix ();
         glTranslatef (50,0,50);
@@ -210,20 +212,17 @@ else{
         glScalef(17,17,17);
         //dodge.draw();//peon->draw();
         glPopMatrix ();
-        /*
-        dodge.estadodibujo=2;
-        dodge.modo_alambre=true;
-            glPushMatrix ();
-            glScalef(4,4,4);
-            //dodge.draw();
-           glPopMatrix ();
-           */
+      */
+
       }
       if(modolin){
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         //piramide->draw();
+        jugador1->draw();
+        /*
         tetraedro->draw();
+
         glPushMatrix ();
         glTranslatef (50,0,50);
         cubo->draw();
@@ -252,11 +251,14 @@ else{
         //peon->draw();
         //dodge.draw();
         glPopMatrix ();
+        */
       }
       if(modovert){
 
           glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
           //piramide->draw();
+          jugador1->draw();
+          /*
           tetraedro->draw();
           glPushMatrix ();
           glTranslatef (50,0,50);
@@ -284,6 +286,7 @@ else{
           //peon->draw();
           //dodge.draw();
           glPopMatrix ();
+          */
       }
     }
 

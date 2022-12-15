@@ -13,15 +13,15 @@ Cabeza::Cabeza()
 void Cabeza::dibuja(float rotocarax,float rotocaray,float rotocaraz){
   glPushMatrix();
   glTranslatef(0,20,0); //radiocara+alturacilindro
-  glRotatef(rotocarax);
-  glRotatef(rotocaray);
-  glRotatef(rotocaraz);
-  cara.draw();
+  glRotatef(rotocarax,1.0,0.0,0.0);
+  glRotatef(rotocaray,0.0,1.0,0.0);
+  glRotatef(rotocaraz,0.0,0.0,1.0);
+  cara->draw();
   glPopMatrix();
 
   glPushMatrix ();
   glTranslatef (0,10,0);
-    cuello.draw();
+    cuello->draw();
   glPopMatrix ();
 
 }

@@ -11,8 +11,8 @@ Pie::Pie()
 }
 void Pie:: dibuja(float rotopiey,float rotopiez){
   glPushMatrix();
-    glRotatef(rotopiez);
-    glRotatef(rotopiey);
+    glRotatef(rotopiez,0.0,0.0,1.0);
+    glRotatef(rotopiey,0.0,1.0,0.0);
     glPushMatrix();
       glTranslatef(4,0,0);//translado en X al cilindro el tam del radio tobillo
       glRotatef(rotoenz90);
