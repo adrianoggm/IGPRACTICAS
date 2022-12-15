@@ -19,6 +19,9 @@
 
 class Pie
 {
+  private:
+  Cilindro * planta=nullptr;
+  Esfera * tobillo=nullptr;
   public :
   Pie();
   void dibuja(float rotopiey,float rotopiez);

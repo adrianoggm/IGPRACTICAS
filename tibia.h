@@ -19,6 +19,9 @@
 
 class Tibia
 {
+private:
+  Cilindro  *perone=nullptr ;
+  Esfera *  rotula=nullptr;
   public :
   Tibia();
   void dibuja();

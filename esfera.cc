@@ -39,6 +39,6 @@ Esfera::Esfera ( const int num_vert_perfil ,const int num_instancias_perf ,const
       }
       printf("PUNTOS PERFIL  \n");*/
 
-    crearMalla(perfil,num_instancias_perf,65);
+    crearMalla(perfil,num_instancias_perf,100);
 
 };

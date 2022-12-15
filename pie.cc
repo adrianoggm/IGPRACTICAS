@@ -14,12 +14,12 @@ void Pie:: dibuja(float rotopiey,float rotopiez){
     glRotatef(rotopiez,0.0,0.0,1.0);
     glRotatef(rotopiey,0.0,1.0,0.0);
     glPushMatrix();
-      glTranslatef(4,0,0);//translado en X al cilindro el tam del radio tobillo
-      glRotatef(rotoenz90);
-      glTranslatef(0,20,0);//se genera en el negativo
-      planta.draw();
+      glTranslatef(-4,0,0);//translado en X al cilindro el tam del radio tobillo
+      glRotatef(90,0.0,0.0,1.0);
+      //glTranslatef(0,20,0);//se genera en el negativo
+      planta->draw();
     glPopMatrix();
 
-    tobillo.draw();
+    tobillo->draw();
   glPopMatrix();
 }

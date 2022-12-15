@@ -3,8 +3,8 @@
 #include "jugador.h"
 
 Jugador::Jugador(){
-  tronco= new Cilindro(11,10,58,20);//20 de radio 40 de diametro
-  piernaizq = new Pierna()
+  tronco= new Cilindro(11,10,58,18);//20 de radio 40 de diametro
+  piernaizq = new Pierna();
   piernadch=new  Piernabalon();
   brazoizq=new Brazo();
   brazodch=new Brazo();
@@ -17,31 +17,40 @@ float rotopiernaizqx,float rotopiernaizqy,float rotopiernaizqz,float rotorodilla
 float rotopiernadchx,float rotopiernadchy,float rotopiernadchz,float rotorodilladchz,float rotopiedchy,float rotopiedchz,Tupla3f translacionbalon,
 float rotocarax,float rotocaray,float rotocaraz){
   glPushMatrix();
-    glTranslatef(0,alturatronco,0);
+
         tronco->draw();
   glPopMatrix();
 
     glPushMatrix();
-      glTranslatef(0,(58-3),20+3);//altura brazos= altura tronco -radio de hombro anchura es anchura de tronco + radop hombro
-      brazoizq->dibuja(rotabraizqx,rotabraizqy,rotabraizqz,rotoantizqx,rotantizqz);
+      glTranslatef(0,(58-3),18+3);//altura brazos= altura tronco -radio de hombro anchura es anchura de tronco + radop hombro
+      brazoizq->dibuja(rotabraizqx,rotabraizqy,rotabraizqz,rotoantizqx,rotoantizqz);
     glPopMatrix();
     glPushMatrix();
-      glTranslatef(0,(58-3),-23);
+      glTranslatef(0,(58-3),-21);
       brazodch->dibuja(rotabradchx,rotabradchy,rotabradchz,rotoantdchx,rotantdchz);
     glPopMatrix();
 
     glPushMatrix();
-      glTranslatef(0,0,25);
+      glTranslatef(0,0,15);
         piernaizq->dibuja(rotopiernaizqx,rotopiernaizqy,rotopiernaizqz,rotorodillaizqz,rotopieizqy,rotopieizqz);
     glPopMatrix();
 
     glPushMatrix();
-      glTranslatef(0,0,-25);
+      glTranslatef(0,0,-15);
         piernadch->dibuja(rotopiernadchx,rotopiernadchy,rotopiernadchz,rotorodilladchz,rotopiedchy,rotopiedchz,translacionbalon);
     glPopMatrix();
 
     glPushMatrix();
-      glTranslatef(0,alturatronco,0);
+      glTranslatef(0,58,0);
         cabeza->dibuja(rotocarax,rotocaray,rotocaraz);
     glPopMatrix();
+}
+void Jugador::animacion(){
+  /*La idea es que cada iteración que se llame a esta función actualize los parametros
+    De tal forma que  haga la animación.
+    la animación estará compuesta de 3 fases,
+      carga pie derecho va hacia atrás(eje z) junto con brazo derecho(eje y) brazo izq y
+      descarga pie derecho hacia delante  brazo derecho tmb y izq atras.
+      golpeo justo cuando pasa de esta fase de la animación propulsa la bola con una aceleracón cte
+  */
 }

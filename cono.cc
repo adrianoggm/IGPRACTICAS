@@ -46,6 +46,6 @@ Cono::Cono ( const int num_vert_perfil ,const int num_instancias_perf,const floa
       perfil.push_back(Tupla3f(0.0f,altura+altura,0.0f));
       */
       //printf("PUNTOS PERFIL  \n");
-    crearMalla(perfil,num_instancias_perf,25);
+    crearMalla(perfil,num_instancias_perf,100);
 
 };

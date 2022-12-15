@@ -183,7 +183,15 @@ else{
 
         glPolygonMode(GL_FRONT,GL_FILL);
         //piramide->draw();
-        jugador1->draw();
+        glPushMatrix ();
+        glTranslatef (-100,50,-100);
+        cilindro->draw();
+        glPopMatrix ();
+        glPushMatrix ();
+        glTranslatef (100,50,-100);
+        cono->draw();
+        glPopMatrix ();
+        jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
         /*
         tetraedro->draw();
         glPushMatrix ();
@@ -219,7 +227,15 @@ else{
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         //piramide->draw();
-        jugador1->draw();
+        glPushMatrix ();
+        glTranslatef (-100,50,-100);
+        cilindro->draw();
+        glPopMatrix ();
+        glPushMatrix ();
+        glTranslatef (100,50,-100);
+        cono->draw();
+        glPopMatrix ();
+        jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
         /*
         tetraedro->draw();
 
@@ -257,7 +273,15 @@ else{
 
           glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
           //piramide->draw();
-          jugador1->draw();
+          glPushMatrix ();
+          glTranslatef (-100,50,-100);
+          cilindro->draw();
+          glPopMatrix ();
+          glPushMatrix ();
+          glTranslatef (100,50,-100);
+          cono->draw();
+          glPopMatrix ();
+          jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
           /*
           tetraedro->draw();
           glPushMatrix ();

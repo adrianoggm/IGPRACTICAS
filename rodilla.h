@@ -6,7 +6,7 @@
 #include "auxiliar.h"
 #include "malla.h"
 #include "cilindro.h"
-#include "esfera.h
+#include "esfera.h"
 #include "tibia.h"
 #include "pie.h"
 
@@ -22,9 +22,12 @@
 
 class Rodilla
 {
+  private:
+    Pie * pie=nullptr;
+    Tibia *tibia=nullptr ;
   public :
-  Rodilla();
-  void dibuja(float rotorodillaz,float rotopiey,float rotopiez);
+    Rodilla();
+    void dibuja(float rotorodillaz,float rotopiey,float rotopiez);
   };
 
 

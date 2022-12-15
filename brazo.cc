@@ -15,7 +15,7 @@ void Brazo::dibuja(float rotabrax,float rotabray,float rotabraz,float rotoantx,f
     glRotatef(rotabraz,0.0,0.0,1.0);
 
     glPushMatrix();
-      glTranslatef(0,-3,0);//-radiohombro
+      glTranslatef(0,-33,0);//-radiohombro
       biceps->draw();
     glPopMatrix();
     glPushMatrix();

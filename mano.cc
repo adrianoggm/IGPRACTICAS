@@ -2,7 +2,7 @@
 #include "malla.h"
 #include "mano.h"
 
-void Mano::Mano(){
+Mano::Mano(){
 
   palma=new Esfera(11,10,4);
 }

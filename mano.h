@@ -5,7 +5,7 @@
 
 #include "auxiliar.h"
 #include "malla.h"
-#include "cilindro.h"
+#include "esfera.h"
 
 
 

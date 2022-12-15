@@ -39,7 +39,9 @@ class Jugador
   float rotopiernaizqx,float rotopiernaizqy,float rotopiernaizqz,float rotorodillaizqz,float rotopieizqy,float rotopieizqz,
   float rotopiernadchx,float rotopiernadchy,float rotopiernadchz,float rotorodilladchz,float rotopiedchy,float rotopiedchz,Tupla3f translacionbalon,
   float rotocarax,float rotocaray,float rotocaraz);
+  void animacion();
   };
+
 
 
 #endif

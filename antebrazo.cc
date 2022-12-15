@@ -16,11 +16,11 @@ void Antebrazo::dibuja(float rotoantx,float rotoantz){
   glRotatef(rotoantz,0.0,0.0,1.0);
 
     glPushMatrix();
-      glTranslatef(0,-3,0);//-(radiocodo
+      glTranslatef(0,-33,0);//-(radiocodo
       radio->draw();
     glPopMatrix();
     glPushMatrix();
-      glTranslatef(0,-33,0);//-(radiocodo+alturaradio)
+      glTranslatef(0,-37,0);//-(radiocodo+alturaradio)
       mano->dibuja();
     glPopMatrix();
     codo->draw();
