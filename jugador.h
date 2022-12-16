@@ -25,12 +25,35 @@
 class Jugador
 {
   private:
-  Cabeza * cabeza=nullptr;
-  Cilindro  *tronco=nullptr ;
-  Brazo *  brazodch=nullptr;
-  Brazo *  brazoizq=nullptr;
-  Pierna * piernaizq = nullptr;
-  Piernabalon * piernadch=nullptr;
+    Cabeza * cabeza=nullptr;
+    Cilindro  *tronco=nullptr ;
+    Brazo *  brazodch=nullptr;
+    Brazo *  brazoizq=nullptr;
+    Pierna * piernaizq = nullptr;
+    Piernabalon * piernadch=nullptr;
+
+    float rotobrazodx=0;
+    float rotobrazodz=0;
+    float rotoantbrazodz=0;
+
+    float rotobrazoizx=0;
+    float rotobrazoizy=0;
+    float rotoantbrazoiz=0;
+
+
+    float rotopiernady=0;
+    float rotopiernadz=0;
+    float rotorodilladz=0;
+    float rotopiedz=0;
+    Tupla3f desplazamiento=Tupla3f (0,0,0);
+
+    int n_iteraciones=0;
+    float incremento=0;
+    int n_iteraciones_carga;
+    int n_iteraciones_descarga;
+    int n_iteraciones_golpeo;
+    int n_iteraciones_fin;
+    Tupla3f despbalon=Tupla3f(0.0f,0.0f,0.0f);
 
   public :
   Jugador();
@@ -39,7 +62,9 @@ class Jugador
   float rotopiernaizqx,float rotopiernaizqy,float rotopiernaizqz,float rotorodillaizqz,float rotopieizqy,float rotopieizqz,
   float rotopiernadchx,float rotopiernadchy,float rotopiernadchz,float rotorodilladchz,float rotopiedchy,float rotopiedchz,Tupla3f translacionbalon,
   float rotocarax,float rotocaray,float rotocaraz);
+
   void animacion();
+  void setincremento(float incremento);
   };
 
 

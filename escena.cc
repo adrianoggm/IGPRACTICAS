@@ -183,15 +183,31 @@ else{
 
         glPolygonMode(GL_FRONT,GL_FILL);
         //piramide->draw();
-        glPushMatrix ();
+        /*glPushMatrix ();
         glTranslatef (-100,50,-100);
         cilindro->draw();
         glPopMatrix ();
         glPushMatrix ();
         glTranslatef (100,50,-100);
         cono->draw();
-        glPopMatrix ();
-        jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+        glPopMatrix ();*/
+        //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+        if(animacion){
+          jugador1->animacion();
+        }
+        /*
+        jugador1->dibuja(-90,25,0,0,-15,
+        50,0,20,0,-15,
+        0,0,0,0,0,0,
+        0,-10,-15,0,0,50,Tupla3f (0,0,0),
+        0,0,0);
+
+        jugador1->dibuja(-90,-10,0,0,-15,
+        45,0,-25,0,-15,
+        0,0,0,0,0,0,
+        0,10,56,30,0,50,Tupla3f (0,0,0),
+        0,0,0);
+        */
         /*
         tetraedro->draw();
         glPushMatrix ();
@@ -236,6 +252,7 @@ else{
         cono->draw();
         glPopMatrix ();
         jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+
         /*
         tetraedro->draw();
 
@@ -473,12 +490,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                     }
                       break ;
 
-           case '7': //modo luces
 
-                  if(modoMenu==SELVISUALIZACION&&modoluces==true){
-                                  this->dibujar();
-                     }
-                     break ;
             case 'A':
                 if(modoMenu==SELVISUALIZACION&&modoluces==true){
                             angulo=ALPHA;
@@ -521,16 +533,47 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                break ;
 
             case 'M':
-              if(modoMenu==SELVISUALIZACION&&modoluces==true){
-                      luzposi->Incrementarluz(incremento);
-              }
+              animacion=false;
+                if(!animacion){
+
+                }
 
               break ;
+            case '7': //modo luces
+
+                  if(modoMenu==SELVISUALIZACION&&modoluces==true){
+                                     this->dibujar();
+                        }
+                    break ;
             case 'N':
-            if(modoMenu==SELVISUALIZACION&&modoluces==true){
-                      luzposi->Incrementarluz(incremento*-1);
+            if(animacion==true){
+                  animacion=false;
+                  incremento=0;
             }
+            else{
+              animacion=true;
+            }
+
               break ;
+
+              case '+':
+
+                  if(animacion){
+
+                      jugador1->setincremento(0.2);
+
+                     }
+
+                     break ;
+              case '-':
+
+                    if(animacion){
+                      
+                        jugador1->setincremento(-0.2);
+
+                          }
+
+                            break ;
    }
    return salir;
 }

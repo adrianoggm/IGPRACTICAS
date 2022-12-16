@@ -52,6 +52,8 @@ class Escena
    bool modovert=false;
    bool modolin=false;
    bool modoluces=false;
+   bool animacion=false;
+   float incrementoanima=0;
    ObjPLY dodge =ObjPLY("./plys/big_dodge.ply");
    //OBJETOS DE LA ESCENA
    ObjRevolucion * peon1=nullptr;
