@@ -535,16 +535,28 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             case 'M':
               animacion=false;
                 if(!animacion){
-
+                  modoMenu=SELGRADOLIB;
                 }
 
               break ;
-            case '7': //modo luces
+            case '7':
 
-                  if(modoMenu==SELVISUALIZACION&&modoluces==true){
-                                     this->dibujar();
+                  if(modoMenu==SELGRADOLIB&&animacion==false){
+                            gradolib=0;
                         }
                     break ;
+            case '8':
+
+                  if(modoMenu==SELGRADOLIB&&animacion==false){
+                            gradolib=1;
+                            }
+                            break ;
+           case '9':
+
+            if(modoMenu==SELGRADOLIB&&animacion==false){
+                          gradolib=2;
+                                        }
+                        break ;
             case 'N':
             if(animacion==true){
                   animacion=false;
@@ -563,15 +575,23 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                       jugador1->setincremento(0.2);
 
                      }
-
+                     else{
+                       if(modoMenu==SELGRADOLIB)
+                        jugador1->setgradolibertad(gradolib,5);
+                     }
                      break ;
               case '-':
 
                     if(animacion){
-                      
+
                         jugador1->setincremento(-0.2);
 
-                          }
+                    }
+                    else{
+                        if(modoMenu==SELGRADOLIB)
+                            jugador1->setgradolibertad(gradolib,-5);
+                    }
+
 
                             break ;
    }

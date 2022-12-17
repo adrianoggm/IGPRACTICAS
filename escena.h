@@ -16,7 +16,7 @@
 #include "material.h"
 #include "tetraedro.h"
 #include "jugador.h"
-typedef enum {NADA, SELOBJETO,SELVISUALIZACION} menu;
+typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELGRADOLIB} menu;
 typedef enum {NADAA,ALPHA,BETA} menuangulo;
 class Escena
 {
@@ -53,7 +53,7 @@ class Escena
    bool modolin=false;
    bool modoluces=false;
    bool animacion=false;
-   float incrementoanima=0;
+   int gradolib;
    ObjPLY dodge =ObjPLY("./plys/big_dodge.ply");
    //OBJETOS DE LA ESCENA
    ObjRevolucion * peon1=nullptr;

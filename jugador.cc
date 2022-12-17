@@ -62,7 +62,7 @@ void Jugador::animacion(){
 if(n_iteraciones==0){
    n_iteraciones_carga=15-incremento*15;
    n_iteraciones_descarga=15-incremento*15;
-   n_iteraciones_golpeo=15-incremento*15;
+   n_iteraciones_golpeo=10-incremento*15;
    n_iteraciones_fin=15-incremento*15;
 }
   //parametros de jugador n_iteraciones=0;
@@ -71,18 +71,18 @@ if(n_iteraciones==0){
 
     if(n_iteraciones<n_iteraciones_carga){
 
-      rotobrazodx+=(45.0/n_iteraciones_carga);
-      rotobrazodz+=(-25.0/n_iteraciones_carga);
-      rotoantbrazodz+=-15.0/n_iteraciones_carga;
+      rotobrazodx=n_iteraciones_bucle*(45.0/n_iteraciones_carga);
+      rotobrazodz=n_iteraciones_bucle*(-25.0/n_iteraciones_carga);
+      rotoantbrazodz=n_iteraciones_bucle*(-15.0/n_iteraciones_carga);
 
-      rotobrazoizx+=-90.0/n_iteraciones_carga;
-      rotobrazoizy+=-10.0/n_iteraciones_carga;
-      rotoantbrazoiz+=-15.0/n_iteraciones_carga;
+      rotobrazoizx=n_iteraciones_bucle*-90.0/n_iteraciones_carga;
+      rotobrazoizy=n_iteraciones_bucle*-10.0/n_iteraciones_carga;
+      rotoantbrazoiz=n_iteraciones_bucle*-15.0/n_iteraciones_carga;
 
-      rotopiernadz+=56/n_iteraciones_carga; //descompondremos el movimiento en estos 56 grados
-      rotopiernady+=angulo_finaly/n_iteraciones_carga;      //basandonos en esos 56 grados dividimos la racion para sacar cuanto sera el incremento
-      rotorodilladz+=(30.0/n_iteraciones_carga);
-      rotopiedz+=50.0/n_iteraciones_carga;
+      rotopiernadz=n_iteraciones_bucle*56.0/n_iteraciones_carga; //descompondremos el movimiento en estos 56 grados
+      rotopiernady=n_iteraciones_bucle*angulo_finaly/n_iteraciones_carga;      //basandonos en esos 56 grados dividimos la racion para sacar cuanto sera el incremento
+      rotorodilladz=n_iteraciones_bucle*(30.0/n_iteraciones_carga);
+      rotopiedz=n_iteraciones_bucle*50.0/n_iteraciones_carga;
       /*
       jugador1->dibuja(-90,-10,0,0,-15,
       45,0,-25,0,-15,
@@ -96,14 +96,14 @@ if(n_iteraciones==0){
 
 
 
-        rotobrazoizy+=(25.0+10.0)/n_iteraciones_descarga;
+        rotobrazoizy=n_iteraciones_bucle*(25.0+10.0)/n_iteraciones_descarga;
 
-        rotobrazodx+=5.0/n_iteraciones_descarga;
-        rotobrazodz+=(20.0+25.0)/n_iteraciones_descarga;
+        rotobrazodx=n_iteraciones_bucle*5.0/n_iteraciones_descarga;
+        rotobrazodz=n_iteraciones_bucle*(20.0+25.0)/n_iteraciones_descarga;
 
-        rotopiernadz+=-(56.0+15.0)/n_iteraciones_descarga; //descompondremos el movimiento en estos 56 grados
-        rotopiernady+=-(angulo_finaly+10.0)/n_iteraciones_descarga;      //basandonos en esos 56 grados dividimos la racion para sacar cuanto sera el incremento
-        rotorodilladz+=-30.0/n_iteraciones_descarga;
+        rotopiernadz=n_iteraciones_bucle*-(56.0+15.0)/n_iteraciones_descarga; //descompondremos el movimiento en estos 56 grados
+        rotopiernady=n_iteraciones_bucle*-(angulo_finaly+10.0)/n_iteraciones_descarga;      //basandonos en esos 56 grados dividimos la racion para sacar cuanto sera el incremento
+        rotorodilladz=n_iteraciones_bucle*-30.0/n_iteraciones_descarga;
         /*
         jugador1->dibuja(-90,25,0,0,-15,
         50,0,20,0,-15,
@@ -114,13 +114,13 @@ if(n_iteraciones==0){
       else{
         if(n_iteraciones<n_iteraciones_descarga+n_iteraciones_carga+n_iteraciones_golpeo){
             desplazamiento=desplazamiento+(Tupla3f(-80.0/n_iteraciones_golpeo,7.0f/n_iteraciones_golpeo,0.0));
-            rotopiernadz+=-(45.0-15.0)/n_iteraciones_golpeo;
-            rotopiernady+=(20)/n_iteraciones_golpeo;
+            rotopiernadz=n_iteraciones_bucle*-(45.0-15.0)/n_iteraciones_golpeo;
+            rotopiernady=n_iteraciones_bucle*(20)/n_iteraciones_golpeo;
           }
 
       else{
         desplazamiento=desplazamiento+Tupla3f(-140.0/n_iteraciones_fin,9.8/n_iteraciones_fin,0.0);
-        rotopiernadz+=-(30.0-15.0)/n_iteraciones_fin;
+        rotopiernadz=n_iteraciones_bucle*-(30.0-15.0)/n_iteraciones_fin;
 
       }
 
@@ -133,7 +133,16 @@ if(n_iteraciones==0){
     0,0,0);
 
     n_iteraciones++;
-
+    n_iteraciones_bucle++;
+    if(n_iteraciones==n_iteraciones_descarga+n_iteraciones_carga+n_iteraciones_golpeo){
+        n_iteraciones_bucle=0;
+    }
+    if(n_iteraciones==n_iteraciones_descarga+n_iteraciones_carga){
+        n_iteraciones_bucle=0;
+    }
+    if(n_iteraciones==n_iteraciones_carga){
+        n_iteraciones_bucle=0;
+    }
     if(  n_iteraciones==n_iteraciones_descarga+n_iteraciones_carga+n_iteraciones_golpeo+n_iteraciones_fin){
       rotobrazodx=0.0;
       rotobrazodz=0.0;
@@ -148,6 +157,7 @@ if(n_iteraciones==0){
       rotorodilladz=0.0;
       rotopiedz=0.0;
       n_iteraciones=0;
+      n_iteraciones_bucle=0;
       desplazamiento=Tupla3f(0.0,0.0,0.0);
     }
 
@@ -163,4 +173,7 @@ void Jugador::setincremento(float increment){
       incremento+=increment;
     }
   }
+}
+void Jugador::setgradolibertad(int gradolib,float increment){
+
 }
