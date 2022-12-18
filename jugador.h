@@ -45,8 +45,8 @@ class Jugador
     float rotopiernadz=0;
     float rotorodilladz=0;
     float rotopiedz=0;
-    Tupla3f desplazamiento=Tupla3f (0,0,0);
-    
+    Tupla3f desplazamiento=Tupla3f (0.0f,0.0f,0.0f);
+
     int n_iteraciones_bucle=0;
     int n_iteraciones=0;
     float incremento=0;
@@ -55,7 +55,7 @@ class Jugador
     int n_iteraciones_golpeo;
     int n_iteraciones_fin;
 
-    Tupla3f despbalon=Tupla3f(0.0f,0.0f,0.0f);
+  
 
   public :
   Jugador();
@@ -69,7 +69,7 @@ class Jugador
   void setincremento(float increment);
   void draw();
   void setgradolibertad(int gradolib,float increment);
-
+  void resetJugador();
   };
 
 

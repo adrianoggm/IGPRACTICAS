@@ -195,6 +195,9 @@ else{
         if(animacion){
           jugador1->animacion();
         }
+        else{
+          jugador1->draw();
+        }
         /*
         jugador1->dibuja(-90,25,0,0,-15,
         50,0,20,0,-15,
@@ -251,8 +254,12 @@ else{
         glTranslatef (100,50,-100);
         cono->draw();
         glPopMatrix ();
-        jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
-
+        if(animacion){
+          jugador1->animacion();
+        }
+        else{
+          jugador1->draw();
+        }
         /*
         tetraedro->draw();
 
@@ -298,7 +305,12 @@ else{
           glTranslatef (100,50,-100);
           cono->draw();
           glPopMatrix ();
-          jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+          if(animacion){
+            jugador1->animacion();
+          }
+          else{
+            jugador1->draw();
+          }
           /*
           tetraedro->draw();
           glPushMatrix ();
@@ -534,6 +546,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
             case 'M':
               animacion=false;
+              jugador1->resetJugador();
                 if(!animacion){
                   modoMenu=SELGRADOLIB;
                 }
@@ -555,16 +568,17 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
             if(modoMenu==SELGRADOLIB&&animacion==false){
                           gradolib=2;
-                                        }
+                      }
                         break ;
             case 'N':
             if(animacion==true){
+              //jugador1->resetJugador();
                   animacion=false;
-                  incremento=0;
+
             }
             else{
               animacion=true;
-            }
+              }
 
               break ;
 

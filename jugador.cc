@@ -59,12 +59,12 @@ void Jugador::animacion(){
   float angulo_final=56.0;
   float angulo_finaly=10.0;
 
-if(n_iteraciones==0){
+
    n_iteraciones_carga=15-incremento*15;
    n_iteraciones_descarga=15-incremento*15;
-   n_iteraciones_golpeo=10-incremento*15;
+   n_iteraciones_golpeo=15-incremento*15;
    n_iteraciones_fin=15-incremento*15;
-}
+
   //parametros de jugador n_iteraciones=0;
   //for(int i=0; i<56;i++){
   int suma_iteraciones=n_iteraciones_carga+n_iteraciones_descarga+n_iteraciones_golpeo;
@@ -96,14 +96,14 @@ if(n_iteraciones==0){
 
 
 
-        rotobrazoizy=n_iteraciones_bucle*(25.0+10.0)/n_iteraciones_descarga;
+        rotobrazoizy=-15+n_iteraciones_bucle*(35.0)/n_iteraciones_descarga;
 
-        rotobrazodx=n_iteraciones_bucle*5.0/n_iteraciones_descarga;
-        rotobrazodz=n_iteraciones_bucle*(20.0+25.0)/n_iteraciones_descarga;
+        rotobrazodx=45+n_iteraciones_bucle*5.0/n_iteraciones_descarga;
+        rotobrazodz=-25+n_iteraciones_bucle*(20.0+25.0)/n_iteraciones_descarga;
 
-        rotopiernadz=n_iteraciones_bucle*-(56.0+15.0)/n_iteraciones_descarga; //descompondremos el movimiento en estos 56 grados
-        rotopiernady=n_iteraciones_bucle*-(angulo_finaly+10.0)/n_iteraciones_descarga;      //basandonos en esos 56 grados dividimos la racion para sacar cuanto sera el incremento
-        rotorodilladz=n_iteraciones_bucle*-30.0/n_iteraciones_descarga;
+        rotopiernadz=56+n_iteraciones_bucle*-(56.0+15.0)/n_iteraciones_descarga; //descompondremos el movimiento en estos 56 grados
+        rotopiernady=10+n_iteraciones_bucle*-(angulo_finaly+10.0)/n_iteraciones_descarga;      //basandonos en esos 56 grados dividimos la racion para sacar cuanto sera el incremento
+        rotorodilladz=30+n_iteraciones_bucle*-30.0/n_iteraciones_descarga;
         /*
         jugador1->dibuja(-90,25,0,0,-15,
         50,0,20,0,-15,
@@ -114,13 +114,13 @@ if(n_iteraciones==0){
       else{
         if(n_iteraciones<n_iteraciones_descarga+n_iteraciones_carga+n_iteraciones_golpeo){
             desplazamiento=desplazamiento+(Tupla3f(-80.0/n_iteraciones_golpeo,7.0f/n_iteraciones_golpeo,0.0));
-            rotopiernadz=n_iteraciones_bucle*-(45.0-15.0)/n_iteraciones_golpeo;
-            rotopiernady=n_iteraciones_bucle*(20)/n_iteraciones_golpeo;
+            rotopiernadz=-15+n_iteraciones_bucle*-(45.0-15.0)/n_iteraciones_golpeo;
+            rotopiernady=-10+n_iteraciones_bucle*(20)/n_iteraciones_golpeo;
           }
 
       else{
         desplazamiento=desplazamiento+Tupla3f(-140.0/n_iteraciones_fin,9.8/n_iteraciones_fin,0.0);
-        rotopiernadz=n_iteraciones_bucle*-(30.0-15.0)/n_iteraciones_fin;
+        rotopiernadz=-45+n_iteraciones_bucle*-(30.0-15.0)/n_iteraciones_fin;
 
       }
 
@@ -165,15 +165,53 @@ if(n_iteraciones==0){
   //}
 }
 void Jugador::setincremento(float increment){
-  if((incremento+increment)<0.5){
+  if((incremento+increment)<0.5&&(incremento+increment)>-0.3){
     incremento+=increment;
   }
-  else{
-    if((incremento+increment)>-0.3){
-      incremento+=increment;
-    }
-  }
 }
-void Jugador::setgradolibertad(int gradolib,float increment){
 
+//EN ESTE MUÑECO EXISTEN UN TOTAL DE 5+5+6+7+3=26 GRADOS DE LIBERTAD DEBIDO A ESTO
+// SIMPLIFICAMOS Y PONDREMOS LOS GRADOS MAS RELEVANTES
+// BRAZO IZQ Y BRAZO DCH  Y
+//PIERNA DCH Z
+// BALON EN X
+void Jugador::setgradolibertad(int gradolib,float increment){
+    switch (gradolib) {
+      case 0:
+          rotobrazoizx+=increment;
+        break;
+      case 1:
+          rotopiernadz+=increment;
+          break;
+      case 2:
+          desplazamiento=desplazamiento+Tupla3f (increment,0.0f,0.0f);
+          break;
+
+    }
+
+}
+void Jugador::resetJugador(){
+   rotobrazodx=0;
+   rotobrazodz=0;
+   rotoantbrazodz=0;
+
+   rotobrazoizx=0;
+   rotobrazoizy=0;
+   rotoantbrazoiz=0;
+
+
+  rotopiernady=0;
+  rotopiernadz=0;
+  rotorodilladz=0;
+  rotopiedz=0;
+  desplazamiento=Tupla3f (0.0f,0.0f,0.0f);
+
+}
+
+void Jugador::draw(){
+  this->dibuja(rotobrazoizx,rotobrazoizy,0,0,rotoantbrazoiz,
+  rotobrazodx,0,rotobrazodz,0,rotoantbrazodz,
+  0,0,0,0,0,0,
+  0,rotopiernady,rotopiernadz,rotorodilladz,0,rotopiedz,desplazamiento,
+  0,0,0);
 }

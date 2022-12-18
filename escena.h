@@ -16,7 +16,7 @@
 #include "material.h"
 #include "tetraedro.h"
 #include "jugador.h"
-typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELGRADOLIB} menu;
+typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELGRADOLIB,ANIMACION} menu;
 typedef enum {NADAA,ALPHA,BETA} menuangulo;
 class Escena
 {
