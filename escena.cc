@@ -27,7 +27,7 @@ Escena::Escena()
     tetraedro=new Tetraedro(70);
     jugador1=new Jugador();
     cilindro=new Cilindro(11,35,50,25);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
-
+    cuadro= new Cuadro(50.0);
     //cilindro.draw();
 
 
@@ -57,7 +57,9 @@ Escena::Escena()
     peon->setMaterial(negro);
     piramide->setMaterial(negro);
     cono->setMaterial(pearl);
-
+    cilindro->setTextura("./text-lata-1.jpg");
+    cubo->setTextura("./text-lata-1.jpg");
+    cuadro->setTextura("./text-lata-1.jpg");
     incremento= Tupla4f(0.1f,0.1f,0.1f,0.1f);//Incremento de las luces posicionales examen
 
 }
@@ -183,21 +185,22 @@ else{
 
         glPolygonMode(GL_FRONT,GL_FILL);
         //piramide->draw();
-        /*glPushMatrix ();
-        glTranslatef (-100,50,-100);
+        glPushMatrix ();
         cilindro->draw();
+        //cuadro->draw();
         glPopMatrix ();
+        /*
         glPushMatrix ();
         glTranslatef (100,50,-100);
         cono->draw();
         glPopMatrix ();*/
         //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
-        if(animacion){
+        /*if(animacion){
           jugador1->animacion();
         }
         else{
           jugador1->draw();
-        }
+        }*/
         /*
         jugador1->dibuja(-90,25,0,0,-15,
         50,0,20,0,-15,

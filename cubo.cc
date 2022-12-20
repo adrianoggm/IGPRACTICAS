@@ -7,7 +7,7 @@ Cubo::Cubo(float lado)
 
    // inicializar la tabla de vértices
    v.resize(8);
-
+   modo_textura=2;
    //si dice que tiene al origen por centro luego el 0,0
    //Esto significa que origen pertenece a la intersección de las diagonales del cubo
    //En el caso especial del cubo debido a su paralelismo y composición por cuadrados
@@ -110,6 +110,15 @@ Cubo::Cubo(float lado)
 
    p.push_back(Tupla3f(1.0f,0.0f,0.0f));
    p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+
+   ct.push_back(Tupla2f(0.75f,0.66f));//0
+   ct.push_back(Tupla2f(0.5f,0.66f));//1
+   ct.push_back(Tupla2f(0.75f,0.33f));//2
+   ct.push_back(Tupla2f(0.5f,0.33f));//3
+   ct.push_back(Tupla2f(0.0f,0.66f));//4
+   ct.push_back(Tupla2f(0.25f,0.66f));//5
+   ct.push_back(Tupla2f(0.00f,0.33f));//6
+   ct.push_back(Tupla2f(0.25f,0.33f));//7
    /*
    //colores
    c[0]=Tupla3f(1.0f,0.0f,1.0f);

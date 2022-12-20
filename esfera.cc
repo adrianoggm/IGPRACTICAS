@@ -21,7 +21,7 @@ Esfera::Esfera ( const int num_vert_perfil ,const int num_instancias_perf ,const
     const float PI=3.14159265358979323846l;
     const float angulo=180/(num_instancias_perf-1);
 
-
+    modo_textura=1;
     //vertices del 0 al 4
     for(int i=270;i<450;){
       float degtorad=(i*PI)/180;

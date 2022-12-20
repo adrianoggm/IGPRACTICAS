@@ -18,9 +18,9 @@ Cilindro::Cilindro() {};
 
 Cilindro::Cilindro ( const int num_vert_perfil ,const int num_instancias_perf ,const float altura ,
 const float radio ){
-
+    modo_textura=0;
     std::vector<Tupla3f>perfil;
-     perfil.push_back(Tupla3f(0.0f,altura,0.0f));//POLO 
+     perfil.push_back(Tupla3f(0.0f,altura,0.0f));//POLO
     for(int i=0;i<(num_vert_perfil);i++){
       perfil.push_back(Tupla3f(radio,(-altura*i/(num_vert_perfil-1))+altura,0.0f));
     }

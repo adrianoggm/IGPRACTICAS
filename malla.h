@@ -12,6 +12,7 @@
 
 #include "auxiliar.h"
 #include "material.h"
+#include "textura.h"
 // *****************************************************************************
 //
 // clase para objetos 3D (mallas indexadas)
@@ -30,6 +31,8 @@ class Malla3D
    int  estadodibujo=1;
    void calcularNormales();
    void setMaterial(Material m);
+   void setTextura(const std::string & archivo);
+
    protected:
 
 
@@ -41,6 +44,7 @@ class Malla3D
    std::vector<Tupla3f> l;
    std::vector<Tupla3f> p;
    std::vector<Tupla3f> nv;
+   int modo_textura=0;//cilindrica por defecto
    Material material;
    GLuint id_vbo_ver=0;
    GLuint id_vbo_tri=0;
@@ -48,8 +52,9 @@ class Malla3D
    GLuint id_vbo_c=0;
    GLuint id_vbo_l=0;
    GLuint id_vbo_p=0;
-
-
+   std::vector<Tupla2f> ct;
+   Textura * textura=nullptr;
+   virtual void calcularCoordTextura();
 
 
 } ;

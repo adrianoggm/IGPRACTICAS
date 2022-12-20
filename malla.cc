@@ -97,6 +97,13 @@ void Malla3D::draw()
       }
   }
 
+	if (textura != nullptr) {
+		textura->activar();
+		glEnable( GL_TEXTURE_2D );
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glTexCoordPointer( 2, GL_FLOAT, 0, ct.data());
+	}
+
   glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
  // usar como buffer de vertices el actualmente activo
   glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );
@@ -110,6 +117,11 @@ void Malla3D::draw()
   // dibujar con el buffer de índices activo
   //glPolygonMode(GL_FRONT, GL_POINT);
   glDrawElements ( GL_TRIANGLES , 3*f.size() , GL_UNSIGNED_INT , 0 ) ;
+
+  if (textura != nullptr) {
+	  glDisable( GL_TEXTURE_2D );
+	  glDisable(GL_TEXTURE_COORD_ARRAY);
+  }
   // desactivar buffer: VBO de triángulos
   glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , 0 );
   // desactivar uso de array de vértices
@@ -151,10 +163,26 @@ void Malla3D::calcularNormales(){
     //for normalizo nv
 
 }
-
+void Malla3D::calcularCoordTextura(){
+	/*ct.resize(v.size());
+	for (int i = 0; i < ct.size(); i++){
+		ct[i] = {v[i](0), (v[i](1) - v.front()(1) ) / (v.back()(1) - v.front()(1))} ;
+	}*/
+}
 void Malla3D::setMaterial(Material m){
 
     this->material=m;
+}
+
+void Malla3D::setTextura(const std::string & archivo){
+
+	if (textura != nullptr)
+		delete textura;
+
+	textura = new Textura(archivo);
+
+	calcularCoordTextura();
+
 }
 /*for(int i=0;i<perfil.size();i++){
   std::vector<Tupla3f> r(perfil.rbegin(),perfil.rend());

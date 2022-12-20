@@ -18,11 +18,10 @@ ObjRevolucion::ObjRevolucion() {}
 
 ObjRevolucion::ObjRevolucion(const std::string & archivo, int num_instancias,float porcentaje) {
    // completar ......(práctica 2)
-    //Tupla 3f std vector  vori;
-    std::vector<Tupla3f> vori ;
 
-    ply::read_vertices( archivo,vori);
-    crearMalla(vori,num_instancias,porcentaje);
+    ply::read_vertices( archivo,perfil);
+    this->num_instancias=num_instancias;
+    crearMalla(perfil,num_instancias,porcentaje);
 
 }
 // *****************************************************************************
@@ -30,8 +29,10 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, int num_instancias,flo
 
 
 ObjRevolucion::ObjRevolucion(std::vector<Tupla3f> archivo, int num_instancias,float porcentaje) {
-    std::vector<Tupla3f> vori=archivo;
-    crearMalla(vori,num_instancias,porcentaje);
+    perfil=archivo;
+    this->num_instancias=num_instancias;
+
+    crearMalla(perfil,num_instancias,porcentaje);
 }
 
 void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_instancias,float porcentaje) {
@@ -39,6 +40,7 @@ void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_ins
 
   float epsilon=0.0001;//Precision del intervalo en el que decimos que es 0
   std::vector<Tupla3f> vori=perfil_original;
+
   const float PI=3.14159265358979323846l;
   Tupla3f polosur=Tupla3f(-1,-1,-1);
   Tupla3f polonorte=Tupla3f(-1,-1,-1);
@@ -146,5 +148,84 @@ for(int i=0;i<f.size();i++){
   p.push_back(Tupla3f(1.0f,0.0f,0.0f));
   l.push_back(Tupla3f(0.0f,0.0f,1.0f));
 }
+
+}
+void ObjRevolucion::calcularCoordTextura(){
+
+ct.resize(v.size());
+const float PI=3.14159265358979323846l;
+float alpha, beta, h, s, t;
+
+switch (modo_textura){
+  case 0: //cilindrica
+    for (int i = 0; i < ct.size(); i++){
+      alpha = atan2( v[i](2), v[i](0) );
+      h = v[i](1);
+      s = 1 - ( 0.5 + (alpha/(PI*2)) );
+      s += 0.5;
+      s = fmod(s, 1.0);
+      t = (h - perfil.front()(1) ) / (perfil.back()(1) - perfil.front()(1)) ;
+      ct[i] = Tupla2f(s, t);
+
+    }
+
+    for (int i = (perfil.size() * num_instancias); i < perfil.size() * (num_instancias + 1); i++){
+      alpha = atan2( v[i](2), v[i](0) );
+      h = v[i](1);
+
+      s = 1.0f;
+      t = (h - perfil.front()(1) ) / (perfil.back()(1) - perfil.front()(1)) ;
+
+      ct[i] = Tupla2f(s, t);
+    }
+    break;
+
+  case 1://esferica
+    for (int i = 0; i < ct.size(); i++){
+      alpha = atan2( v[i](2), v[i](0) );
+      beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
+      s = 1 - ( 0.5 + (alpha/(PI*2)) );
+      s += 0.5;
+      s = fmod(s, 1.0);
+      t = 0.5 + beta/PI;
+
+      ct[i] = {s, t};
+    }
+
+    for (int i = 0; i < v.size(); i = i + perfil.size()){
+      int a = i + perfil.size()/2;
+      alpha = atan2( v[a](2), v[a](0) );
+
+      s = 1 - ( 0.5 + (alpha/(PI*2)) );
+      s += 0.5;
+      s = fmod(s, 1.0);
+
+      ct[i] = {s, 0.0f};
+      ct[i + perfil.size() - 1] = {s, 1.0f};
+
+    }
+
+    for (int i = perfil.size() * num_instancias ; i < v.size(); i++){
+      alpha = atan2( v[i](2), v[i](0) );
+      beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
+
+      s = 1.0;
+      t = 0.5 + beta/PI;
+
+      ct[i] = {s, t};
+    }
+
+
+
+    break;
+  case 2: //plana
+    for (int i = 0; i < ct.size(); i++){
+      ct[i] = {v[i](0), (v[i](1) - v.front()(1) ) / (v.back()(1) - v.front()(1))} ;
+    }
+    break;
+
+}
+
+
 
 }
