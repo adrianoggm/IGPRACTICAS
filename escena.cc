@@ -187,7 +187,7 @@ else{
         //piramide->draw();
         glPushMatrix ();
         cilindro->draw();
-        //cuadro->draw();
+        cuadro->draw();
         glPopMatrix ();
         /*
         glPushMatrix ();

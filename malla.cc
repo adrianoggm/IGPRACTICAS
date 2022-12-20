@@ -164,10 +164,7 @@ void Malla3D::calcularNormales(){
 
 }
 void Malla3D::calcularCoordTextura(){
-	/*ct.resize(v.size());
-	for (int i = 0; i < ct.size(); i++){
-		ct[i] = {v[i](0), (v[i](1) - v.front()(1) ) / (v.back()(1) - v.front()(1))} ;
-	}*/
+
 }
 void Malla3D::setMaterial(Material m){
 

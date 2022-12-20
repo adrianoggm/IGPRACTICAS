@@ -50,7 +50,7 @@ void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_ins
 
   if(abs(vori[0](0))<=epsilon){
     polosur=vori[0];
-     printf("Polo sur \n");
+
     vori.erase(vori.begin());//v.begin()
   }
   else{
@@ -59,7 +59,7 @@ void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_ins
 
   }
   if(abs(vori[vori.size()-1](0))<=epsilon){
-    printf("Polo norte \n");
+
     polonorte=vori[vori.size()-1];
     vori.pop_back();
   }
@@ -74,7 +74,7 @@ void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_ins
     std::vector<Tupla3f> r(vori.rbegin(),vori.rend());
     vori.swap(r);
   }
-
+    perfil=vori;
   /*
 matriz[num_instancias,vori.size()]
 for(i=0;i<num_instancias;i++)
@@ -161,25 +161,18 @@ switch (modo_textura){
     for (int i = 0; i < ct.size(); i++){
       alpha = atan2( v[i](2), v[i](0) );
       h = v[i](1);
-      s = 1 - ( 0.5 + (alpha/(PI*2)) );
-      s += 0.5;
-      s = fmod(s, 1.0);
-      t = (h - perfil.front()(1) ) / (perfil.back()(1) - perfil.front()(1)) ;
+      s =  ( 0.5 + (alpha/(PI*2)) );
+      t =(h - perfil[0](1) ) / (perfil[perfil.size()](1) - perfil[0](1)) ;
       ct[i] = Tupla2f(s, t);
-
     }
-
     for (int i = (perfil.size() * num_instancias); i < perfil.size() * (num_instancias + 1); i++){
       alpha = atan2( v[i](2), v[i](0) );
       h = v[i](1);
-
-      s = 1.0f;
-      t = (h - perfil.front()(1) ) / (perfil.back()(1) - perfil.front()(1)) ;
-
+      s =  ( 0.5 + (alpha/(PI*2)) );
+      t =(h - perfil[0](1) ) / (perfil[perfil.size()](1) - perfil[0](1)) ;
       ct[i] = Tupla2f(s, t);
     }
     break;
-
   case 1://esferica
     for (int i = 0; i < ct.size(); i++){
       alpha = atan2( v[i](2), v[i](0) );
@@ -188,23 +181,18 @@ switch (modo_textura){
       s += 0.5;
       s = fmod(s, 1.0);
       t = 0.5 + beta/PI;
-
       ct[i] = {s, t};
     }
 
     for (int i = 0; i < v.size(); i = i + perfil.size()){
       int a = i + perfil.size()/2;
       alpha = atan2( v[a](2), v[a](0) );
-
       s = 1 - ( 0.5 + (alpha/(PI*2)) );
       s += 0.5;
       s = fmod(s, 1.0);
-
       ct[i] = {s, 0.0f};
       ct[i + perfil.size() - 1] = {s, 1.0f};
-
     }
-
     for (int i = perfil.size() * num_instancias ; i < v.size(); i++){
       alpha = atan2( v[i](2), v[i](0) );
       beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
@@ -214,14 +202,9 @@ switch (modo_textura){
 
       ct[i] = {s, t};
     }
-
-
-
     break;
   case 2: //plana
-    for (int i = 0; i < ct.size(); i++){
-      ct[i] = {v[i](0), (v[i](1) - v.front()(1) ) / (v.back()(1) - v.front()(1))} ;
-    }
+
     break;
 
 }
