@@ -30,7 +30,7 @@ class  LuzDireccional : public Luz
 // Cambiar ángulo:
   void variarAnguloAlpha ( float incremento ) ;
   void variarAnguloBeta ( float incremento ) ;
-
+  void variarColor ( Tupla4f incremento );
   /*class LuzPosicional : public Luz {
     public :
     LuzPosicional ( const Tupla3f & posicion ) ;

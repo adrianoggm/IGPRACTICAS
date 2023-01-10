@@ -35,6 +35,7 @@ protected:
     void calcularCoordTextura() override;
     int num_instancias = 0;
     std::vector<Tupla3f> perfil;
+    float distanciaVertice(Tupla3f ant, Tupla3f sig);
 } ;
 
 

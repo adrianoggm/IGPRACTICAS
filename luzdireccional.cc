@@ -53,3 +53,8 @@ void LuzDireccional :: variarAnguloBeta ( float incremento ){
   glLightfv(this->id,GL_DIFFUSE,this->colorDifuso);
 */
 }
+void LuzDireccional :: variarColor ( Tupla4f incremento ){
+  this->colorAmbiente=incremento;
+  this->colorDifuso=incremento;
+  this->Especular=incremento;
+}

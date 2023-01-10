@@ -28,3 +28,7 @@ void LuzPosicional :: Incrementarluz ( Tupla4f incremento ) {
   this->colorDifuso= this->colorDifuso+incremento;
   this->Especular= this->Especular+incremento;
 }
+void LuzPosicional :: CambiarPosicion ( Tupla3f posi) {
+     //LAS TECLAS DE LUCES SON  M incrementar y N decrementar
+     this->posicion=Tupla4f(posi(0)+posicion(0),posi(1)+posicion(1),posi(2)+posicion(2),1.0);
+}

@@ -7,6 +7,15 @@ Pierna::Pierna(){
   cadera=new Esfera(11,10,5);
   rodilla=new Rodilla();
   femur=new Cilindro(11,10,30,5);
+  Tupla4f ambiente_yellowplast(	0.0,	0.0,	0.0, 1.0);
+  Tupla4f especular_yellowplast(	0.5	,0.5,	0.0, 1.0);
+  Tupla4f difuso_yellowplast(	0.60	,0.60,	0.50, 1.0);
+  //yellow plastic			.25
+  Material yellowplast = Material(ambiente_yellowplast,especular_yellowplast,difuso_yellowplast,0.25);
+  femur->setMaterial(yellowplast);
+  femur->setTextura("./text-madera.jpg");
+  cadera->setMaterial(yellowplast);
+  cadera->setTextura("./text-madera.jpg");
 
 }
 

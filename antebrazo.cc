@@ -9,6 +9,15 @@ Antebrazo::Antebrazo(){
   codo= new  Esfera(11,10,3);
   radio = new Cilindro(11,10,30,3);
   mano=new Mano();
+  Tupla4f ambiente_yellowplast(	0.0,	0.0,	0.0, 1.0);
+  Tupla4f especular_yellowplast(	0.5	,0.5,	0.0, 1.0);
+  Tupla4f difuso_yellowplast(	0.60	,0.60,	0.50, 1.0);
+  //yellow plastic			.25
+  Material yellowplast = Material(ambiente_yellowplast,especular_yellowplast,difuso_yellowplast,0.25);
+  codo->setMaterial(yellowplast);
+  radio->setTextura("./text-madera.jpg");
+  radio->setMaterial(yellowplast);
+  codo->setTextura("./text-madera.jpg");
 }
 void Antebrazo::dibuja(float rotoantx,float rotoantz){
   glPushMatrix();

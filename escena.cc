@@ -51,15 +51,19 @@ Escena::Escena()
     Material pearl = Material(ambiente_pearl,especular_pearl,difuso_pearl,0.088*128);
     Material negro (Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),128.f);
     Material blanco (Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),128.f);
+    //green rubber				.078125
+    Material greenrub (Tupla4f(0.0,0.05,0.0,0.96f),Tupla4f(0.4,0.5,0.4,0.96f),Tupla4f(0.04,0.7,0.04,0.96f),.078125);
     cilindro->setMaterial(negro);
     cubo->setMaterial(esmerald);
     peon1->setMaterial(pearl);
     peon->setMaterial(negro);
+    cuadro->setMaterial(greenrub);
     piramide->setMaterial(negro);
     cono->setMaterial(pearl);
     cilindro->setTextura("./text-lata-1.jpg");
     cubo->setTextura("./text-lata-1.jpg");
-    cuadro->setTextura("./text-lata-1.jpg");
+    cuadro->setTextura("./textura-hierba-verde.jpg");
+    esfera->setTextura("./text-lata-1.jpg");
     incremento= Tupla4f(0.1f,0.1f,0.1f,0.1f);//Incremento de las luces posicionales examen
 
 }
@@ -100,6 +104,10 @@ void Escena::dibujar()
     ejes.draw();
 
 
+  if(animacion){
+    jugador1->animacion();
+
+  }
 if(modoluces){
     glEnable( GL_LIGHTING );
     glEnable(GL_NORMALIZE);
@@ -121,9 +129,13 @@ if(modoluces){
     Material negro (Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),128.f);
     Material blanco (Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),128.f);
 *///1.0f,1.0f,1.0f
+
     if(luzposi->encendida==true){
       luzposi->activar();
+      if(animacion){
+        AnimacionPuntual();
 
+      }
     }
     else{
         glDisable(luzposi->id);
@@ -131,10 +143,35 @@ if(modoluces){
 
     if(luzdire->encendida==true){
       luzdire->activar();
+      if(animacion){
+        AnimacioncolorDireccional();
+      }
     }
     else{
           glDisable(luzdire->id);
     }
+    glPushMatrix ();
+    glTranslatef (-100,-80,-100);
+    cubo->draw();
+    glPopMatrix ();
+    glPushMatrix ();
+    //cilindro->draw();
+    glRotatef(-90,1,0,0);
+    glScalef(17,17,1);
+    glTranslatef(-25,-25,-80);
+
+    cuadro->draw();
+    //esfera->draw();
+    glPopMatrix ();
+    /*
+    glPushMatrix ();
+    glTranslatef (100,50,-100);
+    cono->draw();
+    glPopMatrix ();*/
+    //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+
+      jugador1->draw();
+/*
     glPushMatrix ();
 
     glScalef(17,17,17);
@@ -174,7 +211,7 @@ if(modoluces){
     glTranslatef (-100,50,-100);
     cilindro->draw();
     glPopMatrix ();
-
+    */
 
 }
 else{
@@ -185,9 +222,19 @@ else{
 
         glPolygonMode(GL_FRONT,GL_FILL);
         //piramide->draw();
+
         glPushMatrix ();
-        cilindro->draw();
+        glTranslatef (-100,-80,-100);
+        cubo->draw();
+        glPopMatrix ();
+        glPushMatrix ();
+        //cilindro->draw();
+        glRotatef(-90,1,0,0);
+        glScalef(17,17,1);
+        glTranslatef(-25,-25,-80);
+
         cuadro->draw();
+        //esfera->draw();
         glPopMatrix ();
         /*
         glPushMatrix ();
@@ -195,12 +242,9 @@ else{
         cono->draw();
         glPopMatrix ();*/
         //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
-        /*if(animacion){
-          jugador1->animacion();
-        }
-        else{
+
           jugador1->draw();
-        }*/
+
         /*
         jugador1->dibuja(-90,25,0,0,-15,
         50,0,20,0,-15,
@@ -247,22 +291,31 @@ else{
       }
       if(modolin){
 
+
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         //piramide->draw();
         glPushMatrix ();
-        glTranslatef (-100,50,-100);
-        cilindro->draw();
+        //cilindro->draw();
+        glRotatef(-90,1,0,0);
+        glScalef(17,17,1);
+        glTranslatef(-25,-25,-80);
+
+        cuadro->draw();
+        //esfera->draw();
         glPopMatrix ();
+
         glPushMatrix ();
-        glTranslatef (100,50,-100);
-        cono->draw();
+        glTranslatef (-100,-80,-100);
+        cubo->draw();
         glPopMatrix ();
-        if(animacion){
-          jugador1->animacion();
-        }
-        else{
+
+        glPushMatrix ();
+        //glTranslatef (100,50,-100);
+        //cono->draw();
+        glPopMatrix ();
+
           jugador1->draw();
-        }
+
         /*
         tetraedro->draw();
 
@@ -301,19 +354,25 @@ else{
           glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
           //piramide->draw();
           glPushMatrix ();
-          glTranslatef (-100,50,-100);
-          cilindro->draw();
+          glTranslatef (-100,-80,-100);
+          cubo->draw();
           glPopMatrix ();
           glPushMatrix ();
-          glTranslatef (100,50,-100);
-          cono->draw();
+          //cilindro->draw();
+          glRotatef(-90,1,0,0);
+          glScalef(17,17,1);
+          glTranslatef(-25,-25,-80);
+
+          cuadro->draw();
+          //esfera->draw();
           glPopMatrix ();
-          if(animacion){
-            jugador1->animacion();
-          }
-          else{
-            jugador1->draw();
-          }
+          glPushMatrix ();
+          //glTranslatef (100,50,-100);
+          //cono->draw();
+          glPopMatrix ();
+
+          jugador1->draw();
+
           /*
           tetraedro->draw();
           glPushMatrix ();
@@ -672,7 +731,23 @@ void Escena::redimensionar( int newWidth, int newHeight )
 //**************************************************************************
 // Funcion para definir la transformación de vista (posicionar la camara)
 //***************************************************************************
+void Escena::AnimacionPuntual(){
 
+  float desplazamientox=sin(angulopunt)*70;
+  float desplazamientoz=cos(angulopunt)*70;
+  Tupla3f posi(desplazamientox,0.0f,desplazamientoz);
+  luzposi->CambiarPosicion(posi);
+  angulopunt+=10;
+}
+void Escena::AnimacioncolorDireccional(){
+  float randomr=rand()%10/10.0f;
+  float randomg=rand()%10/10.0f;
+  float randomb=rand()%10/10.0f;
+
+  Tupla4f luz(randomr,randomg,randomb,1.0f);
+  luzdire->variarColor(luz);
+
+}
 void Escena::change_observer()
 {
    // posicion del observador

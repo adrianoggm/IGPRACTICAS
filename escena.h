@@ -84,6 +84,8 @@ class Escena
 	// Interacción con la escena
 	bool teclaPulsada( unsigned char Tecla1, int x, int y ) ;
 	void teclaEspecial( int Tecla1, int x, int y );
-
+  float angulopunt=0;
+  void AnimacionPuntual();
+  void AnimacioncolorDireccional();
 };
 #endif

@@ -9,6 +9,12 @@ Jugador::Jugador(){
   brazoizq=new Brazo();
   brazodch=new Brazo();
   cabeza=new Cabeza();
+  Tupla4f ambiente_pearl(0.25,0.20725,0.20725, 1.0);
+  Tupla4f especular_pearl(0.296648,0.296648, 0.296648, 1.0);
+  Tupla4f difuso_pearl(	1, 0.829,0.829, 1.0);
+  Material pearl = Material(ambiente_pearl,especular_pearl,difuso_pearl,0.088*128);
+  tronco->setMaterial(pearl);
+  tronco->setTextura("./text-lata-1.jpg");
 
 }
 void Jugador::dibuja(float rotabraizqx,float rotabraizqy,float rotabraizqz,float rotoantizqx,float rotoantizqz,
@@ -58,13 +64,12 @@ void Jugador::animacion(){
   //carga tendremos un total de 56/2 estados lo que lo hace un total de 28 estados
   float angulo_final=56.0;
   float angulo_finaly=10.0;
-
-
+  if(n_iteraciones==0){
    n_iteraciones_carga=15-incremento*15;
    n_iteraciones_descarga=15-incremento*15;
    n_iteraciones_golpeo=15-incremento*15;
    n_iteraciones_fin=15-incremento*15;
-
+	}
   //parametros de jugador n_iteraciones=0;
   //for(int i=0; i<56;i++){
   int suma_iteraciones=n_iteraciones_carga+n_iteraciones_descarga+n_iteraciones_golpeo;
@@ -126,11 +131,11 @@ void Jugador::animacion(){
 
     }
   }
-    this->dibuja(rotobrazoizx,rotobrazoizy,0,0,rotoantbrazoiz,
+    /*this->dibuja(rotobrazoizx,rotobrazoizy,0,0,rotoantbrazoiz,
     rotobrazodx,0,rotobrazodz,0,rotoantbrazodz,
     0,0,0,0,0,0,
     0,rotopiernady,rotopiernadz,rotorodilladz,0,rotopiedz,desplazamiento,
-    0,0,0);
+    0,0,0);*/
 
     n_iteraciones++;
     n_iteraciones_bucle++;

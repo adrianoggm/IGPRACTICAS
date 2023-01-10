@@ -25,7 +25,7 @@ class  LuzPosicional : public Luz
   LuzPosicional ( const Tupla3f & posicion ) ;
 
   void Incrementarluz (Tupla4f incremento ) ;
-
+  void CambiarPosicion ( Tupla3f posi) ;
 } ;
 
 

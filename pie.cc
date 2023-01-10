@@ -8,6 +8,11 @@ Pie::Pie()
 {
   planta= new Cilindro(11,10,20,4);
   tobillo=new Esfera(11,10,4);//radio
+  Material negro (Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),128.f);
+  planta->setMaterial(negro);
+  //planta->setTextura("./text-madera.jpg");
+  tobillo->setMaterial(negro);
+  //tobillo->setTextura("./text-madera.jpg");
 }
 void Pie:: dibuja(float rotopiey,float rotopiez){
   glPushMatrix();

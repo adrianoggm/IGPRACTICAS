@@ -84,6 +84,7 @@ for(i=0;i<num_instancias;i++)
 }
 
 */
+/*
 v.resize(num_instancias*vori.size());
 for(int i=0;i<num_instancias;i++){ //perfil
   for(int j=0;j<vori.size();j++){ // punto del perfil
@@ -92,7 +93,20 @@ for(int i=0;i<num_instancias;i++){ //perfil
 
   }
 }
+*/
+num_instancias++;
+v.resize(num_instancias*vori.size());
+for(int i=0;i<num_instancias;i++){ //perfil
+  for(int j=0;j<vori.size();j++){ // punto del perfil
+    float angulo=(360*porcentaje/100*PI)/(180*(num_instancias-1));
+    if(num_instancias-1==i){
+      angulo=2*PI;
+    }
+    v[i+j*num_instancias]=Tupla3f(vori[j][0]*cos(angulo*i+vori[j][2]*sin(angulo*i)),vori[j][1],-vori[j][0]*sin(angulo*i)+vori[j][2]*cos(angulo*i));
 
+  }
+}
+//0,
 
 /*
 for(int i=0;i<vori.size()-1;i++){
@@ -150,6 +164,22 @@ for(int i=0;i<f.size();i++){
 }
 
 }
+float ObjRevolucion::distanciaVertice(Tupla3f ant, Tupla3f sig){
+
+ double x;
+ double y;
+ double z;
+
+ x = pow(ant(0)-sig(0),2);
+ y = pow(ant(1)-sig(1),2);
+ z = pow (ant(2) - sig(2),2);
+
+ double resultado ;
+ resultado = sqrt(x+y+z);
+
+ return (float)resultado;
+
+}
 void ObjRevolucion::calcularCoordTextura(){
 
 ct.resize(v.size());
@@ -161,49 +191,46 @@ switch (modo_textura){
     for (int i = 0; i < ct.size(); i++){
       alpha = atan2( v[i](2), v[i](0) );
       h = v[i](1);
-      s =  ( 0.5 + (alpha/(PI*2)) );
+      s =  ( 1/2 + (alpha/(2*PI)) );
       t =(h - perfil[0](1) ) / (perfil[perfil.size()](1) - perfil[0](1)) ;
       ct[i] = Tupla2f(s, t);
     }
     for (int i = (perfil.size() * num_instancias); i < perfil.size() * (num_instancias + 1); i++){
       alpha = atan2( v[i](2), v[i](0) );
       h = v[i](1);
-      s =  ( 0.5 + (alpha/(PI*2)) );
+      s =  ( 1/2 + (alpha/(2*PI)) );
       t =(h - perfil[0](1) ) / (perfil[perfil.size()](1) - perfil[0](1)) ;
       ct[i] = Tupla2f(s, t);
     }
+    for(int i=0;i<num_instancias;i++){ //perfil
+      for(int j=0;j<perfil.size();j++){ // punto del perfil
+
+        if(num_instancias-1==i){
+          alpha = atan2( v[i+j*num_instancias-2](2), v[i+j*num_instancias-2](0) );
+          h = v[i+j*num_instancias-2](1);
+          s =  ( 1/2 + (alpha/(2*PI)) );
+          t =(h - perfil[0](1) ) / (perfil[perfil.size()](1) - perfil[0](1)) ;
+          ct[i+j*num_instancias] = Tupla2f(s, t);
+        }
+        }
+      }
     break;
   case 1://esferica
     for (int i = 0; i < ct.size(); i++){
       alpha = atan2( v[i](2), v[i](0) );
       beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
-      s = 1 - ( 0.5 + (alpha/(PI*2)) );
-      s += 0.5;
-      s = fmod(s, 1.0);
-      t = 0.5 + beta/PI;
-      ct[i] = {s, t};
+      s =  ( 1/2 + (alpha/(2*PI)) );
+      t = 1/2 + beta/PI;
+      ct[i] = Tupla2f(s, t);
     }
+    //preguntar profesor no se como hacer q
 
-    for (int i = 0; i < v.size(); i = i + perfil.size()){
-      int a = i + perfil.size()/2;
-      alpha = atan2( v[a](2), v[a](0) );
-      s = 1 - ( 0.5 + (alpha/(PI*2)) );
-      s += 0.5;
-      s = fmod(s, 1.0);
-      ct[i] = {s, 0.0f};
-      ct[i + perfil.size() - 1] = {s, 1.0f};
-    }
-    for (int i = perfil.size() * num_instancias ; i < v.size(); i++){
-      alpha = atan2( v[i](2), v[i](0) );
-      beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
 
-      s = 1.0;
-      t = 0.5 + beta/PI;
-
-      ct[i] = {s, t};
-    }
     break;
   case 2: //plana
+
+
+
 
     break;
 
