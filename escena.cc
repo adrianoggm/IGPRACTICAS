@@ -25,7 +25,7 @@ Escena::Escena()
     cubo = new Cubo(40.0);
     peon =new ObjRevolucion("./plys/peon.ply",10,100);
     tetraedro=new Tetraedro(70);
-    jugador1=new Jugador();
+    //jugador1=new Jugador();
     cilindro=new Cilindro(11,35,50,25);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
     cuadro= new Cuadro(50.0);
     //cilindro.draw();
@@ -39,7 +39,7 @@ Escena::Escena()
     //LUCES Escena
     luzdire=new LuzDireccional(Tupla2f(0.0,0.0));
     luzposi=new LuzPosicional(Tupla3f(40.0f,40.0f,40.f));
-    peon1 =new ObjRevolucion("./plys/peon.ply",10,25);
+    peon1 =new ObjRevolucion("./plys/peon.ply",10,100);
 
     Tupla4f ambiente_pearl(0.25,0.20725,0.20725, 1.0);
     Tupla4f especular_pearl(0.296648,0.296648, 0.296648, 1.0);
@@ -105,7 +105,7 @@ void Escena::dibujar()
 
 
   if(animacion){
-    jugador1->animacion();
+    //jugador1->animacion();
 
   }
 if(modoluces){
@@ -163,14 +163,18 @@ if(modoluces){
     cuadro->draw();
     //esfera->draw();
     glPopMatrix ();
+    glPushMatrix ();
+    //glTranslatef (100,50,-100);
+    cilindro->draw();
+    glPopMatrix ();
     /*
     glPushMatrix ();
-    glTranslatef (100,50,-100);
+    //glTranslatef (100,50,-100);
     cono->draw();
     glPopMatrix ();*/
-    //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+    ////jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
 
-      jugador1->draw();
+      //jugador1->draw();
 /*
     glPushMatrix ();
 
@@ -203,7 +207,7 @@ if(modoluces){
 
 
     glPushMatrix ();
-    glTranslatef (100,50,-100);
+    //glTranslatef (100,50,-100);
     cono->draw();
     glPopMatrix ();
     //...
@@ -236,23 +240,27 @@ else{
         cuadro->draw();
         //esfera->draw();
         glPopMatrix ();
+        glPushMatrix ();
+        //glTranslatef (100,50,-100);
+        cilindro->draw();
+        glPopMatrix ();
         /*
         glPushMatrix ();
-        glTranslatef (100,50,-100);
+        //glTranslatef (100,50,-100);
         cono->draw();
         glPopMatrix ();*/
-        //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+        ////jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
 
-          jugador1->draw();
+          //jugador1->draw();
 
         /*
-        jugador1->dibuja(-90,25,0,0,-15,
+        //jugador1->dibuja(-90,25,0,0,-15,
         50,0,20,0,-15,
         0,0,0,0,0,0,
         0,-10,-15,0,0,50,Tupla3f (0,0,0),
         0,0,0);
 
-        jugador1->dibuja(-90,-10,0,0,-15,
+        //jugador1->dibuja(-90,-10,0,0,-15,
         45,0,-25,0,-15,
         0,0,0,0,0,0,
         0,10,56,30,0,50,Tupla3f (0,0,0),
@@ -272,7 +280,7 @@ else{
         glPopMatrix ();
 
         glPushMatrix ();
-        glTranslatef (100,50,-100);
+        //glTranslatef (100,50,-100);
         cono->draw();
         glPopMatrix ();
         //...
@@ -311,10 +319,9 @@ else{
 
         glPushMatrix ();
         //glTranslatef (100,50,-100);
-        //cono->draw();
+        cilindro->draw();
         glPopMatrix ();
-
-          jugador1->draw();
+          //jugador1->draw();
 
         /*
         tetraedro->draw();
@@ -332,7 +339,7 @@ else{
         glPopMatrix ();
 
         glPushMatrix ();
-        glTranslatef (100,50,-100);
+        //glTranslatef (100,50,-100);
         cono->draw();
         glPopMatrix ();
         //...
@@ -368,10 +375,10 @@ else{
           glPopMatrix ();
           glPushMatrix ();
           //glTranslatef (100,50,-100);
-          //cono->draw();
+          cilindro->draw();
           glPopMatrix ();
 
-          jugador1->draw();
+          //jugador1->draw();
 
           /*
           tetraedro->draw();
@@ -386,7 +393,7 @@ else{
           glPopMatrix ();
 
           glPushMatrix ();
-          glTranslatef (100,50,-100);
+          //glTranslatef (100,50,-100);
           cono->draw();
           glPopMatrix ();
           //...
@@ -608,7 +615,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
             case 'M':
               animacion=false;
-              jugador1->resetJugador();
+              //jugador1->resetJugador();
                 if(!animacion){
                   modoMenu=SELGRADOLIB;
                 }
@@ -632,9 +639,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                           gradolib=2;
                       }
                         break ;
-            case 'N':
+/*            case 'N':
             if(animacion==true){
-              //jugador1->resetJugador();
+              ////jugador1->resetJugador();
                   animacion=false;
 
             }
@@ -648,31 +655,34 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
                   if(animacion){
 
-                      jugador1->setincremento(0.2);
+                      //jugador1->setincremento(0.2);
 
                      }
                      else{
                        if(modoMenu==SELGRADOLIB)
-                        jugador1->setgradolibertad(gradolib,5);
+                        //jugador1->setgradolibertad(gradolib,5);
                      }
                      break ;
               case '-':
 
                     if(animacion){
 
-                        jugador1->setincremento(-0.2);
+                        //jugador1->setincremento(-0.2);
 
                     }
                     else{
                         if(modoMenu==SELGRADOLIB)
-                            jugador1->setgradolibertad(gradolib,-5);
+                            //jugador1->setgradolibertad(gradolib,-5);
                     }
 
 
                             break ;
+                            */
    }
+
    return salir;
 }
+
 //**************************************************************************
 
 void Escena::teclaEspecial( int Tecla1, int x, int y )

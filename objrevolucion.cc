@@ -16,11 +16,11 @@
 
 ObjRevolucion::ObjRevolucion() {}
 
-ObjRevolucion::ObjRevolucion(const std::string & archivo, int num_instancias,float porcentaje) {
+ObjRevolucion::ObjRevolucion(const std::string & archivo, int num_instan,float porcentaje) {
    // completar ......(práctica 2)
 
     ply::read_vertices( archivo,perfil);
-    this->num_instancias=num_instancias;
+
     crearMalla(perfil,num_instancias,porcentaje);
 
 }
@@ -28,16 +28,16 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, int num_instancias,flo
 // objeto de revolución obtenido a partir de un perfil (en un vector de puntos)
 
 
-ObjRevolucion::ObjRevolucion(std::vector<Tupla3f> archivo, int num_instancias,float porcentaje) {
+ObjRevolucion::ObjRevolucion(std::vector<Tupla3f> archivo, int num_instan,float porcentaje) {
     perfil=archivo;
-    this->num_instancias=num_instancias;
+
 
     crearMalla(perfil,num_instancias,porcentaje);
 }
 
-void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_instancias,float porcentaje) {
+void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_instan,float porcentaje) {
 
-
+  num_instancias=num_instan;
   float epsilon=0.0001;//Precision del intervalo en el que decimos que es 0
   std::vector<Tupla3f> vori=perfil_original;
 
@@ -143,7 +143,7 @@ v.push_back(polonorte);
     f.push_back(Tupla3i(v.size()-1,(num_instancias)*(vori.size()-1)+(i+1)%num_instancias,(num_instancias)*(vori.size()-1)+i));
   }
   }
-  /*
+/*
   for(int i=0;i<v.size();i++){
     printf("%f  ,",v[i][0]);
     printf("%f  ,",v[i][1]);
@@ -185,56 +185,39 @@ void ObjRevolucion::calcularCoordTextura(){
 ct.resize(v.size());
 const float PI=3.14159265358979323846l;
 float alpha, beta, h, s, t;
+float distancias[perfil.size()];
 
-switch (modo_textura){
-  case 0: //cilindrica
-    for (int i = 0; i < ct.size(); i++){
-      alpha = atan2( v[i](2), v[i](0) );
-      h = v[i](1);
-      s =  ( 1/2 + (alpha/(2*PI)) );
-      t =(h - perfil[0](1) ) / (perfil[perfil.size()](1) - perfil[0](1)) ;
-      ct[i] = Tupla2f(s, t);
-    }
-    for (int i = (perfil.size() * num_instancias); i < perfil.size() * (num_instancias + 1); i++){
-      alpha = atan2( v[i](2), v[i](0) );
-      h = v[i](1);
-      s =  ( 1/2 + (alpha/(2*PI)) );
-      t =(h - perfil[0](1) ) / (perfil[perfil.size()](1) - perfil[0](1)) ;
-      ct[i] = Tupla2f(s, t);
-    }
-    for(int i=0;i<num_instancias;i++){ //perfil
-      for(int j=0;j<perfil.size();j++){ // punto del perfil
+distancias[0]=0.0f;
 
-        if(num_instancias-1==i){
-          alpha = atan2( v[i+j*num_instancias-2](2), v[i+j*num_instancias-2](0) );
-          h = v[i+j*num_instancias-2](1);
-          s =  ( 1/2 + (alpha/(2*PI)) );
-          t =(h - perfil[0](1) ) / (perfil[perfil.size()](1) - perfil[0](1)) ;
-          ct[i+j*num_instancias] = Tupla2f(s, t);
-        }
-        }
-      }
-    break;
-  case 1://esferica
-    for (int i = 0; i < ct.size(); i++){
-      alpha = atan2( v[i](2), v[i](0) );
-      beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
-      s =  ( 1/2 + (alpha/(2*PI)) );
-      t = 1/2 + beta/PI;
-      ct[i] = Tupla2f(s, t);
-    }
-    //preguntar profesor no se como hacer q
-
-
-    break;
-  case 2: //plana
-
-
-
-
-    break;
-
+for(int i=1;i<perfil.size();i++){
+  distancias[i]=distancias[i-1]+distanciaVertice(perfil[i-1],perfil[i]);
 }
+
+for(int i=0;i<perfil.size();i++){
+  printf(" %f \n",distancias[i]);
+}
+
+
+ for(int j=0;j<perfil.size();j++){ // vertices del perfil
+       t=1.0f*distancias[j]/(distancias[perfil.size()-1]*1.0f);
+    for(int i=0;i<num_instancias;i++){//instancias
+          s=1.0f*i/(num_instancias-1);
+          ct[i+j*num_instancias]=Tupla2f(s,t);
+      //ct.push_back( Tupla2f(s,t));
+        }
+    }
+    for(int j=0;j<perfil.size();j++){ // vertices del perfil
+
+       for(int i=0;i<num_instancias;i++){//instancias
+
+             ct[i+j*num_instancias]=Tupla2f(abs(ct[i+j*num_instancias][0]-1.0),abs(ct[i+j*num_instancias][1]));
+         //ct.push_back( Tupla2f(s,t));
+           }
+       }
+    std::vector<Tupla2f> r(ct.rbegin(),ct.rend());
+    ct.swap(r);
+
+
 
 
 
