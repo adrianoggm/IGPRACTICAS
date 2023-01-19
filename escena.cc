@@ -743,14 +743,22 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
  	   case GLUT_KEY_DOWN:
           camaras[camaraActiva].rotarXExaminar(-3.0*M_PI/180.0);
           break;
- 	   case GLUT_KEY_PAGE_UP:
+ 	   case GLUT_KEY_F1:
           camaras[camaraActiva].zoom(1/1.2);
           change_projection(1.0);
           break;
- 	   case GLUT_KEY_PAGE_DOWN:
+ 	   case GLUT_KEY_F2:
           camaras[camaraActiva].zoom(1.2);
           change_projection(1.0);
           break;
+    case GLUT_KEY_PAGE_UP:
+         camaras[camaraActiva].zoom(1/1.2);
+        change_projection(1.0);
+        break;
+    case GLUT_KEY_PAGE_DOWN:
+        camaras[camaraActiva].zoom(1.2);
+        change_projection(1.0);
+        break;
 	}
 
 	//std::cout << Observer_distance << std::endl;
@@ -855,5 +863,82 @@ void Escena::clickRaton(int boton, int status, int x, int y){
    }
 }
 void Escena::procesar_click(int x, int y){
+  GLint viewport[4];
+  GLfloat pixel[3];
+  glGetIntegerv(GL_VIEWPORT,viewport);
+  glReadPixels(x,viewport[3]-y,1,1,GL_RGB,GL_FLOAT,pixel);
 
+  Tupla3f color = {pixel[0],pixel[1],pixel[2]};
+
+  if(color(0) == 0.0 && color(1) == 1.0 && color(2) == 0.0){
+     std::cout << "Seleccionada la torre" << std::endl;
+     camaras[camaraActiva].setSeleccionado(TORRE);
+     camaras[camaraActiva].mover(0.0,50.0,150.0);
+  } else if(color(0) == 0.0 && color(1) == 0.0 && color(2) == 0.0){
+     std::cout << "Seleccionado el edificio derecho" << std::endl;
+     camaras[camaraActiva].setSeleccionado(EDIFD);
+     camaras[camaraActiva].mover(300.0,50.0,-500.0);
+  } else if(color(0) == 0.0 && color(1) == 0.0 && color(2) == 1.0){
+     std::cout << "Seleccionado el edificio izquierdo" << std::endl;
+     camaras[camaraActiva].setSeleccionado(EDIFI);
+     camaras[camaraActiva].mover(-300.0,50.0,-500.0);
+  } else if(color(0) == 1.0 && color(1) == 0.0 && color(2) == 1.0){
+     std::cout << "Seleccionado el edificio central" << std::endl;
+     camaras[camaraActiva].setSeleccionado(EDIFC);
+     camaras[camaraActiva].mover(0.0,50.0,-500.0);
+  } else if(color(0) == 1.0 && color(1) == 1.0 && color(2) == 0.0){
+     std::cout << "Seleccionado el robot" << std::endl;
+     camaras[camaraActiva].setSeleccionado(ROBOT);
+     camaras[camaraActiva].mover(0.0,50.0,-100.0);
+  } else {
+     camaras[camaraActiva].setSeleccionado(NOSEL);
+  }
+}
+
+void Escena::dibujar_seleccion(){
+   color colsec;
+   GLenum modo_dibujado_sel = GL_FILL;
+   dibujo tipo_draw_sel = SELECT;
+
+   change_observer();
+   bool luz_activada=false;
+   bool textura_activada=false;
+   bool dither_activado=false;
+
+   if(glIsEnabled(GL_LIGHTING)){
+      glDisable(GL_LIGHTING);
+      luz_activada=true;
+   }
+   if(glIsEnabled(GL_TEXTURE_2D)){
+      glDisable(GL_TEXTURE_2D);
+     textura_activada=true;
+
+   }
+
+   if(glIsEnabled(GL_DITHER)){
+      glDisable(GL_DITHER);
+      dither_activado=true;
+   }
+
+   glPushMatrix();
+      glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+      glPushMatrix();
+         glScalef(2.0,2.0,2.0);
+         glTranslatef(0,0,100);
+         //ITEM A DIBUJAR
+      glPopMatrix();
+
+
+   glPopMatrix();
+   
+   if(!glIsEnabled(GL_LIGHTING)&&luz_activada){
+      glDisable(GL_LIGHTING);
+   }
+   if(!glIsEnabled(GL_TEXTURE_2D&&textura_activada)){
+      glDisable(GL_TEXTURE_2D);
+   }
+
+   if(glIsEnabled(GL_DITHER)&&dither_activado){
+      glDisable(GL_DITHER);
+   }
 }
