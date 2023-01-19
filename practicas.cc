@@ -69,7 +69,17 @@ void normal_keys( unsigned char tecla, int x, int y )
    else
 		glutPostRedisplay();
 }
+void clickRaton(int boton, int status, int x, int y){
+	if(escena != nullptr)
+		escena->clickRaton(boton,status,x,y);
+	glutPostRedisplay();
+}
 
+void ratonMovido(int x, int y){
+	if(escena != nullptr)
+		escena->ratonMovido(x,y);
+	glutPostRedisplay();
+}
 //***************************************************************************
 // Funcion llamada cuando se produce aprieta una tecla especial
 //
@@ -134,6 +144,9 @@ int main( int argc, char **argv )
    // asignación de la funcion llamada "tecla_normal" al evento correspondiente
    glutKeyboardFunc( normal_keys );
 
+	 glutMouseFunc(clickRaton);
+
+	 	glutMotionFunc(ratonMovido);
    // asignación de la funcion llamada "tecla_Especial" al evento correspondiente
    glutSpecialFunc( special_keys );
 

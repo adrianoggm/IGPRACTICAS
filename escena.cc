@@ -16,6 +16,17 @@ Escena::Escena()
     Observer_angle_x  = 0.0 ;
     Observer_angle_y  = 0.0 ;
 
+       Camara camara0(Tupla3f(0.0,300.0,700.0),Tupla3f(0.0,0.0,0.0), Tupla3f(0.0,1.0,0.0),
+                      0, -50.0, 50.0, Front_plane, Back_plane, 50.0, -50.0);
+       Camara camara1(Tupla3f(0.0,300.0,700.0),Tupla3f(0.0,0.0,0.0), Tupla3f(0.0,1.0,0.0),
+                      1, -50.0, 50.0, Front_plane, Back_plane, 50.0, -50.0);
+       Camara camara2(Tupla3f(0.0,450.0,-150.0),Tupla3f(0.0,300.0,0.0), Tupla3f(0.0,1.0,0.0),
+                      0, -50.0, 50.0, Front_plane, Back_plane, 50.0, -50.0);
+
+       camaras.push_back(camara0);
+       camaras.push_back(camara1);
+       camaras.push_back(camara2);
+
     ejes.changeAxisSize( 5000 );
 
     // crear los objetos de la escena....
@@ -441,13 +452,13 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          modoMenu=SELOBJETO;
          break ;
       case 'C' :
-          //Estamos si no esta creado creamos el objeto en memoria
-          //una vez creado será necesario un mecanismo para ocultar la escena
-          //adibujar="cubo";
-        if(modoMenu==SELOBJETO){
-
-             this->dibujar();
-        }
+        modoMenu=CAMARA;
+       cout << "Seleccione la camara que quiere ver" << endl;
+       cout << "0: Camara perspectiva" << endl;
+       cout << "1: Camara ortogonal" << endl;
+       cout << "2: Camara perspectiva 2" << endl;
+       cout << "Q: salir" << endl;
+       cout << endl;
         break;
 
 
@@ -467,7 +478,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                 else{
                   modovert=true;
                 }
-                 this->dibujar();
+
              }
              break ;
          case 'S'://modo solido
@@ -481,7 +492,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               else{
                 modoso=true;
               }
-               this->dibujar();
+
            }
            break ;
          // COMPLETAR con los diferentes opciones de teclado
@@ -496,7 +507,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               else{
                 modolin=true;
               }
-               this->dibujar();
+
            }
            break ;
 
@@ -505,7 +516,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
              if(modoMenu==SELVISUALIZACION){
 
                 modoluces=true;
-                this->dibujar();
+
              }
              break ;
 
@@ -523,6 +534,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   //ultimaselec=
 
                }
+               if( modoMenu == CAMARA){
+              camaraActiva = 0;
+              change_projection(1.0);
+              }
                break ;
             case '1': //modo luces
 
@@ -535,14 +550,22 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                luzposi->encendida=false;
              }
 
-               this->dibujar();
+
             }
+              if( modoMenu == CAMARA){
+                camaraActiva = 1;
+                change_projection(1.0);
+              }
                  break ;
             case '2': //modo luces
 
                    if(modoMenu==SELVISUALIZACION&&modoluces==true){
                       this->dibujar();
                    }
+                   if( modoMenu == CAMARA){
+                  camaraActiva = 2;
+                  change_projection(1.0);
+                  }
                    break ;
 
             case '3': //modo luces
@@ -689,7 +712,7 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
 {
    switch ( Tecla1 )
    {
-	   case GLUT_KEY_LEFT:
+	   /*case GLUT_KEY_LEFT:
          Observer_angle_y-- ;
          break;
 	   case GLUT_KEY_RIGHT:
@@ -707,6 +730,27 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
 	   case GLUT_KEY_PAGE_DOWN:
          Observer_distance /= 1.2 ;
          break;
+         */
+         case GLUT_KEY_LEFT:
+          camaras[camaraActiva].rotarYExaminar(-3.0*M_PI/180.0);
+          break;
+ 	   case GLUT_KEY_RIGHT:
+          camaras[camaraActiva].rotarYExaminar(3.0*M_PI/180.0);
+          break;
+ 	   case GLUT_KEY_UP:
+          camaras[camaraActiva].rotarXExaminar(3.0*M_PI/180.0);
+          break;
+ 	   case GLUT_KEY_DOWN:
+          camaras[camaraActiva].rotarXExaminar(-3.0*M_PI/180.0);
+          break;
+ 	   case GLUT_KEY_PAGE_UP:
+          camaras[camaraActiva].zoom(1/1.2);
+          change_projection(1.0);
+          break;
+ 	   case GLUT_KEY_PAGE_DOWN:
+          camaras[camaraActiva].zoom(1.2);
+          change_projection(1.0);
+          break;
 	}
 
 	//std::cout << Observer_distance << std::endl;
@@ -719,12 +763,12 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
 //
 //***************************************************************************
 
+
 void Escena::change_projection( const float ratio_xy )
 {
    glMatrixMode( GL_PROJECTION );
    glLoadIdentity();
-   const float wx = float(Height)*ratio_xy ;
-   glFrustum( -wx, wx, -Height, Height, Front_plane, Back_plane );
+   camaras[camaraActiva].setProjection();
 }
 //**************************************************************************
 // Funcion que se invoca cuando cambia el tamaño de la ventana
@@ -734,6 +778,10 @@ void Escena::redimensionar( int newWidth, int newHeight )
 {
    Width  = newWidth/10;
    Height = newHeight/10;
+   for(int i = 0; i < camaras.size(); i++){
+      camaras[i].setLetf(camaras[i].getBottom()*Width/Height);
+      camaras[i].setRight(camaras[i].getTop()*Width/Height);
+   }
    change_projection( float(newHeight)/float(newWidth) );
    glViewport( 0, 0, newWidth, newHeight );
 }
@@ -763,7 +811,49 @@ void Escena::change_observer()
    // posicion del observador
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
-   glTranslatef( 0.0, 0.0, -Observer_distance );
-   glRotatef( Observer_angle_y, 0.0 ,1.0, 0.0 );
-   glRotatef( Observer_angle_x, 1.0, 0.0, 0.0 );
+   camaras[camaraActiva].setObserver();
+}
+
+
+void Escena::ratonMovido(int x, int y){
+   if(ratonPulsado){
+      /*if(camaras[camaraActiva].getSeleccionado() == NOSEL){
+         camaras[camaraActiva].girar(x-x_ant, y-y_ant);
+      } else {
+        camaras[camaraActiva].rotarXExaminar(-0.25*(y-y_ant)*M_PI/180.0);
+        camaras[camaraActiva].rotarYExaminar(-0.25*(x-x_ant)*M_PI/180.0);
+      }*/
+      camaras[camaraActiva].rotarXExaminar(-0.25*(y-y_ant)*M_PI/180.0);
+      camaras[camaraActiva].rotarYExaminar(-0.25*(x-x_ant)*M_PI/180.0);
+      x_ant = x;
+      y_ant = y;
+   }
+}
+
+void Escena::clickRaton(int boton, int status, int x, int y){
+   if(boton == GLUT_RIGHT_BUTTON){
+      //Mover primera persona
+      if(status == GLUT_DOWN){
+         x_ant = x;
+         y_ant = y;
+         ratonPulsado = true;
+      } else {
+         ratonPulsado = false;
+      }
+   } else if (boton == GLUT_LEFT_BUTTON){
+      //Seleccionar objeto
+      if(status == GLUT_DOWN){
+         //dibujar_seleccion();
+         procesar_click(x,y);
+      }
+   } else if (boton == 3){
+      camaras[camaraActiva].zoom(1.2);
+      change_projection(1.0);
+   } else if (boton == 4){
+      camaras[camaraActiva].zoom(1/1.2);
+      change_projection(1.0);
+   }
+}
+void Escena::procesar_click(int x, int y){
+
 }

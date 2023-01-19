@@ -1,20 +1,47 @@
-class Camara {
+#ifndef OBJCAMARA_H_INCLUDED
+#define OBJCAMARA_H_INCLUDED
+#include "auxiliar.h"
 
-Tupla3f eye ;
-Tupla3f at ;
-Tupla3f up ;
-int tipo ; // ORTOGONAL o Perspectiva
-float left , right , near , far ; // o bien aspect, fov, near, far;
-Camara ( ... ) ; // con los parametros necesarios
-rotarXExaminar ( float angle );
-rotarYExaminar ( float angle );
-rotarZExaminar ( float angle );
-rotarXFirstPerson ( float angle );
-rotarYFirstPerson ( float angle );
-rotarYFirstPerson ( float angle );
-mover ( float x, float y, float z );
-zoom ( float factor );
-setObserver () { gluLookAt ( ..... ) }; // completar
-setProyeccion ();
+typedef enum {ROBOT, TORRE, EDIFI, EDIFD, EDIFC, NOSEL} seleccionables;
 
-}
+class Camara{
+private:
+   Tupla3f eye;
+   Tupla3f at;
+   Tupla3f up;
+   int tipo;
+   float left, right, near, far, top, bottom;
+   seleccionables seleccionado;
+
+public:
+   Camara(const Tupla3f eye, const Tupla3f at, const Tupla3f up,
+          const int tipo, const float left, const float right,
+          const float near, const float far, const float top,
+          const float bottom);
+   void rotarXExaminar(const float angle);
+   void rotarYExaminar(const float angle);
+   void rotarZExaminar(const float angle);
+   void rotarXFirstPerson(const float angle);
+   void rotarYFirstPerson(const float angle);
+   void rotarZFirstPerson(const float angle);
+   void mover(const float x, const float y, const float z);
+   void zoom(const float factor);
+   void girar(const float x, const float y);
+   void setObserver();
+   void setProjection();
+   void setLetf(const float l);
+   void setRight(const float l);
+   void setTop(const float l);
+   void setBottom(const float l);
+   float getLeft() const;
+   float getRight() const;
+   float getTop() const;
+   float getBottom() const;
+  /* seleccionables getSeleccionado() const;
+   void setSeleccionado(const seleccionables obj);
+   */
+};
+
+
+
+#endif

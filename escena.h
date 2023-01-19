@@ -18,7 +18,8 @@
 #include "jugador.h"
 #include "textura.h"
 #include "cuadro.h"
-typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELGRADOLIB,ANIMACION} menu;
+#include "camara.h"
+typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELGRADOLIB,ANIMACION,CAMARA} menu;
 typedef enum {NADAA,ALPHA,BETA} menuangulo;
 class Escena
 {
@@ -71,7 +72,12 @@ class Escena
    Tetraedro * tetraedro=nullptr;
    Cuadro * cuadro = nullptr ;
    Jugador * jugador1=nullptr;
-
+   float angulopunt=0;
+   //PR6
+  std::vector<Camara> camaras;
+  bool ratonPulsado;
+  float x_ant, y_ant;
+  int camaraActiva = 0;
    public:
 
     Escena();
@@ -84,7 +90,11 @@ class Escena
 	// Interacción con la escena
 	bool teclaPulsada( unsigned char Tecla1, int x, int y ) ;
 	void teclaEspecial( int Tecla1, int x, int y );
-  float angulopunt=0;
+  void ratonMovido(int x, int y);
+  void clickRaton(int boton, int status, int x, int y);
+  void dibujar_seleccion();
+  void procesar_click(int x, int y);
+
   void AnimacionPuntual();
   void AnimacioncolorDireccional();
 };
