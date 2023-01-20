@@ -769,10 +769,12 @@ void Escena::dibujar_seleccion(int x, int y){
   bool luz_activada=false;
   bool textura_activada=false;
   bool dither_activado=false;
+  /*
   if(glIsEnabled(GL_LIGHTING)){
      glDisable(GL_LIGHTING);
      luz_activada=true;
   }
+  */
   if(glIsEnabled(GL_TEXTURE_2D)){
      glDisable(GL_TEXTURE_2D);
     textura_activada=true;
@@ -783,7 +785,7 @@ void Escena::dibujar_seleccion(int x, int y){
      glDisable(GL_DITHER);
      dither_activado=true;
   }
-    dibujar();
+    //dibujar();
    GLint viewport[4];
    //glColor3ub pixel[3];
    GLfloat pixel[3];
@@ -819,23 +821,18 @@ void Escena::dibujar_seleccion(int x, int y){
       //camaras[camaraActiva].mover(-300.0,50.0,-500.0); a por defecto
       //objetoadibujar=NOSEL;
    }
-
    //OBTENIDO EL OBJETO SELECCIONADO Y CENTRADA LA CAMARA
    change_observer();
 
-
-
    glPushMatrix();
-          glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 
+   GLint polygonMode[2];
+   glGetIntegerv(GL_POLYGON_MODE,polygonMode);
          glPushMatrix();
          //ITEM A DIBUJAR
          if(camaras[camaraActiva].getSeleccionado()==CONO){
-
-
-
-         cono->drawselec();
+           cono->draw();
           printf("Co \n");
          }
          glPopMatrix();
@@ -844,56 +841,28 @@ void Escena::dibujar_seleccion(int x, int y){
            glPushMatrix();
              if(camaras[camaraActiva].getSeleccionado()==PIRAMIDE){
            //ITEM A DIBUJAR
-           if(glIsEnabled(GL_LIGHTING)){
-              glDisable(GL_LIGHTING);
-              luz_activada=true;
-           }
-           if(glIsEnabled(GL_TEXTURE_2D)){
-              glDisable(GL_TEXTURE_2D);
-             textura_activada=true;
-
-           }
-
-           if(glIsEnabled(GL_DITHER)){
-              glDisable(GL_DITHER);
-              dither_activado=true;
-           }
-           piramide->drawselec();
+           piramide->draw();
            printf("Co \n");
            }
            glPopMatrix();
 
 
              glPushMatrix();
-
-             if(camaras[camaraActiva].getSeleccionado()==PEON){
-               if(glIsEnabled(GL_LIGHTING)){
-                  glDisable(GL_LIGHTING);
-                  luz_activada=true;
-               }
-               if(glIsEnabled(GL_TEXTURE_2D)){
-                  glDisable(GL_TEXTURE_2D);
-                 textura_activada=true;
-
-               }
-
-               if(glIsEnabled(GL_DITHER)){
-                  glDisable(GL_DITHER);
-                  dither_activado=true;
-               }
+              if(camaras[camaraActiva].getSeleccionado()==PEON){
              //ITEM A DIBUJAR
-             peon->drawselec();
-             printf("Co \n");
+              peon->draw();
+              printf("Co \n");
              }
              glPopMatrix();
 
 
    glPopMatrix();
-
+   /*
    if(!glIsEnabled(GL_LIGHTING)&&luz_activada){
       glEnable(GL_LIGHTING);
    }
-   glPolygonMode(GL_FRONT,GL_FILL);
+   */
+   glPolygonMode(polygonMode[1],polygonMode[0]);
    if(!glIsEnabled(GL_TEXTURE_2D&&textura_activada)){
       glEnable(GL_TEXTURE_2D);
    }

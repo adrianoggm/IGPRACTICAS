@@ -52,68 +52,79 @@ void Malla3D::draw()
 
    }
    // activar buffer
+  if(seleccion){
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
+    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_seleccion );
+     // habilitar uso de array de col.
+    glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
+    glBindBuffer ( GL_ARRAY_BUFFER , 0);
+    glEnableClientState( GL_COLOR_ARRAY );
+  }
+  else{
 
-  if ( id_vbo_c!=0 && id_vbo_tri!=0 && id_vbo_ver!=0) {
-     GLboolean islight=GL_FALSE;
-     glGetBooleanv(GL_LIGHTING,&islight);
-    if(islight==GL_TRUE){
+   GLint polygonMode[2];
+   glGetIntegerv(GL_POLYGON_MODE,polygonMode);
 
-       //glEnable(GL_NORMALIZE);
-       this->material.aplicar();
-       //
-       glBindBuffer ( GL_ARRAY_BUFFER,id_vbo_nv);
-       glNormalPointer(GL_FLOAT, 0,0);
-       glBindBuffer ( GL_ARRAY_BUFFER,0);
-       glEnableClientState(GL_NORMAL_ARRAY);
-
-     }
-   else{
-
-     GLint polygonMode[2];
-     glGetIntegerv(GL_POLYGON_MODE,polygonMode);
-
-     if(polygonMode[0]==GL_POINT){
-      glPointSize(	3.0f);
-      glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_p );
-     //
-      glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
-      glBindBuffer ( GL_ARRAY_BUFFER , 0);
-      glEnableClientState( GL_COLOR_ARRAY );
-
-     }
-     if(polygonMode[0]==GL_LINE){
-      glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_l );
-       // habilitar uso de array de col.
+   if(polygonMode[0]==GL_POINT){
+     if ( id_vbo_p!=0){
+    glPointSize(	3.0f);
+    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_p );
+   //
+    glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
+    glBindBuffer ( GL_ARRAY_BUFFER , 0);
+    glEnableClientState( GL_COLOR_ARRAY );
+    }
+   }
+   if(polygonMode[0]==GL_LINE){
+     if ( id_vbo_l!=0){
+    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_l );
+     // habilitar uso de array de col.
+    glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
+    glBindBuffer ( GL_ARRAY_BUFFER , 0);
+    glEnableClientState( GL_COLOR_ARRAY );
+  }
+  }
+  if(polygonMode[0]==GL_FILL){
+    if ( id_vbo_c!=0){
+      glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_c );
+    // habilitar uso de array de col.
       glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
       glBindBuffer ( GL_ARRAY_BUFFER , 0);
       glEnableClientState( GL_COLOR_ARRAY );
     }
-    if(polygonMode[0]==GL_FILL){
 
-      glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_c );
-      // habilitar uso de array de col.
-      glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
-      glBindBuffer ( GL_ARRAY_BUFFER , 0);
-      glEnableClientState( GL_COLOR_ARRAY );
+    }
+}
+    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
+   // usar como buffer de vertices el actualmente activo
+    glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );
+    // deactivar buffer: VBO de vértices.
+     glBindBuffer ( GL_ARRAY_BUFFER , 0 );
+    // habilitar el uso de tabla de vértices
+    glEnableClientState ( GL_VERTEX_ARRAY );
 
+    if(glIsEnabled(GL_LIGHTING)){
+		//Habilitar uso de la tablade normales
+    this->material.aplicar();
+		glEnableClientState(GL_NORMAL_ARRAY);
+		//activar vbo de normales
+		glBindBuffer(GL_ARRAY_BUFFER,id_vbo_nv);
+		//usar como buffer de normales el actualmente activo
+		glNormalPointer(GL_FLOAT,0,0);
+		//desactivar el uso de la tabla de normales
+		glBindBuffer(GL_ARRAY_BUFFER,0);
 
-      }
-  }
+    this->material.aplicar();
+	}
 
-	if (textura != nullptr) {
+  if (textura != nullptr&&!seleccion) {
 		textura->activar();
 		glEnable( GL_TEXTURE_2D );
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glTexCoordPointer( 2, GL_FLOAT, 0, ct.data());
 	}
-  glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
- // usar como buffer de vertices el actualmente activo
-  glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );
-  // deactivar buffer: VBO de vértices.
-   glBindBuffer ( GL_ARRAY_BUFFER , 0 );
-  // habilitar el uso de tabla de vértices
-  glEnableClientState ( GL_VERTEX_ARRAY );
+
   //
   // activar buffer: VBO de triángulos
   glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , id_vbo_tri );
@@ -121,19 +132,21 @@ void Malla3D::draw()
   //glPolygonMode(GL_FRONT, GL_POINT);
   glDrawElements ( GL_TRIANGLES , 3*f.size() , GL_UNSIGNED_INT , 0 ) ;
 
-  if (textura != nullptr) {
-	  glDisable( GL_TEXTURE_2D );
-	  glDisable(GL_TEXTURE_COORD_ARRAY);
-  }
+
   // desactivar buffer: VBO de triángulos
   glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , 0 );
   // desactivar uso de array de vértices
   glDisableClientState ( GL_VERTEX_ARRAY );
   glDisableClientState ( GL_COLOR_ARRAY );
-  glDisableClientState(GL_NORMAL_ARRAY);
-  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-  //glDisable( GL_TEXTURE_2D );
+  if(glIsEnabled(GL_LIGHTING)){
+    glDisableClientState(GL_NORMAL_ARRAY);
   }
+  if(textura != nullptr&&!seleccion){
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisable( GL_TEXTURE_2D );
+  }
+
+
 }
 void Malla3D::calcularNormales(){
 
