@@ -28,9 +28,9 @@
 class Cabeza
 {
 private:
-  //Esfera * cara=nullptr;
+  Esfera * cara=nullptr;
   Cilindro  *cuello=nullptr ;
-  ObjPLY  *cara;//ObjPLY("./plys/beethoven.ply");
+  //ObjPLY  *cara;//ObjPLY("./plys/beethoven.ply");
   public :
   Cabeza();
   void dibuja(float rotocarax,float rotocaray,float rotocaraz);

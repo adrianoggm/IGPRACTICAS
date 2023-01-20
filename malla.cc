@@ -43,6 +43,7 @@ void Malla3D::draw()
      id_vbo_c=CrearVBO(GL_ARRAY_BUFFER,c.size()*sizeof(Tupla3f),c.data());
     id_vbo_l=CrearVBO(GL_ARRAY_BUFFER,l.size()*sizeof(Tupla3f),l.data());
     id_vbo_p=CrearVBO(GL_ARRAY_BUFFER,p.size()*sizeof(Tupla3f),p.data());
+    creaVBOseleccion();
    }
    if(id_vbo_nv==0 && nv.size()>0)
    {
@@ -236,4 +237,12 @@ void Malla3D::drawselec(){
 
 
   seleccion=false;
+}
+void Malla3D::editarcolor(Tupla3f color){
+  c.clear();
+  id_vbo_c=0;
+  for(int i =0; i<f.size();i++){
+    c.push_back(color);
+  }
+
 }

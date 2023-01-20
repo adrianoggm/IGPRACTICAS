@@ -57,7 +57,7 @@ class Escena
    bool modoluces=false;
    bool animacion=false;
    int gradolib;
-   ObjPLY dodge =ObjPLY("./plys/big_dodge.ply");
+   ObjPLY beethoven =ObjPLY("./plys/beethoven.ply");
    //OBJETOS DE LA ESCENA
    ObjRevolucion * peon1=nullptr;
    ObjRevolucion * peon=nullptr;

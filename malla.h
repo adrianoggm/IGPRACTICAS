@@ -33,6 +33,7 @@ class Malla3D
    void setMaterial(Material m);
    void setTextura(const std::string & archivo);
    void drawselec();
+   void editarcolor(Tupla3f color);
    protected:
 
 

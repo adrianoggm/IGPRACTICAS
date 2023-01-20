@@ -34,5 +34,9 @@ const float radio ){
       printf("PUNTOS PERFIL  \n");
     */
     crearMalla(perfil,num_instancias_perf,100);
+    c.clear();
 
+    for(int i =0; i<f.size();i++){
+      c.push_back(Tupla3f(1.0,1.0,1.0));
+    }
 };

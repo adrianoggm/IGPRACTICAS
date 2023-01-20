@@ -32,11 +32,11 @@ Escena::Escena()
     // crear los objetos de la escena....
     // .......completar: ...
     // .....
-    piramide= new PiramidePentagonal(30.0,25.0);
+    piramide= new PiramidePentagonal(135.0,45.0);
     cubo = new Cubo(40.0);
     peon =new ObjRevolucion("./plys/peon.ply",10,100);
     tetraedro=new Tetraedro(70);
-    //jugador1=new Jugador();
+    jugador1=new Jugador();
     cilindro=new Cilindro(11,35,50,25);//num_vert_perfil ,const int num_instancias_perf ,const float altura ,const float radio
     cuadro= new Cuadro(50.0);
     //cilindro.draw();
@@ -117,7 +117,7 @@ void Escena::dibujar()
 
 
   if(animacion){
-    //jugador1->animacion();
+    jugador1->animacion();
 
   }
 if(modoluces){
@@ -149,83 +149,42 @@ if(modoluces){
     else{
           glDisable(luzdire->id);
     }
-    /*
     glPushMatrix ();
+
     glTranslatef (-100,-80,-100);
     cubo->draw();
     glPopMatrix ();
+
     glPushMatrix ();
-    //cilindro->draw();
+
     glRotatef(-90,1,0,0);
-    glScalef(17,17,1);
+    glScalef(25,25,1);
     glTranslatef(-25,-25,-80);
 
     cuadro->draw();
     //esfera->draw();
     glPopMatrix ();
     glPushMatrix ();
-    //glTranslatef (100,50,-100);
-    cilindro->draw();
-    glTranslatef (100,100,50);
-
+      glTranslatef (200,0,200);
+      glScalef(60,60,60);
+      peon->draw();
     glPopMatrix ();
 
-    */
     glPushMatrix ();
-
-    glScalef(10,10,10);
-    //glTranslatef (1,1.4,0);
-    peon->draw();
-    glPopMatrix ();
-    /*
-    glPushMatrix ();
-    //glTranslatef (100,50,-100);
+    glTranslatef (-200,-80,200);
+    glRotatef(180,1.0,0.0,0.0);
     cono->draw();
-    glPopMatrix ();*/
-    ////jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
-
-      //jugador1->draw();
-/*
-    glPushMatrix ();
-
-    glScalef(17,17,17);
-    glTranslatef (1,1.4,0);
-    peon1->draw();
     glPopMatrix ();
-
     glPushMatrix ();
-    glTranslatef (0,0,50);
-    glScalef(17,17,17);
-    //glTranslatef (1,1.4,0);
-    peon->draw();
-    glPopMatrix ();
 
-    glPushMatrix ();
-    glTranslatef (-50,0,0);
+    glTranslatef (200,-80,-200);
     piramide->draw();
     glPopMatrix ();
-
+    //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
     glPushMatrix ();
-    glTranslatef (-100,0,100);
-    cubo->draw();
+    glRotatef(180,0,1.0,0.0);
+      jugador1->draw();
     glPopMatrix ();
-
-    glPushMatrix ();
-    glTranslatef (100,0,50);
-    esfera->draw();
-    glPopMatrix ();
-
-
-    glPushMatrix ();
-    //glTranslatef (100,50,-100);
-    cono->draw();
-    glPopMatrix ();
-    //...
-    glPushMatrix ();
-    glTranslatef (-100,50,-100);
-    cilindro->draw();
-    glPopMatrix ();
-    */
 
 }
 else{
@@ -236,210 +195,132 @@ else{
 
         glPolygonMode(GL_FRONT,GL_FILL);
 
+        glPushMatrix ();
+
+        glTranslatef (-100,-80,-100);
+        cubo->draw();
+        glPopMatrix ();
 
         glPushMatrix ();
-        glTranslatef (-100,-80,-100);
-        //cubo->draw();
-        glPopMatrix ();
-        glPushMatrix ();
-        //cilindro->draw();
+
         glRotatef(-90,1,0,0);
-        glScalef(17,17,1);
+        glScalef(25,25,1);
         glTranslatef(-25,-25,-80);
 
         cuadro->draw();
         //esfera->draw();
         glPopMatrix ();
         glPushMatrix ();
-        //glTranslatef (100,50,-100);
-        //cilindro->draw();
-        glPopMatrix ();
-        glPushMatrix ();
-        //glTranslatef (100,100,50);
-        //glScalef(4,4,4);
-        //glTranslatef (1,1.4,0);
-        peon->draw();
-        glPopMatrix ();
-        /*
-        glPushMatrix ();
-        //glTranslatef (100,50,-100);
-        cono->draw();
-        glPopMatrix ();*/
-        ////jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
-
-          //jugador1->draw();
-
-        /*
-        //jugador1->dibuja(-90,25,0,0,-15,
-        50,0,20,0,-15,
-        0,0,0,0,0,0,
-        0,-10,-15,0,0,50,Tupla3f (0,0,0),
-        0,0,0);
-
-        //jugador1->dibuja(-90,-10,0,0,-15,
-        45,0,-25,0,-15,
-        0,0,0,0,0,0,
-        0,10,56,30,0,50,Tupla3f (0,0,0),
-        0,0,0);
-        */
-        /*
-        tetraedro->draw();
-        glPushMatrix ();
-        glTranslatef (50,0,50);
-        cubo->draw();
+          glTranslatef (200,0,200);
+          glScalef(60,60,60);
+          peon->draw();
         glPopMatrix ();
 
         glPushMatrix ();
-        glTranslatef (-100,0,100);
-        // dibujar el primer objeto
-        esfera->draw();
-        glPopMatrix ();
-
-        glPushMatrix ();
-        //glTranslatef (100,50,-100);
+        glTranslatef (-200,-80,200);
+        glRotatef(180,1.0,0.0,0.0);
         cono->draw();
         glPopMatrix ();
-        //...
         glPushMatrix ();
-        glTranslatef (-100,50,-100);
-        cilindro->draw();
+
+        glTranslatef (200,-80,-200);
+        piramide->draw();
+        glPopMatrix ();
+        //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+        glPushMatrix ();
+        glRotatef(180,0,1.0,0.0);
+          jugador1->draw();
         glPopMatrix ();
 
-        glPushMatrix ();
-        glTranslatef (0,100,0);
-        glScalef(17,17,17);
-        //dodge.draw();//peon->draw();
-        glPopMatrix ();
-      */
+
 
       }
       if(modolin){
 
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        piramide->draw();
         glPushMatrix ();
-        //cilindro->draw();
-        glRotatef(-90,1,0,0);
-        glScalef(17,17,1);
-        glTranslatef(-25,-25,-80);
 
-        cuadro->draw();
-        //esfera->draw();
-        glPopMatrix ();
-
-        glPushMatrix ();
         glTranslatef (-100,-80,-100);
         cubo->draw();
         glPopMatrix ();
 
         glPushMatrix ();
-        //glTranslatef (100,50,-100);
-        cilindro->draw();
+
+        glRotatef(-90,1,0,0);
+        glScalef(25,25,1);
+        glTranslatef(-25,-25,-80);
+
+        cuadro->draw();
+        //esfera->draw();
         glPopMatrix ();
         glPushMatrix ();
-
-        glTranslatef (100,100,50);
-        glScalef(30,30,30);
-        //glTranslatef (1,1.4,0);
-        peon->draw();
-        glPopMatrix ();
-          //jugador1->draw();
-
-        /*
-        tetraedro->draw();
-
-        glPushMatrix ();
-        glTranslatef (50,0,50);
-        cubo->draw();
-        glPopMatrix ();
-
-
-        glPushMatrix ();
-        glTranslatef (-100,0,100);
-        // dibujar el primer objeto
-        esfera->draw();
+          glTranslatef (200,0,200);
+          glScalef(60,60,60);
+          peon->draw();
         glPopMatrix ();
 
         glPushMatrix ();
-        //glTranslatef (100,50,-100);
+        glTranslatef (-200,-80,200);
+        glRotatef(180,1.0,0.0,0.0);
         cono->draw();
         glPopMatrix ();
-        //...
         glPushMatrix ();
-        glTranslatef (-100,50,-100);
-        cilindro->draw();
-        glPopMatrix ();
 
-        glPushMatrix ();
-        glTranslatef (0,100,0);
-        glScalef(17,17,17);
-        //peon->draw();
-        //dodge.draw();
+        glTranslatef (200,-80,-200);
+        piramide->draw();
         glPopMatrix ();
-        */
+        //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+        glPushMatrix ();
+        glRotatef(180,0,1.0,0.0);
+          jugador1->draw();
+        glPopMatrix ();
       }
       if(modovert){
 
           glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-          piramide->draw();
           glPushMatrix ();
+
           glTranslatef (-100,-80,-100);
           cubo->draw();
           glPopMatrix ();
+
           glPushMatrix ();
-          //cilindro->draw();
+
           glRotatef(-90,1,0,0);
-          glScalef(17,17,1);
+          glScalef(25,25,1);
           glTranslatef(-25,-25,-80);
 
           cuadro->draw();
           //esfera->draw();
           glPopMatrix ();
           glPushMatrix ();
-          //glTranslatef (100,50,-100);
-          cilindro->draw();
-          glPopMatrix ();
-          glPushMatrix ();
-
-
-
-          glTranslatef (100,100,50);
-          //glTranslatef (1,1.4,0);
-          glScalef(9,9,9);
-          peon->draw();
-          glPopMatrix ();
-          //jugador1->draw();
-
-          /*
-          tetraedro->draw();
-          glPushMatrix ();
-          glTranslatef (50,0,50);
-          cubo->draw();
-          glPopMatrix ();
-          glPushMatrix ();
-          glTranslatef (-100,0,100);
-          // dibujar el primer objeto
-          esfera->draw();
+            glTranslatef (200,0,200);
+            glScalef(60,60,60);
+            peon->draw();
           glPopMatrix ();
 
           glPushMatrix ();
-          //glTranslatef (100,50,-100);
+          glTranslatef (-200,-80,200);
+          glRotatef(180,1.0,0.0,0.0);
           cono->draw();
           glPopMatrix ();
-          //...
           glPushMatrix ();
-          glTranslatef (-100,50,-100);
-          cilindro->draw();
+
+          glTranslatef (200,-80,-200);
+          piramide->draw();
+          glPopMatrix ();
+          //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+          glPushMatrix ();
+          glRotatef(180,0,1.0,0.0);
+            jugador1->draw();
           glPopMatrix ();
 
           glPushMatrix ();
-          glTranslatef (0,100,0);
-          glScalef(17,17,17);
-          //peon->draw();
-          //dodge.draw();
+          glScalef(60,60,60);
+          glTranslatef (0,-80,200);
+          beethoven.draw();
           glPopMatrix ();
-          */
       }
     }
 
@@ -658,7 +539,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
             case 'M':
               animacion=false;
-              //jugador1->resetJugador();
+              jugador1->resetJugador();
                 if(!animacion){
                   modoMenu=SELGRADOLIB;
                 }
@@ -684,7 +565,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                         break ;
 /*            case 'N':
             if(animacion==true){
-              ////jugador1->resetJugador();
+              //jugador1->resetJugador();
                   animacion=false;
 
             }
@@ -698,24 +579,24 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
                   if(animacion){
 
-                      //jugador1->setincremento(0.2);
+                      jugador1->setincremento(0.2);
 
                      }
                      else{
                        if(modoMenu==SELGRADOLIB)
-                        //jugador1->setgradolibertad(gradolib,5);
+                        jugador1->setgradolibertad(gradolib,5);
                      }
                      break ;
               case '-':
 
                     if(animacion){
 
-                        //jugador1->setincremento(-0.2);
+                        jugador1->setincremento(-0.2);
 
                     }
                     else{
                         if(modoMenu==SELGRADOLIB)
-                            //jugador1->setgradolibertad(gradolib,-5);
+                            jugador1->setgradolibertad(gradolib,-5);
                     }
 
 
@@ -885,6 +766,24 @@ void Escena::clickRaton(int boton, int status, int x, int y){
 
 
 void Escena::dibujar_seleccion(int x, int y){
+  bool luz_activada=false;
+  bool textura_activada=false;
+  bool dither_activado=false;
+  if(glIsEnabled(GL_LIGHTING)){
+     glDisable(GL_LIGHTING);
+     luz_activada=true;
+  }
+  if(glIsEnabled(GL_TEXTURE_2D)){
+     glDisable(GL_TEXTURE_2D);
+    textura_activada=true;
+
+  }
+
+  if(glIsEnabled(GL_DITHER)){
+     glDisable(GL_DITHER);
+     dither_activado=true;
+  }
+    dibujar();
    GLint viewport[4];
    //glColor3ub pixel[3];
    GLfloat pixel[3];
@@ -892,14 +791,19 @@ void Escena::dibujar_seleccion(int x, int y){
    glReadPixels(x,viewport[3]-y,1,1,GL_RGB,GL_FLOAT,pixel);
   // seleccionables objetoadibujar=NOSEL;
 
+
   Tupla3f color = {pixel[0],pixel[1],pixel[2]};
    printf("Color obtenido \n");
 
+     printf("%f  ,",color[0]);
+     printf("%f ,",color[1]);
+     printf("%f \n",color[2]);
+
    if(color(0) == 0 && color(1) == 255 && color(2) == 0){
-      std::cout << "Seleccionado el jugador1" << std::endl;
-      camaras[camaraActiva].setSeleccionado(JUGADOR);
+      std::cout << "Seleccionado el jugador1" << std::endl;//0.498039  ,0.000000 ,0.498039
+      camaras[camaraActiva].setSeleccionado(CONO);
       camaras[camaraActiva].mover(0.0,0.0,0.0);
-    //  objetoadibujar=JUGADOR;
+    //  objetoadibujar=CONO;
    } else if(color(0) == 0.0 && color(1) == 0.0 && color(2) == 0.0){
       std::cout << "Seleccionado el edificio derecho" << std::endl;
       camaras[camaraActiva].setSeleccionado(PEON);
@@ -912,14 +816,12 @@ void Escena::dibujar_seleccion(int x, int y){
       //objetoadibujar=PIRAMIDE;
    } else {
       camaras[camaraActiva].setSeleccionado(NOSEL);
+      //camaras[camaraActiva].mover(-300.0,50.0,-500.0); a por defecto
       //objetoadibujar=NOSEL;
    }
 
    //OBTENIDO EL OBJETO SELECCIONADO Y CENTRADA LA CAMARA
    change_observer();
-   bool luz_activada=false;
-   bool textura_activada=false;
-   bool dither_activado=false;
 
 
 
@@ -929,24 +831,11 @@ void Escena::dibujar_seleccion(int x, int y){
 
          glPushMatrix();
          //ITEM A DIBUJAR
-         if(camaras[camaraActiva].getSeleccionado()==JUGADOR){
+         if(camaras[camaraActiva].getSeleccionado()==CONO){
 
-           if(glIsEnabled(GL_LIGHTING)){
-              glDisable(GL_LIGHTING);
-              luz_activada=true;
-           }
-           if(glIsEnabled(GL_TEXTURE_2D)){
-              glDisable(GL_TEXTURE_2D);
-             textura_activada=true;
 
-           }
 
-           if(glIsEnabled(GL_DITHER)){
-              glDisable(GL_DITHER);
-              dither_activado=true;
-           }
-
-         //jugador1->draw();
+         cono->drawselec();
           printf("Co \n");
          }
          glPopMatrix();
@@ -969,30 +858,31 @@ void Escena::dibujar_seleccion(int x, int y){
               glDisable(GL_DITHER);
               dither_activado=true;
            }
-           piramide->draw();
+           piramide->drawselec();
            printf("Co \n");
            }
            glPopMatrix();
 
 
              glPushMatrix();
-             if(glIsEnabled(GL_LIGHTING)){
-                glDisable(GL_LIGHTING);
-                luz_activada=true;
-             }
-             if(glIsEnabled(GL_TEXTURE_2D)){
-                glDisable(GL_TEXTURE_2D);
-               textura_activada=true;
 
-             }
-
-             if(glIsEnabled(GL_DITHER)){
-                glDisable(GL_DITHER);
-                dither_activado=true;
-             }
              if(camaras[camaraActiva].getSeleccionado()==PEON){
+               if(glIsEnabled(GL_LIGHTING)){
+                  glDisable(GL_LIGHTING);
+                  luz_activada=true;
+               }
+               if(glIsEnabled(GL_TEXTURE_2D)){
+                  glDisable(GL_TEXTURE_2D);
+                 textura_activada=true;
+
+               }
+
+               if(glIsEnabled(GL_DITHER)){
+                  glDisable(GL_DITHER);
+                  dither_activado=true;
+               }
              //ITEM A DIBUJAR
-             //peon1->draw();
+             peon->drawselec();
              printf("Co \n");
              }
              glPopMatrix();

@@ -23,6 +23,12 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, int num_instan,float p
     perfil=perf;
     num_instancias=num_instan;
     crearMalla(perfil,num_instan,porcentaje);
+    c.clear();
+
+    for(int i =0; i<f.size();i++){
+
+        c.push_back(Tupla3f(0.0,0.0,0.0));
+    }
 
 }
 // *****************************************************************************
@@ -38,7 +44,7 @@ ObjRevolucion::ObjRevolucion(std::vector<Tupla3f> archivo, int num_instan,float 
 
 void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_instan,float porcentaje) {
 
-
+  num_instancias=num_instan;
   float epsilon=0.0001;//Precision del intervalo en el que decimos que es 0
   std::vector<Tupla3f> vori=perfil_original;
 
@@ -193,11 +199,6 @@ distancias[0]=0.0f;
 for(int i=1;i<perfil.size();i++){
   distancias[i]=distancias[i-1]+distanciaVertice(perfil[i-1],perfil[i]);
 }
-
-for(int i=0;i<perfil.size();i++){
-  printf(" %f \n",distancias[i]);
-}
-
 
  for(int j=0;j<perfil.size();j++){ // vertices del perfil
        t=1.0f*distancias[j]/(distancias[perfil.size()-1]*1.0f);
