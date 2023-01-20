@@ -70,7 +70,8 @@ Escena::Escena()
     peon->setMaterial(negro);
     cuadro->setMaterial(greenrub);
     piramide->setMaterial(negro);
-    cono->setMaterial(pearl);
+    cono->setMaterial(blanco);
+    piramide->setMaterial(pearl);
     cilindro->setTextura("./text-lata-1.jpg");
     cubo->setTextura("./text-lata-1.jpg");
     cuadro->setTextura("./textura-hierba-verde.jpg");
@@ -124,22 +125,9 @@ if(modoluces){
     glEnable(GL_NORMALIZE);
     //luzdire->activar();
     glShadeModel(GL_SMOOTH);
-    //
-    //luzposi->activar();//creo que es porque las declaro como luces negras
+
     GLfloat lmodel_ambient[] = { 0, 0, 0, 1.0 }; //La pongo como luz negra y asi intento ver porque no funcionan mis luces
-    //glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
-/*
-    Tupla4f ambiente_pearl(0.25,0.20725,0.20725, 1.0);
-    Tupla4f especular_pearl(0.296648,0.296648, 0.296648, 1.0);
-    Tupla4f difuso_pearl(	1, 0.829,0.829, 1.0);
-    Tupla4f ambiente_esmerald(0.0215,0.1745,0.0215, 1.0);
-    Tupla4f especular_esmerald(0.07568, 	0.61424, 0.07568, 1.0);
-    Tupla4f difuso_esmerald(	0.633, 0.727811, 0.633, 1.0);
-    Material  esmerald = Material(ambiente_esmerald,especular_esmerald,difuso_esmerald, 128.0*0.6);
-    Material pearl = Material(ambiente_pearl,especular_pearl,difuso_pearl,0.088*128);
-    Material negro (Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),128.f);
-    Material blanco (Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),128.f);
-*///1.0f,1.0f,1.0f
+
 
     if(luzposi->encendida==true){
       luzposi->activar();
@@ -161,6 +149,7 @@ if(modoluces){
     else{
           glDisable(luzdire->id);
     }
+    /*
     glPushMatrix ();
     glTranslatef (-100,-80,-100);
     cubo->draw();
@@ -177,6 +166,16 @@ if(modoluces){
     glPushMatrix ();
     //glTranslatef (100,50,-100);
     cilindro->draw();
+    glTranslatef (100,100,50);
+
+    glPopMatrix ();
+
+    */
+    glPushMatrix ();
+
+    glScalef(10,10,10);
+    //glTranslatef (1,1.4,0);
+    peon->draw();
     glPopMatrix ();
     /*
     glPushMatrix ();
@@ -197,7 +196,7 @@ if(modoluces){
     glPushMatrix ();
     glTranslatef (0,0,50);
     glScalef(17,17,17);
-    glTranslatef (1,1.4,0);
+    //glTranslatef (1,1.4,0);
     peon->draw();
     glPopMatrix ();
 
@@ -236,11 +235,11 @@ else{
 
 
         glPolygonMode(GL_FRONT,GL_FILL);
-        //piramide->draw();
+
 
         glPushMatrix ();
         glTranslatef (-100,-80,-100);
-        cubo->draw();
+        //cubo->draw();
         glPopMatrix ();
         glPushMatrix ();
         //cilindro->draw();
@@ -253,7 +252,13 @@ else{
         glPopMatrix ();
         glPushMatrix ();
         //glTranslatef (100,50,-100);
-        cilindro->draw();
+        //cilindro->draw();
+        glPopMatrix ();
+        glPushMatrix ();
+        //glTranslatef (100,100,50);
+        //glScalef(4,4,4);
+        //glTranslatef (1,1.4,0);
+        peon->draw();
         glPopMatrix ();
         /*
         glPushMatrix ();
@@ -312,7 +317,7 @@ else{
 
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        //piramide->draw();
+        piramide->draw();
         glPushMatrix ();
         //cilindro->draw();
         glRotatef(-90,1,0,0);
@@ -331,6 +336,13 @@ else{
         glPushMatrix ();
         //glTranslatef (100,50,-100);
         cilindro->draw();
+        glPopMatrix ();
+        glPushMatrix ();
+
+        glTranslatef (100,100,50);
+        glScalef(30,30,30);
+        //glTranslatef (1,1.4,0);
+        peon->draw();
         glPopMatrix ();
           //jugador1->draw();
 
@@ -370,7 +382,7 @@ else{
       if(modovert){
 
           glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-          //piramide->draw();
+          piramide->draw();
           glPushMatrix ();
           glTranslatef (-100,-80,-100);
           cubo->draw();
@@ -388,7 +400,15 @@ else{
           //glTranslatef (100,50,-100);
           cilindro->draw();
           glPopMatrix ();
+          glPushMatrix ();
 
+
+
+          glTranslatef (100,100,50);
+          //glTranslatef (1,1.4,0);
+          glScalef(9,9,9);
+          peon->draw();
+          glPopMatrix ();
           //jugador1->draw();
 
           /*
@@ -852,7 +872,7 @@ void Escena::clickRaton(int boton, int status, int x, int y){
       //Seleccionar objeto
       if(status == GLUT_DOWN){
          //dibujar_seleccion();
-         procesar_click(x,y);
+         dibujar_seleccion(x,y);
       }
    } else if (boton == 3){
       camaras[camaraActiva].zoom(1.2);
@@ -862,83 +882,133 @@ void Escena::clickRaton(int boton, int status, int x, int y){
       change_projection(1.0);
    }
 }
-void Escena::procesar_click(int x, int y){
-  GLint viewport[4];
-  GLfloat pixel[3];
-  glGetIntegerv(GL_VIEWPORT,viewport);
-  glReadPixels(x,viewport[3]-y,1,1,GL_RGB,GL_FLOAT,pixel);
+
+
+void Escena::dibujar_seleccion(int x, int y){
+   GLint viewport[4];
+   //glColor3ub pixel[3];
+   GLfloat pixel[3];
+   glGetIntegerv(GL_VIEWPORT,viewport);
+   glReadPixels(x,viewport[3]-y,1,1,GL_RGB,GL_FLOAT,pixel);
+  // seleccionables objetoadibujar=NOSEL;
 
   Tupla3f color = {pixel[0],pixel[1],pixel[2]};
+   printf("Color obtenido \n");
 
-  if(color(0) == 0.0 && color(1) == 1.0 && color(2) == 0.0){
-     std::cout << "Seleccionada la torre" << std::endl;
-     camaras[camaraActiva].setSeleccionado(TORRE);
-     camaras[camaraActiva].mover(0.0,50.0,150.0);
-  } else if(color(0) == 0.0 && color(1) == 0.0 && color(2) == 0.0){
-     std::cout << "Seleccionado el edificio derecho" << std::endl;
-     camaras[camaraActiva].setSeleccionado(EDIFD);
-     camaras[camaraActiva].mover(300.0,50.0,-500.0);
-  } else if(color(0) == 0.0 && color(1) == 0.0 && color(2) == 1.0){
-     std::cout << "Seleccionado el edificio izquierdo" << std::endl;
-     camaras[camaraActiva].setSeleccionado(EDIFI);
-     camaras[camaraActiva].mover(-300.0,50.0,-500.0);
-  } else if(color(0) == 1.0 && color(1) == 0.0 && color(2) == 1.0){
-     std::cout << "Seleccionado el edificio central" << std::endl;
-     camaras[camaraActiva].setSeleccionado(EDIFC);
-     camaras[camaraActiva].mover(0.0,50.0,-500.0);
-  } else if(color(0) == 1.0 && color(1) == 1.0 && color(2) == 0.0){
-     std::cout << "Seleccionado el robot" << std::endl;
-     camaras[camaraActiva].setSeleccionado(ROBOT);
-     camaras[camaraActiva].mover(0.0,50.0,-100.0);
-  } else {
-     camaras[camaraActiva].setSeleccionado(NOSEL);
-  }
-}
+   if(color(0) == 0 && color(1) == 255 && color(2) == 0){
+      std::cout << "Seleccionado el jugador1" << std::endl;
+      camaras[camaraActiva].setSeleccionado(JUGADOR);
+      camaras[camaraActiva].mover(0.0,0.0,0.0);
+    //  objetoadibujar=JUGADOR;
+   } else if(color(0) == 0.0 && color(1) == 0.0 && color(2) == 0.0){
+      std::cout << "Seleccionado el edificio derecho" << std::endl;
+      camaras[camaraActiva].setSeleccionado(PEON);
+      camaras[camaraActiva].mover(300.0,50.0,-500.0);
+      //objetoadibujar=PEON;
+   } else if(color(0) == 0.0 && color(1) == 0.0 && color(2) == 1.0){
+      std::cout << "Seleccionado el edificio izquierdo" << std::endl;
+      camaras[camaraActiva].setSeleccionado(PIRAMIDE);
+      camaras[camaraActiva].mover(-300.0,50.0,-500.0);
+      //objetoadibujar=PIRAMIDE;
+   } else {
+      camaras[camaraActiva].setSeleccionado(NOSEL);
+      //objetoadibujar=NOSEL;
+   }
 
-void Escena::dibujar_seleccion(){
-   color colsec;
-   GLenum modo_dibujado_sel = GL_FILL;
-   dibujo tipo_draw_sel = SELECT;
-
+   //OBTENIDO EL OBJETO SELECCIONADO Y CENTRADA LA CAMARA
    change_observer();
    bool luz_activada=false;
    bool textura_activada=false;
    bool dither_activado=false;
 
-   if(glIsEnabled(GL_LIGHTING)){
-      glDisable(GL_LIGHTING);
-      luz_activada=true;
-   }
-   if(glIsEnabled(GL_TEXTURE_2D)){
-      glDisable(GL_TEXTURE_2D);
-     textura_activada=true;
 
-   }
-
-   if(glIsEnabled(GL_DITHER)){
-      glDisable(GL_DITHER);
-      dither_activado=true;
-   }
 
    glPushMatrix();
-      glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-      glPushMatrix();
-         glScalef(2.0,2.0,2.0);
-         glTranslatef(0,0,100);
+          glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+
+         glPushMatrix();
          //ITEM A DIBUJAR
-      glPopMatrix();
+         if(camaras[camaraActiva].getSeleccionado()==JUGADOR){
+
+           if(glIsEnabled(GL_LIGHTING)){
+              glDisable(GL_LIGHTING);
+              luz_activada=true;
+           }
+           if(glIsEnabled(GL_TEXTURE_2D)){
+              glDisable(GL_TEXTURE_2D);
+             textura_activada=true;
+
+           }
+
+           if(glIsEnabled(GL_DITHER)){
+              glDisable(GL_DITHER);
+              dither_activado=true;
+           }
+
+         //jugador1->draw();
+          printf("Co \n");
+         }
+         glPopMatrix();
+
+
+           glPushMatrix();
+             if(camaras[camaraActiva].getSeleccionado()==PIRAMIDE){
+           //ITEM A DIBUJAR
+           if(glIsEnabled(GL_LIGHTING)){
+              glDisable(GL_LIGHTING);
+              luz_activada=true;
+           }
+           if(glIsEnabled(GL_TEXTURE_2D)){
+              glDisable(GL_TEXTURE_2D);
+             textura_activada=true;
+
+           }
+
+           if(glIsEnabled(GL_DITHER)){
+              glDisable(GL_DITHER);
+              dither_activado=true;
+           }
+           piramide->draw();
+           printf("Co \n");
+           }
+           glPopMatrix();
+
+
+             glPushMatrix();
+             if(glIsEnabled(GL_LIGHTING)){
+                glDisable(GL_LIGHTING);
+                luz_activada=true;
+             }
+             if(glIsEnabled(GL_TEXTURE_2D)){
+                glDisable(GL_TEXTURE_2D);
+               textura_activada=true;
+
+             }
+
+             if(glIsEnabled(GL_DITHER)){
+                glDisable(GL_DITHER);
+                dither_activado=true;
+             }
+             if(camaras[camaraActiva].getSeleccionado()==PEON){
+             //ITEM A DIBUJAR
+             //peon1->draw();
+             printf("Co \n");
+             }
+             glPopMatrix();
 
 
    glPopMatrix();
-   
+
    if(!glIsEnabled(GL_LIGHTING)&&luz_activada){
-      glDisable(GL_LIGHTING);
+      glEnable(GL_LIGHTING);
    }
+   glPolygonMode(GL_FRONT,GL_FILL);
    if(!glIsEnabled(GL_TEXTURE_2D&&textura_activada)){
-      glDisable(GL_TEXTURE_2D);
+      glEnable(GL_TEXTURE_2D);
    }
 
    if(glIsEnabled(GL_DITHER)&&dither_activado){
-      glDisable(GL_DITHER);
+      glEnable(GL_DITHER);
    }
 }

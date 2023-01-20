@@ -55,7 +55,7 @@ class Jugador
     int n_iteraciones_golpeo;
     int n_iteraciones_fin;
 
-  
+
 
   public :
   Jugador();

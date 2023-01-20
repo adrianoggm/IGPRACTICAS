@@ -51,7 +51,9 @@ void Malla3D::draw()
 
    }
    // activar buffer
-   if ( id_vbo_c!=0 && id_vbo_tri!=0 && id_vbo_ver!=0) {
+
+
+  if ( id_vbo_c!=0 && id_vbo_tri!=0 && id_vbo_ver!=0) {
      GLboolean islight=GL_FALSE;
      glGetBooleanv(GL_LIGHTING,&islight);
     if(islight==GL_TRUE){
@@ -66,6 +68,7 @@ void Malla3D::draw()
 
      }
    else{
+
      GLint polygonMode[2];
      glGetIntegerv(GL_POLYGON_MODE,polygonMode);
 
@@ -103,7 +106,6 @@ void Malla3D::draw()
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glTexCoordPointer( 2, GL_FLOAT, 0, ct.data());
 	}
-
   glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
  // usar como buffer de vertices el actualmente activo
   glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );
@@ -128,6 +130,8 @@ void Malla3D::draw()
   glDisableClientState ( GL_VERTEX_ARRAY );
   glDisableClientState ( GL_COLOR_ARRAY );
   glDisableClientState(GL_NORMAL_ARRAY);
+  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+  //glDisable( GL_TEXTURE_2D );
   }
 }
 void Malla3D::calcularNormales(){
@@ -164,6 +168,7 @@ void Malla3D::calcularNormales(){
 
 }
 void Malla3D::calcularCoordTextura(){
+  // para hacer overwrite desde obj revolucion y seguir llamandola desde malla
 
 }
 void Malla3D::setMaterial(Material m){
@@ -181,10 +186,54 @@ void Malla3D::setTextura(const std::string & archivo){
 	calcularCoordTextura();
 
 }
-/*for(int i=0;i<perfil.size();i++){
-  std::vector<Tupla3f> r(perfil.rbegin(),perfil.rend());
-  perfil.swap(r);
+
+  void Malla3D::creaVBOseleccion(){
+
+    if(id_vbo_seleccion==0)
+    {
+      Tupla3f colorseleccion=Tupla3f(0.3f,0.3,.3f);//un tipo de gris
+      for(int i =0;i<l.size();i++){
+          modoseleccion.push_back(colorseleccion);
+      }
+        id_vbo_seleccion=CrearVBO(GL_ARRAY_BUFFER,modoseleccion.size()*sizeof(Tupla3f),modoseleccion.data());
+    }
+
+  }
+
+void Malla3D::drawselec(){
+  creaVBOseleccion();
+  seleccion=true;
+    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_seleccion );
+     // habilitar uso de array de col.
+    glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
+    glBindBuffer ( GL_ARRAY_BUFFER , 0);
+    glEnableClientState( GL_COLOR_ARRAY );
+
+    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
+   // usar como buffer de vertices el actualmente activo
+    glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );
+    // deactivar buffer: VBO de vértices.
+     glBindBuffer ( GL_ARRAY_BUFFER , 0 );
+    // habilitar el uso de tabla de vértices
+    glEnableClientState ( GL_VERTEX_ARRAY );
     //
-    //printf("%f  ,",perfil[i][1]);
-    //printf(" %f \n",perfil[i][2]);
-  }*/
+    // activar buffer: VBO de triángulos
+    glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , id_vbo_tri );
+    // dibujar con el buffer de índices activo
+    //glPolygonMode(GL_FRONT, GL_POINT);
+    glDrawElements ( GL_TRIANGLES , 3*f.size() , GL_UNSIGNED_INT , 0 ) ;
+
+    if (textura != nullptr) {
+      glDisable( GL_TEXTURE_2D );
+      glDisable(GL_TEXTURE_COORD_ARRAY);
+    }
+    // desactivar buffer: VBO de triángulos
+    glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , 0 );
+    // desactivar uso de array de vértices
+    glDisableClientState ( GL_VERTEX_ARRAY );
+    glDisableClientState ( GL_COLOR_ARRAY );
+    glDisableClientState(GL_NORMAL_ARRAY);
+
+
+  seleccion=false;
+}

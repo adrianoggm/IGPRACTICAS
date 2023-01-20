@@ -2,7 +2,7 @@
 #define OBJCAMARA_H_INCLUDED
 #include "auxiliar.h"
 
-typedef enum {ROBOT, TORRE, EDIFI, EDIFD, EDIFC, NOSEL} seleccionables;
+typedef enum {JUGADOR,PEON,PIRAMIDE, NOSEL} seleccionables;
 
 class Camara{
 private:
@@ -37,9 +37,9 @@ public:
    float getRight() const;
    float getTop() const;
    float getBottom() const;
-  /* seleccionables getSeleccionado() const;
+   seleccionables getSeleccionado() const;
    void setSeleccionado(const seleccionables obj);
-   */
+   
 };
 
 

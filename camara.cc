@@ -126,7 +126,7 @@ void Camara::setBottom(const float l){
 float Camara::getBottom() const{
    return bottom;
 }
-/*
+
 seleccionables Camara::getSeleccionado() const{
    return seleccionado;
 }
@@ -134,4 +134,3 @@ seleccionables Camara::getSeleccionado() const{
 void Camara::setSeleccionado(const seleccionables obj){
    seleccionado = obj;
 }
-*/

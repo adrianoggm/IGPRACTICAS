@@ -92,8 +92,7 @@ class Escena
 	void teclaEspecial( int Tecla1, int x, int y );
   void ratonMovido(int x, int y);
   void clickRaton(int boton, int status, int x, int y);
-  void dibujar_seleccion();
-  void procesar_click(int x, int y);
+  void dibujar_seleccion(int x, int y);
 
   void AnimacionPuntual();
   void AnimacioncolorDireccional();

@@ -18,10 +18,11 @@ ObjRevolucion::ObjRevolucion() {}
 
 ObjRevolucion::ObjRevolucion(const std::string & archivo, int num_instan,float porcentaje) {
    // completar ......(práctica 2)
-
-    ply::read_vertices( archivo,perfil);
-
-    crearMalla(perfil,num_instancias,porcentaje);
+     std::vector<Tupla3f> perf;
+    ply::read_vertices( archivo,perf);
+    perfil=perf;
+    num_instancias=num_instan;
+    crearMalla(perfil,num_instan,porcentaje);
 
 }
 // *****************************************************************************
@@ -30,14 +31,14 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, int num_instan,float p
 
 ObjRevolucion::ObjRevolucion(std::vector<Tupla3f> archivo, int num_instan,float porcentaje) {
     perfil=archivo;
+    num_instancias=num_instan;
 
-
-    crearMalla(perfil,num_instancias,porcentaje);
+    crearMalla(perfil,num_instan,porcentaje);
 }
 
 void ObjRevolucion::crearMalla(std::vector<Tupla3f> perfil_original, int num_instan,float porcentaje) {
 
-  num_instancias=num_instan;
+
   float epsilon=0.0001;//Precision del intervalo en el que decimos que es 0
   std::vector<Tupla3f> vori=perfil_original;
 
@@ -157,11 +158,11 @@ for(int i=0;i<f.size();i++){
 }
 printf("EL TAMANO ES %ld \n",vori.size());
 */
-for(int i=0;i<f.size();i++){
-  c.push_back(Tupla3f(0.5f,0.0f,0.5f));
-  p.push_back(Tupla3f(1.0f,0.0f,0.0f));
-  l.push_back(Tupla3f(0.0f,0.0f,1.0f));
-}
+  for(int i=0;i<f.size();i++){
+    c.push_back(Tupla3f(0.5f,0.0f,0.5f));
+    p.push_back(Tupla3f(1.0f,0.0f,0.0f));
+    l.push_back(Tupla3f(0.0f,0.0f,1.0f));
+  }
 
 }
 float ObjRevolucion::distanciaVertice(Tupla3f ant, Tupla3f sig){

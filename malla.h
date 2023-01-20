@@ -32,7 +32,7 @@ class Malla3D
    void calcularNormales();
    void setMaterial(Material m);
    void setTextura(const std::string & archivo);
-
+   void drawselec();
    protected:
 
 
@@ -44,6 +44,7 @@ class Malla3D
    std::vector<Tupla3f> l;
    std::vector<Tupla3f> p;
    std::vector<Tupla3f> nv;
+   std::vector<Tupla3f> modoseleccion;
    int modo_textura=0;//cilindrica por defecto
    Material material;
    GLuint id_vbo_ver=0;
@@ -52,10 +53,12 @@ class Malla3D
    GLuint id_vbo_c=0;
    GLuint id_vbo_l=0;
    GLuint id_vbo_p=0;
+   GLuint id_vbo_seleccion=0;
    std::vector<Tupla2f> ct;
    Textura * textura=nullptr;
    virtual void calcularCoordTextura();
-
+   bool seleccion=false;
+   void creaVBOseleccion();
 
 } ;
 
