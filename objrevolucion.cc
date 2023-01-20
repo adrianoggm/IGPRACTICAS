@@ -165,7 +165,7 @@ for(int i=0;i<f.size();i++){
 printf("EL TAMANO ES %ld \n",vori.size());
 */
   for(int i=0;i<f.size();i++){
-    c.push_back(Tupla3f(0.5f,0.0f,0.5f));
+    c.push_back(Tupla3f(0.4,0.0f,0.4));
     p.push_back(Tupla3f(1.0f,0.0f,0.0f));
     l.push_back(Tupla3f(0.0f,0.0f,1.0f));
   }

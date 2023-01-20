@@ -32,8 +32,9 @@ class Malla3D
    void calcularNormales();
    void setMaterial(Material m);
    void setTextura(const std::string & archivo);
-   void drawselec();
+   void setselec(bool valor);
    void editarcolor(Tupla3f color);
+   void drawespecial();
    protected:
 
 

@@ -42,7 +42,7 @@ Escena::Escena()
     //cilindro.draw();
 
 
-    cono=new Cono(11,35,50,25);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
+    cono=new Cono(11,20,120,55);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
 
 
     esfera=new Esfera(11,35,25);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
@@ -121,10 +121,9 @@ void Escena::dibujar()
 
   }
 if(modoluces){
+  if(!seleccion){
     glEnable( GL_LIGHTING );
-    glEnable(GL_NORMALIZE);
-    //luzdire->activar();
-    glShadeModel(GL_SMOOTH);
+  }
 
     GLfloat lmodel_ambient[] = { 0, 0, 0, 1.0 }; //La pongo como luz negra y asi intento ver porque no funcionan mis luces
 
@@ -183,7 +182,7 @@ if(modoluces){
     //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
     glPushMatrix ();
     glRotatef(180,0,1.0,0.0);
-      jugador1->draw();
+      //jugador1->draw();
     glPopMatrix ();
 
 }
@@ -229,7 +228,7 @@ else{
         //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
         glPushMatrix ();
         glRotatef(180,0,1.0,0.0);
-          jugador1->draw();
+          //jugador1->draw();
         glPopMatrix ();
 
 
@@ -273,7 +272,7 @@ else{
         //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
         glPushMatrix ();
         glRotatef(180,0,1.0,0.0);
-          jugador1->draw();
+          //jugador1->draw();
         glPopMatrix ();
       }
       if(modovert){
@@ -313,7 +312,7 @@ else{
           //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
           glPushMatrix ();
           glRotatef(180,0,1.0,0.0);
-            jugador1->draw();
+            //jugador1->draw();
           glPopMatrix ();
 
           glPushMatrix ();
@@ -323,7 +322,23 @@ else{
           glPopMatrix ();
       }
     }
+    glPushMatrix ();
+      glTranslatef (200,0,200);
+      glScalef(60,60,60);
+      peon->drawespecial();
+    glPopMatrix ();
 
+    glPushMatrix ();
+    glTranslatef (-200,-80,200);
+    glRotatef(180,1.0,0.0,0.0);
+    cono->drawespecial();
+    glPopMatrix ();
+    glPushMatrix ();
+
+    glTranslatef (200,-80,-200);
+    piramide->drawespecial();
+    glPopMatrix ();
+    glPolygonMode(GL_FRONT,GL_FILL);
 }
 
 //**************************************************************************
@@ -769,12 +784,12 @@ void Escena::dibujar_seleccion(int x, int y){
   bool luz_activada=false;
   bool textura_activada=false;
   bool dither_activado=false;
-  /*
+  
   if(glIsEnabled(GL_LIGHTING)){
      glDisable(GL_LIGHTING);
      luz_activada=true;
   }
-  */
+
   if(glIsEnabled(GL_TEXTURE_2D)){
      glDisable(GL_TEXTURE_2D);
     textura_activada=true;
@@ -785,7 +800,9 @@ void Escena::dibujar_seleccion(int x, int y){
      glDisable(GL_DITHER);
      dither_activado=true;
   }
-    //dibujar();
+    seleccion=true;
+    dibujar();
+    seleccion=false;
    GLint viewport[4];
    //glColor3ub pixel[3];
    GLfloat pixel[3];
@@ -800,39 +817,48 @@ void Escena::dibujar_seleccion(int x, int y){
      printf("%f  ,",color[0]);
      printf("%f ,",color[1]);
      printf("%f \n",color[2]);
-
-   if(color(0) == 0 && color(1) == 255 && color(2) == 0){
-      std::cout << "Seleccionado el jugador1" << std::endl;//0.498039  ,0.000000 ,0.498039
+     float epsilon =0.001;
+   if((color(0) >= 0.400000-epsilon&&color(0) <= 0.400000+epsilon) && (color(1) >= 0.000000-epsilon&&color(1) <= 0.000000+epsilon) && (color(2) >= 0.400000-epsilon&&color(2) <= 0.400000+epsilon)){
+      printf("Cono \n");//0.498039  ,0.000000 ,0.498039
       camaras[camaraActiva].setSeleccionado(CONO);
-      camaras[camaraActiva].mover(0.0,0.0,0.0);
+      camaras[camaraActiva].mover(-200,-80,200);
     //  objetoadibujar=CONO;
    } else if(color(0) == 0.0 && color(1) == 0.0 && color(2) == 0.0){
-      std::cout << "Seleccionado el edificio derecho" << std::endl;
+      printf("Peon \n");
       camaras[camaraActiva].setSeleccionado(PEON);
-      camaras[camaraActiva].mover(300.0,50.0,-500.0);
+      camaras[camaraActiva].mover(200,0,200);
+
       //objetoadibujar=PEON;
-   } else if(color(0) == 0.0 && color(1) == 0.0 && color(2) == 1.0){
-      std::cout << "Seleccionado el edificio izquierdo" << std::endl;
+   } else if(color(0) == 0.0 && color(1) == 1.0 && color(2) == 1.0){
+      printf("Piramde \n");
       camaras[camaraActiva].setSeleccionado(PIRAMIDE);
-      camaras[camaraActiva].mover(-300.0,50.0,-500.0);
-      //objetoadibujar=PIRAMIDE;
+      camaras[camaraActiva].mover(200,-80,-200);
+      //objetoadibujar=PIRAMIDE;glTranslatef (;
    } else {
       camaras[camaraActiva].setSeleccionado(NOSEL);
+      camaras[camaraActiva].mover(0.0,0.0,0.0);
       //camaras[camaraActiva].mover(-300.0,50.0,-500.0); a por defecto
       //objetoadibujar=NOSEL;
    }
    //OBTENIDO EL OBJETO SELECCIONADO Y CENTRADA LA CAMARA
    change_observer();
-
+   GLint polygonMode[2];
+   glGetIntegerv(GL_POLYGON_MODE,polygonMode);
    glPushMatrix();
 
 
-   GLint polygonMode[2];
-   glGetIntegerv(GL_POLYGON_MODE,polygonMode);
+
          glPushMatrix();
          //ITEM A DIBUJAR
          if(camaras[camaraActiva].getSeleccionado()==CONO){
-           cono->draw();
+          cono->setselec(true);
+          peon->setselec(false);
+          piramide->setselec(false);
+          glTranslatef (-200,-80,200);
+          glRotatef(180,1.0,0.0,0.0);
+          cono->draw();
+
+
           printf("Co \n");
          }
          glPopMatrix();
@@ -841,7 +867,13 @@ void Escena::dibujar_seleccion(int x, int y){
            glPushMatrix();
              if(camaras[camaraActiva].getSeleccionado()==PIRAMIDE){
            //ITEM A DIBUJAR
+           peon->setselec(false);
+
+           cono->setselec(false);
+           piramide->setselec(true);
+           glTranslatef (200,-80,-200);
            piramide->draw();
+
            printf("Co \n");
            }
            glPopMatrix();
@@ -850,8 +882,19 @@ void Escena::dibujar_seleccion(int x, int y){
              glPushMatrix();
               if(camaras[camaraActiva].getSeleccionado()==PEON){
              //ITEM A DIBUJAR
-              peon->draw();
+             piramide->setselec(false);
+             cono->setselec(false);
+             peon->setselec(true);
+             glTranslatef (200,0,200);
+             glScalef(60,60,60);
+             peon->draw();
+            //  peon->setselec(false);
               printf("Co \n");
+             }
+             if(camaras[camaraActiva].getSeleccionado()==NOSEL){
+              peon->setselec(false);
+              piramide->setselec(false);
+              cono->setselec(false);
              }
              glPopMatrix();
 
@@ -863,6 +906,7 @@ void Escena::dibujar_seleccion(int x, int y){
    }
    */
    glPolygonMode(polygonMode[1],polygonMode[0]);
+
    if(!glIsEnabled(GL_TEXTURE_2D&&textura_activada)){
       glEnable(GL_TEXTURE_2D);
    }

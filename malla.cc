@@ -28,8 +28,8 @@ void Malla3D::draw()
    // completar (práctica 1)
    // .....
    //COMPRUEBO SI NO ESTAN CREADOS LOS ID DE OBJETO DE LOS VBOs
-   calcularNormales();
 
+calcularNormales();
    if(id_vbo_ver==0)
    {
      id_vbo_ver=CrearVBO(GL_ARRAY_BUFFER,v.size()*sizeof(Tupla3f),v.data());
@@ -53,7 +53,7 @@ void Malla3D::draw()
    }
    // activar buffer
   if(seleccion){
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_seleccion );
      // habilitar uso de array de col.
@@ -104,9 +104,12 @@ void Malla3D::draw()
     // habilitar el uso de tabla de vértices
     glEnableClientState ( GL_VERTEX_ARRAY );
 
-    if(glIsEnabled(GL_LIGHTING)){
+    //if(glIsEnabled(GL_LIGHTING)){
 		//Habilitar uso de la tablade normales
-    this->material.aplicar();
+    glEnable(GL_NORMALIZE);
+    //luzdire->activar();
+    glShadeModel(GL_SMOOTH);
+    //this->material.aplicar();
 		glEnableClientState(GL_NORMAL_ARRAY);
 		//activar vbo de normales
 		glBindBuffer(GL_ARRAY_BUFFER,id_vbo_nv);
@@ -116,7 +119,7 @@ void Malla3D::draw()
 		glBindBuffer(GL_ARRAY_BUFFER,0);
 
     this->material.aplicar();
-	}
+	//}
 
   if (textura != nullptr&&!seleccion) {
 		textura->activar();
@@ -214,42 +217,10 @@ void Malla3D::setTextura(const std::string & archivo){
 
   }
 
-void Malla3D::drawselec(){
-  creaVBOseleccion();
-  seleccion=true;
-    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_seleccion );
-     // habilitar uso de array de col.
-    glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
-    glBindBuffer ( GL_ARRAY_BUFFER , 0);
-    glEnableClientState( GL_COLOR_ARRAY );
+void Malla3D::setselec(bool valor){
 
-    glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
-   // usar como buffer de vertices el actualmente activo
-    glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );
-    // deactivar buffer: VBO de vértices.
-     glBindBuffer ( GL_ARRAY_BUFFER , 0 );
-    // habilitar el uso de tabla de vértices
-    glEnableClientState ( GL_VERTEX_ARRAY );
-    //
-    // activar buffer: VBO de triángulos
-    glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , id_vbo_tri );
-    // dibujar con el buffer de índices activo
-    //glPolygonMode(GL_FRONT, GL_POINT);
-    glDrawElements ( GL_TRIANGLES , 3*f.size() , GL_UNSIGNED_INT , 0 ) ;
+  seleccion=valor;
 
-    if (textura != nullptr) {
-      glDisable( GL_TEXTURE_2D );
-      glDisable(GL_TEXTURE_COORD_ARRAY);
-    }
-    // desactivar buffer: VBO de triángulos
-    glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , 0 );
-    // desactivar uso de array de vértices
-    glDisableClientState ( GL_VERTEX_ARRAY );
-    glDisableClientState ( GL_COLOR_ARRAY );
-    glDisableClientState(GL_NORMAL_ARRAY);
-
-
-  seleccion=false;
 }
 void Malla3D::editarcolor(Tupla3f color){
   c.clear();
@@ -258,4 +229,32 @@ void Malla3D::editarcolor(Tupla3f color){
     c.push_back(color);
   }
 
+}
+void Malla3D::drawespecial()
+{
+  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+  glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_seleccion );
+   // habilitar uso de array de col.
+  glColorPointer( 3, GL_FLOAT, 0, 0); // especifíca puntero a colores
+  glBindBuffer ( GL_ARRAY_BUFFER , 0);
+  glEnableClientState( GL_COLOR_ARRAY );
+  glBindBuffer ( GL_ARRAY_BUFFER , id_vbo_ver );
+ // usar como buffer de vertices el actualmente activo
+  glVertexPointer ( 3 , GL_FLOAT , 0 , 0 );
+  // deactivar buffer: VBO de vértices.
+   glBindBuffer ( GL_ARRAY_BUFFER , 0 );
+  // habilitar el uso de tabla de vértices
+  glEnableClientState ( GL_VERTEX_ARRAY );
+  glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , id_vbo_tri );
+  // dibujar con el buffer de índices activo
+  //glPolygonMode(GL_FRONT, GL_POINT);
+  glDrawElements ( GL_TRIANGLES , 3*f.size() , GL_UNSIGNED_INT , 0 ) ;
+
+
+  // desactivar buffer: VBO de triángulos
+  glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER , 0 );
+  // desactivar uso de array de vértices
+  glDisableClientState ( GL_VERTEX_ARRAY );
+  glDisableClientState ( GL_COLOR_ARRAY );
 }

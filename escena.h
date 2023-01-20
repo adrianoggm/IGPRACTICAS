@@ -78,6 +78,7 @@ class Escena
   bool ratonPulsado;
   float x_ant, y_ant;
   int camaraActiva = 0;
+  bool seleccion=false;
    public:
 
     Escena();
