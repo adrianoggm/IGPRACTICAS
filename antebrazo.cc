@@ -6,8 +6,8 @@
 #include "mano.h"
 
 Antebrazo::Antebrazo(){
-  codo= new  Esfera(11,10,3);
-  radio = new Cilindro(11,10,30,3);
+  codo= new  Esfera(7,7,3);
+  radio = new Cilindro(7,7,30,3);
   mano=new Mano();
   Tupla4f ambiente_yellowplast(	0.0,	0.0,	0.0, 1.0);
   Tupla4f especular_yellowplast(	0.5	,0.5,	0.0, 1.0);

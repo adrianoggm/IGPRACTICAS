@@ -45,12 +45,12 @@ Escena::Escena()
     cono=new Cono(11,20,120,55);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
 
 
-    esfera=new Esfera(11,35,25);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
+    //esfera=new Esfera(11,35,25);//( const int num_vert_perfil ,const int num_instancias_perf,const float altura ,const float radio )
 
     //LUCES Escena
     luzdire=new LuzDireccional(Tupla2f(0.0,0.0));
     luzposi=new LuzPosicional(Tupla3f(40.0f,40.0f,40.f));
-    peon1 =new ObjRevolucion("./plys/peon.ply",10,100);
+    //peon1 =new ObjRevolucion("./plys/peon.ply",10,100);
 
     Tupla4f ambiente_pearl(0.25,0.20725,0.20725, 1.0);
     Tupla4f especular_pearl(0.296648,0.296648, 0.296648, 1.0);
@@ -63,19 +63,20 @@ Escena::Escena()
     Material negro (Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),128.f);
     Material blanco (Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),128.f);
     //green rubber				.078125
-    Material greenrub (Tupla4f(0.0,0.05,0.0,0.96f),Tupla4f(0.4,0.5,0.4,0.96f),Tupla4f(0.04,0.7,0.04,0.96f),.078125);
+    Material greenrub (Tupla4f(0.0,0.05,0.0,0.96f),Tupla4f(0.4,0.5,0.4,0.96f),Tupla4f(0.04,0.7,0.04,0.96f),0.078125);
     cilindro->setMaterial(negro);
     cubo->setMaterial(esmerald);
-    peon1->setMaterial(pearl);
-    peon->setMaterial(negro);
+    //peon1->setMaterial(pearl);
+
     cuadro->setMaterial(greenrub);
-    piramide->setMaterial(negro);
+    peon->setMaterial(negro);
+    piramide->setMaterial(greenrub);
     cono->setMaterial(blanco);
-    piramide->setMaterial(pearl);
+    //piramide->setMaterial(pearl);
     cilindro->setTextura("./text-lata-1.jpg");
     cubo->setTextura("./text-lata-1.jpg");
     cuadro->setTextura("./textura-hierba-verde.jpg");
-    esfera->setTextura("./text-lata-1.jpg");
+    //esfera->setTextura("./text-lata-1.jpg");
     incremento= Tupla4f(0.1f,0.1f,0.1f,0.1f);//Incremento de las luces posicionales examen
 
 }
@@ -150,7 +151,7 @@ if(modoluces){
     }
     glPushMatrix ();
 
-    glTranslatef (-100,-80,-100);
+    glTranslatef (-200,-80,-200);
     cubo->draw();
     glPopMatrix ();
 
@@ -179,10 +180,17 @@ if(modoluces){
     glTranslatef (200,-80,-200);
     piramide->draw();
     glPopMatrix ();
-    //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+    ////jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
     glPushMatrix ();
     glRotatef(180,0,1.0,0.0);
-      //jugador1->draw();
+      jugador1->draw();
+    glPopMatrix ();
+
+    glPushMatrix ();
+
+    glTranslatef (0,-30,-200);
+    glScalef(10,10,10);
+    beethoven.draw();
     glPopMatrix ();
 
 }
@@ -193,10 +201,9 @@ else{
 
 
         glPolygonMode(GL_FRONT,GL_FILL);
-
         glPushMatrix ();
 
-        glTranslatef (-100,-80,-100);
+        glTranslatef (-200,-80,-200);
         cubo->draw();
         glPopMatrix ();
 
@@ -225,13 +232,18 @@ else{
         glTranslatef (200,-80,-200);
         piramide->draw();
         glPopMatrix ();
-        //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+        ////jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
         glPushMatrix ();
         glRotatef(180,0,1.0,0.0);
-          //jugador1->draw();
+          jugador1->draw();
         glPopMatrix ();
 
+        glPushMatrix ();
 
+        glTranslatef (0,-30,-200);
+        glScalef(10,10,10);
+        beethoven.draw();
+        glPopMatrix ();
 
       }
       if(modolin){
@@ -240,7 +252,7 @@ else{
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         glPushMatrix ();
 
-        glTranslatef (-100,-80,-100);
+        glTranslatef (-200,-80,-200);
         cubo->draw();
         glPopMatrix ();
 
@@ -269,18 +281,26 @@ else{
         glTranslatef (200,-80,-200);
         piramide->draw();
         glPopMatrix ();
-        //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+        ////jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
         glPushMatrix ();
         glRotatef(180,0,1.0,0.0);
-          //jugador1->draw();
+          jugador1->draw();
         glPopMatrix ();
+
+        glPushMatrix ();
+
+        glTranslatef (0,-30,-200);
+        glScalef(10,10,10);
+        beethoven.draw();
+        glPopMatrix ();
+
       }
       if(modovert){
 
           glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
           glPushMatrix ();
 
-          glTranslatef (-100,-80,-100);
+          glTranslatef (-200,-80,-200);
           cubo->draw();
           glPopMatrix ();
 
@@ -309,15 +329,16 @@ else{
           glTranslatef (200,-80,-200);
           piramide->draw();
           glPopMatrix ();
-          //jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
+          ////jugador1->dibuja(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Tupla3f(0.0,0.0,0.0),0,0,0);
           glPushMatrix ();
           glRotatef(180,0,1.0,0.0);
-            //jugador1->draw();
+            jugador1->draw();
           glPopMatrix ();
 
           glPushMatrix ();
-          glScalef(60,60,60);
-          glTranslatef (0,-80,200);
+
+          glTranslatef (0,-30,-200);
+          glScalef(10,10,10);
           beethoven.draw();
           glPopMatrix ();
       }
@@ -578,9 +599,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                           gradolib=2;
                       }
                         break ;
-/*            case 'N':
+          case 'N':
             if(animacion==true){
-              //jugador1->resetJugador();
+              jugador1->resetJugador();
                   animacion=false;
 
             }
@@ -616,7 +637,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
 
                             break ;
-                            */
+
    }
 
    return salir;
@@ -784,7 +805,7 @@ void Escena::dibujar_seleccion(int x, int y){
   bool luz_activada=false;
   bool textura_activada=false;
   bool dither_activado=false;
-  
+
   if(glIsEnabled(GL_LIGHTING)){
      glDisable(GL_LIGHTING);
      luz_activada=true;
@@ -844,6 +865,12 @@ void Escena::dibujar_seleccion(int x, int y){
    change_observer();
    GLint polygonMode[2];
    glGetIntegerv(GL_POLYGON_MODE,polygonMode);
+   Material negro (Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),128.f);
+   Material blanco (Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),128.f);
+   Material greenrub (Tupla4f(0.0,0.05,0.0,0.96f),Tupla4f(0.4,0.5,0.4,0.96f),Tupla4f(0.04,0.7,0.04,0.96f),0.078125);
+
+  Material oro ({0.24725, 0.1995, 0.0745, 1}, {0.75164, 0.60648, 0.22648, 1}, {0.628281, 0.555802, 0.366065, 1}, 0.4*128.0f);
+
    glPushMatrix();
 
 
@@ -851,6 +878,10 @@ void Escena::dibujar_seleccion(int x, int y){
          glPushMatrix();
          //ITEM A DIBUJAR
          if(camaras[camaraActiva].getSeleccionado()==CONO){
+           peon->setMaterial(negro);
+           piramide->setMaterial(greenrub);
+           cono->setMaterial(oro);
+
           cono->setselec(true);
           peon->setselec(false);
           piramide->setselec(false);
@@ -867,6 +898,9 @@ void Escena::dibujar_seleccion(int x, int y){
            glPushMatrix();
              if(camaras[camaraActiva].getSeleccionado()==PIRAMIDE){
            //ITEM A DIBUJAR
+           peon->setMaterial(negro);
+           piramide->setMaterial(oro);
+           cono->setMaterial(blanco);
            peon->setselec(false);
 
            cono->setselec(false);
@@ -882,11 +916,15 @@ void Escena::dibujar_seleccion(int x, int y){
              glPushMatrix();
               if(camaras[camaraActiva].getSeleccionado()==PEON){
              //ITEM A DIBUJAR
+             peon->setMaterial(oro);
+             piramide->setMaterial(greenrub);
+             cono->setMaterial(blanco);
              piramide->setselec(false);
              cono->setselec(false);
              peon->setselec(true);
              glTranslatef (200,0,200);
              glScalef(60,60,60);
+
              peon->draw();
             //  peon->setselec(false);
               printf("Co \n");
@@ -895,6 +933,9 @@ void Escena::dibujar_seleccion(int x, int y){
               peon->setselec(false);
               piramide->setselec(false);
               cono->setselec(false);
+              peon->setMaterial(negro);
+              piramide->setMaterial(greenrub);
+              cono->setMaterial(blanco);
              }
              glPopMatrix();
 

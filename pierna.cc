@@ -4,9 +4,9 @@
 
 
 Pierna::Pierna(){
-  cadera=new Esfera(11,10,5);
+  cadera=new Esfera(7,7,5);
   rodilla=new Rodilla();
-  femur=new Cilindro(11,10,30,5);
+  femur=new Cilindro(7,7,30,5);
   Tupla4f ambiente_yellowplast(	0.0,	0.0,	0.0, 1.0);
   Tupla4f especular_yellowplast(	0.5	,0.5,	0.0, 1.0);
   Tupla4f difuso_yellowplast(	0.60	,0.60,	0.50, 1.0);

@@ -6,8 +6,8 @@
 
 Pie::Pie()
 {
-  planta= new Cilindro(11,10,20,4);
-  tobillo=new Esfera(11,10,4);//radio
+  planta= new Cilindro(7,7,20,4);
+  tobillo=new Esfera(7,7,4);//radio
   Material negro (Tupla4f(0.04f,0.04f,0.04f,0.96f),Tupla4f(0.96f,0.96f,0.96f,0.96f),Tupla4f(0.04f,0.04f,0.04f,0.96f),128.f);
   planta->setMaterial(negro);
   //planta->setTextura("./text-madera.jpg");

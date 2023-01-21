@@ -79,6 +79,7 @@ class Escena
   float x_ant, y_ant;
   int camaraActiva = 0;
   bool seleccion=false;
+
    public:
 
     Escena();
