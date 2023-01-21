@@ -74,7 +74,7 @@ Escena::Escena()
     cono->setMaterial(blanco);
     //piramide->setMaterial(pearl);
     cilindro->setTextura("./text-lata-1.jpg");
-    cubo->setTextura("./text-lata-1.jpg");
+    cubo->setTextura("./skybox.jpg");
     cuadro->setTextura("./textura-hierba-verde.jpg");
     //esfera->setTextura("./text-lata-1.jpg");
     incremento= Tupla4f(0.1f,0.1f,0.1f,0.1f);//Incremento de las luces posicionales examen
@@ -172,7 +172,7 @@ if(modoluces){
 
     glPushMatrix ();
     glTranslatef (-200,-80,200);
-    glRotatef(180,1.0,0.0,0.0);
+    //glRotatef(180,1.0,0.0,0.0);
     cono->draw();
     glPopMatrix ();
     glPushMatrix ();
@@ -224,7 +224,7 @@ else{
 
         glPushMatrix ();
         glTranslatef (-200,-80,200);
-        glRotatef(180,1.0,0.0,0.0);
+        //glRotatef(180,1.0,0.0,0.0);
         cono->draw();
         glPopMatrix ();
         glPushMatrix ();
@@ -273,7 +273,7 @@ else{
 
         glPushMatrix ();
         glTranslatef (-200,-80,200);
-        glRotatef(180,1.0,0.0,0.0);
+        //glRotatef(180,1.0,0.0,0.0);
         cono->draw();
         glPopMatrix ();
         glPushMatrix ();
@@ -321,7 +321,7 @@ else{
 
           glPushMatrix ();
           glTranslatef (-200,-80,200);
-          glRotatef(180,1.0,0.0,0.0);
+          //glRotatef(180,1.0,0.0,0.0);
           cono->draw();
           glPopMatrix ();
           glPushMatrix ();
@@ -351,7 +351,7 @@ else{
 
     glPushMatrix ();
     glTranslatef (-200,-80,200);
-    glRotatef(180,1.0,0.0,0.0);
+    //glRotatef(180,1.0,0.0,0.0);
     cono->drawespecial();
     glPopMatrix ();
     glPushMatrix ();
@@ -886,7 +886,7 @@ void Escena::dibujar_seleccion(int x, int y){
           peon->setselec(false);
           piramide->setselec(false);
           glTranslatef (-200,-80,200);
-          glRotatef(180,1.0,0.0,0.0);
+          //glRotatef(180,1.0,0.0,0.0);
           cono->draw();
 
 
