@@ -4,7 +4,7 @@
 
 Mano::Mano(){
 
-  palma=new Esfera(7,7,4);
+  palma=new Esfera(5,5,4);
   Tupla4f ambiente_yellowplast(	0.0,	0.0,	0.0, 1.0);
   Tupla4f especular_yellowplast(	0.5	,0.5,	0.0, 1.0);
   Tupla4f difuso_yellowplast(	0.60	,0.60,	0.50, 1.0);

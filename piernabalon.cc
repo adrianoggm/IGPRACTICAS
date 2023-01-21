@@ -4,7 +4,7 @@
 
 Piernabalon ::Piernabalon(){
   pierna=new Pierna();
-  balon= new Esfera(11,10,10);
+  balon= new Esfera(8,8,10);
   balon->setTextura("./text-balon.jpg");
   balon->editarcolor(Tupla3f(1.0f,1.0f,1.0f));
 }

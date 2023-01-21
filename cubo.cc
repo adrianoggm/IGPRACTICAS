@@ -111,14 +111,27 @@ Cubo::Cubo(float lado)
    p.push_back(Tupla3f(1.0f,0.0f,0.0f));
    p.push_back(Tupla3f(1.0f,0.0f,0.0f));
 
-   ct.push_back(Tupla2f(0.75f,0.66f));//0
-   ct.push_back(Tupla2f(0.5f,0.66f));//1
-   ct.push_back(Tupla2f(0.75f,0.33f));//2
-   ct.push_back(Tupla2f(0.5f,0.33f));//3
-   ct.push_back(Tupla2f(0.0f,0.66f));//4
-   ct.push_back(Tupla2f(0.25f,0.66f));//5
-   ct.push_back(Tupla2f(0.00f,0.33f));//6
-   ct.push_back(Tupla2f(0.25f,0.33f));//7
+   ct.resize(14);
+   ct[0] = (Tupla2f(0.5,0.5));
+   ct[1] = (Tupla2f(0.25,0.75));//1
+
+   ct[2] = (Tupla2f(0.25,0.5));
+   ct[3] = (Tupla2f(0.5,0.75));//3
+
+   ct[4] = (Tupla2f(0.75,0.75));
+   ct[5] = (Tupla2f(0.75,0.5));
+
+   ct[6] = (Tupla2f(0.0,0.5));
+   ct[7] = (Tupla2f(0.0,0.75));
+
+   ct[8] = (Tupla2f(0.5,1.0));
+   ct[9] = (Tupla2f(0.25,1.0));
+
+   ct[10] = (Tupla2f(0.5,0.25));
+   ct[11] = (Tupla2f(0.25,0.25));
+
+   ct[12] = (Tupla2f(1.0,0.75));
+   ct[13] = (Tupla2f(1.0,0.5));
    /*
    //colores
    c[0]=Tupla3f(1.0f,0.0f,1.0f);

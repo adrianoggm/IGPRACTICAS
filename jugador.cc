@@ -3,7 +3,7 @@
 #include "jugador.h"
 
 Jugador::Jugador(){
-  tronco= new Cilindro(11,10,58,18);//20 de radio 40 de diametro
+  tronco= new Cilindro(8,8,58,18);//20 de radio 40 de diametro
   piernaizq = new Pierna();
   piernadch=new  Piernabalon();
   brazoizq=new Brazo();

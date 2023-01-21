@@ -7,8 +7,8 @@
 
 Tibia::Tibia()
 {
-  perone=new Cilindro(7,7,35,3);
-  rotula=new Esfera(7,7,4);
+  perone=new Cilindro(6,6,35,3);
+  rotula=new Esfera(6,6,4);
   Tupla4f ambiente_yellowplast(	0.0,	0.0,	0.0, 1.0);
   Tupla4f especular_yellowplast(	0.5	,0.5,	0.0, 1.0);
   Tupla4f difuso_yellowplast(	0.60	,0.60,	0.50, 1.0);
