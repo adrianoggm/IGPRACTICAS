@@ -132,7 +132,7 @@ if(modoluces){
     if(luzposi->encendida==true){
       luzposi->activar();
       if(animacion){
-        AnimacionPuntual();
+         AnimacionPuntual();
 
       }
     }
